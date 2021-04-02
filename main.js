@@ -5,10 +5,16 @@ const BrowserWindow = electron.BrowserWindow
 let mainWindow
 
 function createWindow() {
-    mainWindow = new BrowserWindow({ width: 800, height: 600 })
+    mainWindow = new BrowserWindow({
+        fullscreen: true,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+        }
+    })
 
     mainWindow.loadURL(`file://${__dirname}/file-manager/app-file-manager.html`)
-
+    console.log(`file://${__dirname}/file-manager/app-file-manager.html`)
     mainWindow.on('closed', function () {
         mainWindow = null
     })

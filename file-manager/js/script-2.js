@@ -1,16 +1,14 @@
-// Move file
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 
-const fs = window.require('fs');
-const Dropzone = require(__dirname + "\\plugins\\dropzone\\dropzone.js")
-const path = require("path");
-
+},{}],2:[function(require,module,exports){
+var fs = require('fs');
 var fileUploadQueue = []
 
 $(document).ready(handleFileUploader());
 
 $("#submit-upload-file").click(handleFileStore);
 
-function handleFileUploader() {
+async function handleFileUploader() {
 
     initFileUploader("#zdrop");
 
@@ -20,7 +18,8 @@ function handleFileUploader() {
         var previewTemplate = previewNode.parentNode.innerHTML;
         previewNode.parentNode.removeChild(previewNode);
 
-        var zdrop = new Dropzone.Dropzone(target, {
+
+        var zdrop = new Dropzone(target, {
             url: '/UploadFile',
             maxFilesize: 20,
             previewTemplate: previewTemplate,
@@ -37,7 +36,7 @@ function handleFileUploader() {
         zdrop.on("sending", function (file, xhr, formData) {
             console.log(file)
             var reader = new FileReader();
-            reader.readAsText(file);
+            reader.readAsText(file, "UTF-8");
             reader.onload = function (evt) {
                 fileUploadQueue.push({
                     file_id: (fileUploadQueue.length == 0) ? 1 : fileUploadQueue[fileUploadQueue.length - 1].file_id + 1,
@@ -45,8 +44,7 @@ function handleFileUploader() {
                     file_data: evt.target.result,
                     file_obj: file                      // This is so useless
                 });
-                console.log(evt.target.result)
-                // fileUploadQueue.forEach(item => { console.log(item.file_id, item.file_name, item.file_data) })
+                fileUploadQueue.forEach(item => { console.log(item.file_id, item.file_name) })
             }
             reader.onerror = function (evt) {
                 console.log("error reading file");
@@ -109,20 +107,14 @@ function handleFileUploader() {
 }
 
 async function handleFileStore() {
+    console.log(1)
     fileUploadQueue.forEach(file => {
         //encrypt(file);
         //Storage(file);
-        //fs.writeFileSync(path.resolve(__dirname, "..\\app-data\\data\\" + file.file_name), file.file_data);
-        
-        filePath = path.resolve(__dirname, "..\\app-data\\data\\" + file.file_name);
-        if(!fs.existsSync(filePath)) {
-            fs.copyFileSync(file.file_obj.path, filePath);
-        }
-        /*
-        var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
+        console.log(fs)
+        var data = fs.readFileSync('../../app-data/map.json', 'utf8')
         tree_file = JSON.parse(data);
         console.log(tree_file)
-        */
     })
 }
 
@@ -147,3 +139,4 @@ function genItem(title, type, modified_date = "", file_size = "") {
         </a>
     </li>`;
 }
+},{"fs":1}]},{},[2]);
