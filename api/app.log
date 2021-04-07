@@ -1,0 +1,46 @@
+- INFO - 2021-04-05 14:43:54,445 - Init Server
+- INFO - 2021-04-05 14:44:16,877 - access_token is expired. Now: 2021-04-05 07:44:16.877786, token_expiry: 2021-04-01 08:59:01
+- INFO - 2021-04-05 14:44:16,884 - access_token is expired. Now: 2021-04-05 07:44:16.884787, token_expiry: 2021-04-01 08:59:01
+- INFO - 2021-04-05 14:45:00,958 - Init Server
+- INFO - 2021-04-05 14:45:23,430 - access_token is expired. Now: 2021-04-05 07:45:23.430466, token_expiry: 2021-04-01 08:59:01
+- INFO - 2021-04-05 14:45:23,430 - access_token is expired. Now: 2021-04-05 07:45:23.430466, token_expiry: 2021-04-01 08:59:01
+- INFO - 2021-04-05 14:45:27,677 - Received token response with no refresh_token. Consider reauthenticating with prompt='consent'.
+- INFO - 2021-04-05 14:45:27,678 - Successfully retrieved access token
+- INFO - 2021-04-05 14:45:27,742 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-05 14:45:29,942 - upload_file -> (file_name: test2, file_content: content 2)
+- INFO - 2021-04-05 14:46:14,236 - upload_file -> (file_name: test, file_content: content 2)
+- INFO - 2021-04-05 14:48:42,809 - get_files_by_title -> (title: test)
+- INFO - 2021-04-05 14:49:11,823 - get_files_by_title -> (title: test)
+- INFO - 2021-04-05 14:50:13,128 - get_content_file -> (file : 1n8qrUC7ZTyE9Ne1-vmnA05NT4q_3hh17 - test)
+- INFO - 2021-04-05 15:11:19,713 - upload_file -> (file_name: test 3, file_content: content 2)
+- INFO - 2021-04-05 15:13:07,909 - Init Server
+- INFO - 2021-04-05 15:13:12,435 - access_token is expired. Now: 2021-04-05 08:13:12.435929, token_expiry: 2021-04-01 08:59:01
+- INFO - 2021-04-05 15:13:12,442 - access_token is expired. Now: 2021-04-05 08:13:12.442930, token_expiry: 2021-04-01 08:59:01
+- INFO - 2021-04-05 15:13:16,982 - Received token response with no refresh_token. Consider reauthenticating with prompt='consent'.
+- INFO - 2021-04-05 15:13:16,983 - Successfully retrieved access token
+- INFO - 2021-04-05 15:13:17,072 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-05 15:13:18,362 - get_files_by_title -> (title: test)
+- INFO - 2021-04-05 15:13:46,650 - get_content_file -> (file : 1n8qrUC7ZTyE9Ne1-vmnA05NT4q_3hh17 - test)
+- INFO - 2021-04-05 15:13:50,419 - get_content_file -> (file : 1yJac2YjlUT3LN2cu9yEpLOfzcF9hKkil - test)
+- INFO - 2021-04-05 15:18:58,668 - Init Server
+- INFO - 2021-04-05 15:19:08,011 - access_token is expired. Now: 2021-04-05 08:19:08.011736, token_expiry: 2021-04-01 08:59:01
+- INFO - 2021-04-05 15:19:08,027 - access_token is expired. Now: 2021-04-05 08:19:08.027336, token_expiry: 2021-04-01 08:59:01
+- INFO - 2021-04-05 15:19:54,396 - Init Server
+- INFO - 2021-04-05 15:20:06,936 - access_token is expired. Now: 2021-04-05 08:20:06.936843, token_expiry: 2021-04-01 08:59:01
+- INFO - 2021-04-05 15:20:06,943 - access_token is expired. Now: 2021-04-05 08:20:06.943843, token_expiry: 2021-04-01 08:59:01
+- INFO - 2021-04-05 15:20:11,755 - Received token response with no refresh_token. Consider reauthenticating with prompt='consent'.
+- INFO - 2021-04-05 15:20:11,755 - Successfully retrieved access token
+- INFO - 2021-04-05 15:20:11,833 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-05 15:20:12,763 - get_files_by_title -> (title: test)
+- INFO - 2021-04-05 15:20:17,544 - get_files_by_title -> (title: test)
+- INFO - 2021-04-05 15:20:41,805 - get_content_file -> (file : 1n8qrUC7ZTyE9Ne1-vmnA05NT4q_3hh17 - test)
+- INFO - 2021-04-05 15:21:12,143 - get_file_by_id -> (file_id: 1n8qrUC7ZTyE9Ne1-vmnA05NT4q_3hh17)
+- INFO - 2021-04-05 15:21:59,528 - Init Server
+- INFO - 2021-04-05 15:22:14,690 - access_token is expired. Now: 2021-04-05 08:22:14.690266, token_expiry: 2021-04-01 08:59:01
+- INFO - 2021-04-05 15:22:14,697 - access_token is expired. Now: 2021-04-05 08:22:14.697267, token_expiry: 2021-04-01 08:59:01
+- INFO - 2021-04-05 15:22:18,165 - Received token response with no refresh_token. Consider reauthenticating with prompt='consent'.
+- INFO - 2021-04-05 15:22:18,165 - Successfully retrieved access token
+- INFO - 2021-04-05 15:22:18,281 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-05 15:22:18,999 - get_files_by_title -> (title: test)
+- INFO - 2021-04-05 15:23:15,355 - get_file_by_id -> (file_id: 1n8qrUC7ZTyE9Ne1-vmnA05NT4q_3hh17)
+- INFO - 2021-04-05 15:23:16,587 - delete_file_by_id -> (file_id: 1n8qrUC7ZTyE9Ne1-vmnA05NT4q_3hh17)

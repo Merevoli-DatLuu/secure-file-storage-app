@@ -1,11 +1,1 @@
-{
-    "folders": {
-        "000000": {
-            "name": "/",
-            "parent": "",
-            "create_date": "17/03/2020"
-        }
-    },
-    "files": {
-    }
-}
+{"folders":{"000000":{"name":"/","parent":"","create_date":"17/03/2020"}},"files":{"000001":{"name":"Tổng quan về đồ án.docx","parent":"000000","size":770402,"create_date":"1617818907650"},"000002":{"name":"README.md","parent":"000000","size":1093,"create_date":"1617818907678"}}}
