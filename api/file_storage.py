@@ -26,6 +26,19 @@ sync to server - api/files (create), api/files/<id> (modified) - POST, PUT, DELE
 	+ delete file   -   api/files/<id>  -   DELETE
 sync to device - api/files - GET
 
+when sync to server
+    + Add file
+    + Modified File
+    + Delete File
+
+when sync to device
+    + another host sync to server: check sync (time = 5s)
+    + login to account
+
+sending key problem
++ use 1 key for timelife when login device
++ store key in secret file (local)
++ check key
 """
 
 
