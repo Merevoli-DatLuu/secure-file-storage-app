@@ -192,16 +192,19 @@ async function handleFileStore() {
 
 }
 
-function handleOpenFile(filePath){
+async function handleOpenFile(filePath){
     if( fs.existsSync( filePath ) ) {
         console.log(filePath)
-        const watcher = fs.watch(filePath, (curr, prev) => {
+        const watcher = fs.watch(filePath, (eventType, filename) => {
+            console.log(eventType)
             console.log('ed');
         });
-        open( filePath ).then(() => {
-            watcher.close();
-            fs.unlinkSync(filePath)
-        });
+        // Can't Fix - solution: use timeout
+        const result = await open(filePath);
+        console.log(result);
+        console.log(1);
+        //watcher.close();
+        //fs.unlinkSync(filePath)
     }
 }
 

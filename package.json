@@ -14,6 +14,7 @@
     "box-ui-elements": "^12.0.0",
     "fs": "^0.0.1-security",
     "jquery": "^3.6.0",
-    "open": "^8.0.5"
+    "open": "^8.0.5",
+    "openurl": "^1.1.1"
   }
 }

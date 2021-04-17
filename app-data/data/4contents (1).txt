@@ -1,0 +1,51 @@
+﻿1) Tìm hiểu một số định nghĩa
++ USB (Universal Serial BUS)
++ HID driver
++ Firmware
++ Serial Protocol
++ Rubber Ducky USB
+...
+
+2) Cấu tạo và nguyên lý hoạt động
++ Cấu tạo chung
++ Các dòng Microcontroller hỗ trợ
++ Các môi trường triển khai (Windows, Linux)
++ Low level message flow in USB
++ Nguyên lý hoạt động
+...
+
+3) Triển khai và ứng dụng
++ Arduino/Tenssy/Raspberry pi/...
++ supported SD card
++ supported Wifi card
++ Switch Positions
++ LED Status
+...
+
+4) Các dạng tấn công
++ Stealing informations
++ Injecting keyloggers/backdoors
++ MITM
++ Hide data on stick or HDD
++ Rewriting data in-flight to add viruses to newly stored files
++ Update PC BIOS
+...
+
+5) Đánh giá rủi ro
++ Sức mạnh và khả năng của Rubber Ducky USB
++ Thống kê các thiết bị thông dụng được biết có nguy cơ cao
++ Một vài thống kê khác
+...
+
+6) Cách phòng tránh
++ Whitelist USB devices
++ Block critical device class
++ Scan peripheral firmware for malware
++ Use code signing for firmware updates
++ Disable firmware updates in hardware
+...
+
+7) Demo
++ Cách bước thực hiện
++ Kết quả thu được
++ ...
