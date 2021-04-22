@@ -56,6 +56,10 @@
     <!--Dropzone [ OPTIONAL ]-->
     <link href="plugins/dropzone/dropzone.min.css" rel="stylesheet">
 
+    
+    <!--Icon pli [ OPTIONAL ]-->
+    <link href="premium/premium-line-icons.min.css" rel="stylesheet">
+
 
     <!--=================================================
 
@@ -520,15 +524,20 @@
                                     
                                     <!--------------->
 
-                                    <p class="pad-hor mar-top text-main text-bold text-sm text-uppercase">Bookmark</p>
+                                    <p class="pad-hor mar-top text-main text-bold text-sm text-uppercase">Files</p>
                                     <div class="list-group bg-trans pad-ver bord-btm">
-                                        <a href="#" class="list-group-item"><i
-                                                class="demo-pli-folder-with-document icon-lg icon-fw"></i> User
-                                            Folders</a>
-                                        <a href="#" class="list-group-item"><i
-                                                class="demo-pli-camera-2 icon-lg icon-fw"></i> Photos</a>
-                                        <a href="#" class="list-group-item"><i
-                                                class="demo-pli-video icon-lg icon-fw"></i> Videos</a>
+                                        <a id = 'file-type-user-folder' href="#" class="list-group-item"><i
+                                            class="demo-pli-folder-with-document icon-lg icon-fw"></i> User Folders</a>
+                                        <a id = 'file-type-photo' href="#" class="list-group-item"><i
+                                            class="demo-pli-camera-2 icon-lg icon-fw"></i> Photos</a>
+                                        <a id = 'file-type-video' href="#" class="list-group-item"><i
+                                            class="demo-pli-video icon-lg icon-fw"></i> Videos </a>
+                                        <a id = 'file-type-music' href="#" class="list-group-item"><i
+                                            class="ti-music-alt icon-lg icon-fw"></i> Musics </a>
+                                        <a id = 'file-type-document' href="#" class="list-group-item"><i
+                                            class="ti-agenda icon-lg icon-fw"></i> Documents</a>
+                                        <a id=  'file-type-zip' href="#" class="list-group-item"><i
+                                            class="demo-pli-file-zip icon-lg icon-fw"></i> Zip </a>
                                     </div>
 
 
@@ -613,7 +622,7 @@
                                                 data-toggle="tooltip"><i class="icon-2x demo-pli-file-edit"></i></a>
                                         </div>
                                         <div class="btn-file-toolbar pull-right">
-                                            <a class="btn btn-icon add-tooltip" href="#" data-original-title="Delete"
+                                            <a id = "delete-files" class="btn btn-icon add-tooltip" href="#" data-original-title="Delete"
                                                 data-toggle="tooltip"><i class="icon-2x demo-pli-recycling"></i></a>
                                             <a class="btn btn-icon add-tooltip" href="#" data-original-title="Download"
                                                 data-toggle="tooltip"><i
@@ -1072,7 +1081,7 @@
 
                                     <!--Menu list item-->
                                     <li>
-                                        <a href="#">
+                                        <a id = 'dashboard-sidebar' href="dashboard.html">
                                             <i class="fa fa-home"></i>
                                             <span class="menu-title">Dashboard</span>
                                         </a>
@@ -1080,7 +1089,7 @@
 
                                     <!--Menu list item-->
                                     <li>
-                                        <a href="#">
+                                        <a id = 'filemanager-sidebar' href="#">
                                             <i class="fa fa-desktop"></i>
                                             <span class="menu-title">File Manager</span>
                                         </a>
@@ -1088,7 +1097,7 @@
 
                                     <!--Menu list item-->
                                     <li>
-                                        <a href="#">
+                                        <a id = 'favorites-sidebar' href="#">
                                             <i class="fa fa-heart"></i>
                                             <span class="menu-title">Favorites</span>
                                         </a>
@@ -1096,7 +1105,7 @@
                                     
                                     <!--Menu list item-->
                                     <li>
-                                        <a href="#">
+                                        <a id = 'appinfo-sidebar' href="#">
                                             <i class="fa fa-sitemap"></i>
                                             <span class="menu-title">App's Info</span>
                                         </a>
@@ -1123,7 +1132,7 @@
                                     <div id="demo-wg-server" class="hide-small mainnav-widget-content">
                                         <ul class="list-group">
                                             <li class="list-header pad-no mar-ver">Server Status</li>
-                                            <li class="mar-btm">
+                                            <li id = 'cpu-usage' class="mar-btm">
                                                 <span class="label label-primary pull-right">15%</span>
                                                 <p>CPU Usage</p>
                                                 <div class="progress progress-sm">
@@ -1132,9 +1141,9 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li class="mar-btm">
+                                            <li id = 'disk-usage' class="mar-btm">
                                                 <span class="label label-purple pull-right">75%</span>
-                                                <p>Bandwidth</p>
+                                                <p>Disk Usage</p>
                                                 <div class="progress progress-sm">
                                                     <div class="progress-bar progress-bar-purple" style="width: 75%;">
                                                         <span class="sr-only">75%</span>

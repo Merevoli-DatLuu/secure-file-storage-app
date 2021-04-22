@@ -2,24 +2,41 @@ const fs = require('fs');
 const Dropzone = require(__dirname + "\\plugins\\dropzone\\dropzone.js")
 const path = require("path");
 const crypto = require('crypto');
-const open = require( 'open' );
+const open = require('open');
+const os = require('os-utils');
 
 const key = '14189dc35ae35e75ff31d7502e245cd9';
-const iv = '35e75ff31d7502e2'; 
+const iv = '35e75ff31d7502e2';
 var fileUploadQueue = []
 
 var maxFileID = 0
 
 $(document).ready(handleFileUploader());
-
 $("#submit-upload-file").click(handleFileStore);
+$("#delete-files").click(handleRemoveFiles);
 
-function updateMaxFileID(){
+// Side bar
+$('#dashboard-sidebar').click(useDashboard);
+$('#filemanager-sidebar').click(useFilemanager);
+$('#favorites-sidebar').click(useFavorites);
+$('#appinfo-sidebar').click(useAppinfo);
+
+// File Type
+$('#file-type-user-folder').click(loadFileList);
+$('#file-type-photo').click(() => loadFileListByType('photo'));
+$('#file-type-video').click(() => loadFileListByType('video'));
+$('#file-type-music').click(() => loadFileListByType('music'));
+$('#file-type-document').click(() => loadFileListByType('document'));
+$('#file-type-zip').click(() =>loadFileListByType('zip'));
+
+setInterval(handleClientStatus, 1000);  
+
+function updateMaxFileID() {
     var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
     tree_file = JSON.parse(data);
 
-    if (JSON.stringify(tree_file.files) != JSON.stringify({})){
-        for (fileid in tree_file.files){
+    if (JSON.stringify(tree_file.files) != JSON.stringify({})) {
+        for (fileid in tree_file.files) {
             maxFileID = Math.max(maxFileID, parseInt(fileid))
         }
     }
@@ -122,9 +139,9 @@ function handleFileUploader() {
 
 }
 
-function toFileID(id){
+function toFileID(id) {
     fileID = "";
-    for (let i = 1; i <= 6 - String(id).length; i++){
+    for (let i = 1; i <= 6 - String(id).length; i++) {
         fileID += "0";
     }
     return fileID + String(id);
@@ -150,7 +167,7 @@ async function handleFileStore() {
             "parent": "000000",
             "size": file.file_obj.size,
             "create_date": String(Date.now())
-        } 
+        }
 
         tree_file.files[toFileID(maxFileID++)] = file_store
 
@@ -163,14 +180,22 @@ async function handleFileStore() {
             )
         );
         popupMenu(toFileID(maxFileID - 1))
-        
+
         var cipher = crypto.createCipheriv('aes-256-cbc', key, iv);
         var input = fs.createReadStream(filePath);
         var output = fs.createWriteStream(filePath + ".aes");
         input.pipe(cipher).pipe(output);
 
-        output.on('finish', async function() {
+        output.on('finish', async function () {
             console.log('Encrypted file written to disk!');
+
+            /*
+            if (fs.existsSync(filePath)) {
+                fs.unlinkSync(filePath);
+            }
+            else{
+                console.log(`file ${filePath} not found`)
+            }
             /*await input.close();
             await output.close();
 
@@ -192,8 +217,8 @@ async function handleFileStore() {
 
 }
 
-async function handleOpenFile(filePath){
-    if( fs.existsSync( filePath ) ) {
+async function handleOpenFile(filePath) {
+    if (fs.existsSync(filePath)) {
         console.log(filePath)
         const watcher = fs.watch(filePath, (eventType, filename) => {
             console.log(eventType)
@@ -208,10 +233,10 @@ async function handleOpenFile(filePath){
     }
 }
 
-function viewFile(id){
+function viewFile(id) {
     var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
     let tree_file = JSON.parse(data);
- 
+
     let file = tree_file.files[id]
 
     filePath = path.resolve(__dirname, "..\\app-data\\data\\" + parseInt(id) + file.name);
@@ -222,13 +247,54 @@ function viewFile(id){
     input.pipe(decrypt).pipe(output);
     output.on('finish', () => {
         output.end()
-        handleOpenFile( filePathOutput );
+        handleOpenFile(filePathOutput);
     })
-
-
 }
 
-function popupMenu(id){
+function removeFile(id) {
+    var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
+    let tree_file = JSON.parse(data);
+
+    let file = tree_file.files[id];
+
+    // remove file
+    filePath = path.resolve(__dirname, "..\\app-data\\data\\" + parseInt(id) + file.name + ".aes");
+    if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+    }
+    else{
+        console.log(`file ${filePath} not found`)
+    }
+
+    // update map.json
+    let mapPath = path.resolve(__dirname, "..\\app-data\\map.json")
+    delete tree_file.files[id];
+    fs.writeFileSync(mapPath, JSON.stringify(tree_file));
+
+    // update UI
+    let nodeID = "#file-" + id;
+    $(nodeID).remove()
+}
+
+function handleRemoveFile(id){
+    if (confirm("Are you sure you want to delete this file?")) {
+        removeFile(id)
+    }
+}
+
+function handleRemoveFiles(){
+    if (confirm("Are you sure you want to delete this file?")) {
+        var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
+        let tree_file = JSON.parse(data);
+    
+        let fileIDs = Object.keys(tree_file.files)
+        fileIDs = fileIDs.filter(e => {return document.getElementById(`file-list-${e}`).checked})
+        console.log(fileIDs)
+        fileIDs.forEach(e => removeFile(e))
+    }
+}
+
+function popupMenu(id) {
     test_menu = {
         id: id,
         data: [
@@ -238,12 +304,12 @@ function popupMenu(id){
             {
                 icon: 'glyphicon-eye-open',
                 text: '  View',
-                action: function(e, selector) { viewFile(id) }
+                action: function (e, selector) { viewFile(id) }
             },
             {
                 icon: 'glyphicon-edit',
                 text: '  Edit',
-                action: function(e, selector) { viewFile(id) }
+                action: function (e, selector) { viewFile(id) }
             },
             {
                 divider: true
@@ -251,21 +317,42 @@ function popupMenu(id){
             {
                 icon: 'glyphicon-trash',
                 text: '  Delete',
-                action: function(e, selector) { alert('Delete clicked on ' + selector.prop("tagName") + ":" + selector.attr("id")); }
+                action: function (e, selector) { handleRemoveFile(id) }
             }
         ]
     };
-    context.init({preventDoubleContext: false});
+    context.init({ preventDoubleContext: false });
     context.attach('#file-setting-' + id, test_menu);
-    
+
 }
 
-function loadFileList(){
+function loadFileList() {
+    $('#demo-mail-list').empty()
+    $('#demo-mail-list').append(
+        `
+        <!--File list item-->
+        <li>
+            <div class="file-control">
+                <input id="file-list-1" class="magic-checkbox" type="checkbox">
+                <label for="file-list-1"></label>
+            </div>
+            <div class="file-attach-icon"></div>
+            <a href="#" class="file-details">
+                <div class="media-block">
+                    <div class="media-left"><i class="demo-psi-folder"></i></div>
+                    <div class="media-body">
+                        <p class="file-name single-line">...</p>
+                    </div>
+                </div>
+            </a>
+        </li>`
+    );
+
     var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
     let tree_file = JSON.parse(data);
- 
     let files = tree_file.files;
-    for (file_id in files){
+    for (file_id in files) {
+
         $('#demo-mail-list').append(
             genItem(
                 file_id,
@@ -276,37 +363,178 @@ function loadFileList(){
         );
         popupMenu(file_id)
     }
+}
+
+function loadFileListByType(type) {
+    $('#demo-mail-list').empty()
+    $('#demo-mail-list').append(
+        `
+        <!--File list item-->
+        <li>
+            <div class="file-control">
+                <input id="file-list-1" class="magic-checkbox" type="checkbox">
+                <label for="file-list-1"></label>
+            </div>
+            <div class="file-attach-icon"></div>
+            <a href="#" class="file-details">
+                <div class="media-block">
+                    <div class="media-left"><i class="demo-psi-folder"></i></div>
+                    <div class="media-body">
+                        <p class="file-name single-line">...</p>
+                    </div>
+                </div>
+            </a>
+        </li>`
+    );
+    console.log(type)
+
+    let photo_extensions = ['png', 'jpg', 'jpeg', 'gif'];
+    let video_extensions = ['mp4', 'mov', 'wmv', 'flv', 'avi', 'webm'];
+    let music_extensions = ['mp3', 'm4a', 'flac', 'wav', 'wma', 'aac'];
+    let document_extensions = ['doc','docm','docx','dot','dotm','dotx','htm','html','mht','mhtml','odt','pdf','rtf','txt','wps','xml','xps'];
+    let zip_extensions = ['zip', 'rar', 'tar']   
     
+    let file_extensions;
+    if (type == 'photo'){
+        file_extensions = photo_extensions;
+    }
+    else if (type == 'video'){
+        file_extensions = video_extensions;
+    }
+    else if (type == 'music'){
+        file_extensions = music_extensions;
+    }    
+    else if (type == 'document'){
+        file_extensions = document_extensions;
+    }
+    else if (type == 'zip'){
+        file_extensions = zip_extensions;
+    }
+
+    var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
+    let tree_file = JSON.parse(data);
+    let files = tree_file.files;
+    for (file_id in files) {
+        let file_name = files[file_id].name
+        file_extension = file_name.split('.')[file_name.split('.').length - 1]
+        if (file_extensions.includes(file_extension)){
+            $('#demo-mail-list').append(
+                genItem(
+                    file_id,
+                    files[file_id].name,
+                    files[file_id].create_date,
+                    files[file_id].size
+                )
+            );
+            popupMenu(file_id)
+        }
+    }
+}
+
+function useDashboard(){
+    console.log('useDashboard');
+    $('#dashboard-sidebar').css('color', '#337ab7');
+    $('#filemanager-sidebar').css('color', 'inherit');
+    $('#favorites-sidebar').css('color', 'inherit');
+    $('#appinfo-sidebar').css('color', 'inherit');
+
+    // Using Component
+}
+
+function useFilemanager(){
+    console.log('useFilemanager');
+    $('#dashboard-sidebar').css('color', 'inherit');
+    $('#filemanager-sidebar').css('color', '#337ab7');
+    $('#favorites-sidebar').css('color', 'inherit');
+    $('#appinfo-sidebar').css('color', 'inherit');
+}
+
+function useFavorites(){
+    console.log('useFavorites');
+    $('#dashboard-sidebar').css('color', 'inherit');
+    $('#filemanager-sidebar').css('color', 'inherit');
+    $('#favorites-sidebar').css('color', '#337ab7');
+    $('#appinfo-sidebar').css('color', 'inherit');
+}
+
+function useAppinfo(){
+    console.log('useAppinfo');
+    $('#dashboard-sidebar').css('color', 'inherit');
+    $('#filemanager-sidebar').css('color', 'inherit');
+    $('#favorites-sidebar').css('color', 'inherit');
+    $('#appinfo-sidebar').css('color', '#337ab7');
+}
+
+function handleClientStatus(){
+
+    // CPU Usage
+    os.cpuUsage(function(v){
+        v = parseInt(v*100)
+        $('#cpu-usage').html(`
+            <span class="label label-primary pull-right">${v}%</span>
+            <p>CPU Usage</p>
+            <div class="progress progress-sm">
+                <div class="progress-bar progress-bar-primary" style="width: ${v}%;">
+                    <span class="sr-only">${v}%</span>
+                </div>
+            </div>
+        `);
+    });
+
+    // Disk Usage 
+    let maxSize = 200// Max Size 200MB 
+    var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
+    let tree_file = JSON.parse(data);
+    let files = tree_file.files;
+    let totalSize = 0;
+
+    Object.keys(files).forEach(function(key) {
+        totalSize += files[key]['size'];
+    })
+
+    totalDisk = parseInt(100*totalSize/(maxSize*1024*1024));
+
+    setTimeout(() => {
+        $('#disk-usage').html(`
+            <span class="label label-purple pull-right">${totalDisk}%</span>
+            <p>Disk Usage</p>
+            <div class="progress progress-sm">
+                <div class="progress-bar progress-bar-purple" style="width: ${totalDisk}%;">
+                    <span class="sr-only">${totalDisk}%</span>
+                </div>
+            </div>`
+        )
+    }, 1000);
 
 }
 
 function genItem(file_id, title, modified_date = "", file_size = "") {
 
-    function getFileType(file_name){
+    function getFileType(file_name) {
         file_map = {
-            undefined:  'demo-pli-file',
-            mp3:        'demo-pli-file-music',
-            png:        'demo-pli-file-pictures',
-            jpg:        'demo-pli-file-jpg',
-            png:        'demo-pli-file-pictures',
-            jpeg:       'demo-pli-file-pictures',
-            gif:        'demo-pli-file-pictures',
-            mp4:        'demo-pli-file-video',
-            zip:        'demo-pli-file-zip',
-            rar:        'demo-pli-file-zip',
-            doc:        'demo-pli-file-word',
-            docx:       'demo-pli-file-word',
-            xls:        'demo-pli-file-excel',
-            xlsx:       'demo-pli-file-excel',
-            csv:        'demo-pli-file-csv',
-            html:       'demo-pli-file-html',
-            txt:        'demo-pli-file-txt'
+            undefined: 'demo-pli-file',
+            mp3: 'demo-pli-file-music',
+            png: 'demo-pli-file-pictures',
+            jpg: 'demo-pli-file-jpg',
+            png: 'demo-pli-file-pictures',
+            jpeg: 'demo-pli-file-pictures',
+            gif: 'demo-pli-file-pictures',
+            mp4: 'demo-pli-file-video',
+            zip: 'demo-pli-file-zip',
+            rar: 'demo-pli-file-zip',
+            doc: 'demo-pli-file-word',
+            docx: 'demo-pli-file-word',
+            xls: 'demo-pli-file-excel',
+            xlsx: 'demo-pli-file-excel',
+            csv: 'demo-pli-file-csv',
+            html: 'demo-pli-file-html',
+            txt: 'demo-pli-file-txt'
         }
         file_extension = file_name.split('.')[file_name.split('.').length - 1]
-        if (file_extension in file_map){
+        if (file_extension in file_map) {
             return file_map[file_extension];
         }
-        else{
+        else {
             return file_map['undefined'];
         }
     }
@@ -316,11 +544,11 @@ function genItem(file_id, title, modified_date = "", file_size = "") {
         if (bytes == 0) return '0 Byte';
         var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
         return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
-     }
+    }
 
-    function toDate(timestamp){
+    function toDate(timestamp) {
         var d = new Date(parseInt(timestamp));
-        return d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear()
+        return d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear()
     }
 
     return `
