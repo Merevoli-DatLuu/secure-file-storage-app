@@ -1,35 +1,31 @@
-const fs = require('fs');
-const Dropzone = require(__dirname + "\\plugins\\dropzone\\dropzone.js")
-const path = require("path");
-const crypto = require('crypto');
-const open = require('open');
-const os = require('os-utils');
-
 const key = '14189dc35ae35e75ff31d7502e245cd9';
 const iv = '35e75ff31d7502e2';
 var fileUploadQueue = []
-
 var maxFileID = 0
 
-$(document).ready(handleFileUploader());
-$("#submit-upload-file").click(handleFileStore);
-$("#delete-files").click(handleRemoveFiles);
+$(document).ready(handleFileManager());
 
-// Side bar
-$('#dashboard-sidebar').click(useDashboard);
-$('#filemanager-sidebar').click(useFilemanager);
-$('#favorites-sidebar').click(useFavorites);
-$('#appinfo-sidebar').click(useAppinfo);
-setInterval(handleClientStatus, 1000); 
+function handleFileManager(){
+    
+    // Init & Loading
+    loadFileList();
+    updateMaxFileID();
 
-// File Type
-$('#file-type-user-folder').click(loadFileList);
-$('#file-type-photo').click(() => loadFileListByType('photo'));
-$('#file-type-video').click(() => loadFileListByType('video'));
-$('#file-type-music').click(() => loadFileListByType('music'));
-$('#file-type-document').click(() => loadFileListByType('document'));
-$('#file-type-zip').click(() =>loadFileListByType('zip'));
- 
+    // Upload Files
+    handleFileUploader()
+
+    // Remove Files
+    $("#submit-upload-file").click(handleFileStore);
+    $("#delete-files").click(handleRemoveFiles);
+
+    // Files in sub-sidebar
+    $('#file-type-user-folder').click(loadFileList);
+    $('#file-type-photo').click(() => loadFileListByType('photo'));
+    $('#file-type-video').click(() => loadFileListByType('video'));
+    $('#file-type-music').click(() => loadFileListByType('music'));
+    $('#file-type-document').click(() => loadFileListByType('document'));
+    $('#file-type-zip').click(() =>loadFileListByType('zip'));
+}
 
 function updateMaxFileID() {
     var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
@@ -44,8 +40,6 @@ function updateMaxFileID() {
 }
 
 function handleFileUploader() {
-    loadFileList();
-    updateMaxFileID();
     initFileUploader("#zdrop");
 
     function initFileUploader(target) {
@@ -225,17 +219,32 @@ async function handleOpenFile(filePath) {
             console.log('ed');
         });*/
         // Can't Fix - solution: use timeout
-        const result = await open(filePath);
+        const result = await open(filePath)
         //watcher.close();
         //fs.unlinkSync(filePath)
     }
 }
 
-function viewFile(id) {
-
+async function viewFile(id) {
     var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
     let tree_file = JSON.parse(data);
     let file = tree_file.files[id]
+
+    // Alert
+
+    $('#alert-open-file').empty()
+    $('#alert-open-file').append(`
+        <div style="padding: 5px;">
+            <div class="alert alert-success" id="success-alert" style='margin: 0 auto;' >
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <strong>Openning </strong> File: ${file.name}.
+            </div>
+        </div>
+    `)
+
+    $("#success-alert").fadeTo(2000, 500).fadeOut(500, function(){
+        $("#success-alert").fadeOut(500);
+    });
 
     filePath = path.resolve(__dirname, "..\\app-data\\data\\" + parseInt(id) + file.name);
     filePathOutput = path.resolve(__dirname, "..\\app-data\\data\\temp\\" + parseInt(id) + file.name);
@@ -432,83 +441,6 @@ function loadFileListByType(type) {
     }
 }
 
-function useDashboard(){
-    console.log('useDashboard');
-    $('#dashboard-sidebar').css('color', '#337ab7');
-    $('#filemanager-sidebar').css('color', 'inherit');
-    $('#favorites-sidebar').css('color', 'inherit');
-    $('#appinfo-sidebar').css('color', 'inherit');
-
-    // Using Component
-}
-
-function useFilemanager(){
-    console.log('useFilemanager');
-    $('#dashboard-sidebar').css('color', 'inherit');
-    $('#filemanager-sidebar').css('color', '#337ab7');
-    $('#favorites-sidebar').css('color', 'inherit');
-    $('#appinfo-sidebar').css('color', 'inherit');
-}
-
-function useFavorites(){
-    console.log('useFavorites');
-    $('#dashboard-sidebar').css('color', 'inherit');
-    $('#filemanager-sidebar').css('color', 'inherit');
-    $('#favorites-sidebar').css('color', '#337ab7');
-    $('#appinfo-sidebar').css('color', 'inherit');
-}
-
-function useAppinfo(){
-    console.log('useAppinfo');
-    $('#dashboard-sidebar').css('color', 'inherit');
-    $('#filemanager-sidebar').css('color', 'inherit');
-    $('#favorites-sidebar').css('color', 'inherit');
-    $('#appinfo-sidebar').css('color', '#337ab7');
-}
-
-function handleClientStatus(){
-
-    // CPU Usage
-    os.cpuUsage(function(v){
-        v = parseInt(v*100)
-        $('#cpu-usage').html(`
-            <span class="label label-primary pull-right">${v}%</span>
-            <p>CPU Usage</p>
-            <div class="progress progress-sm">
-                <div class="progress-bar progress-bar-primary" style="width: ${v}%;">
-                    <span class="sr-only">${v}%</span>
-                </div>
-            </div>
-        `);
-    });
-
-    // Disk Usage 
-    let maxSize = 200// Max Size 200MB 
-    var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
-    let tree_file = JSON.parse(data);
-    let files = tree_file.files;
-    let totalSize = 0;
-
-    Object.keys(files).forEach(function(key) {
-        totalSize += files[key]['size'];
-    })
-
-    totalDisk = parseInt(100*totalSize/(maxSize*1024*1024));
-
-    setTimeout(() => {
-        $('#disk-usage').html(`
-            <span class="label label-purple pull-right">${totalDisk}%</span>
-            <p>Disk Usage</p>
-            <div class="progress progress-sm">
-                <div class="progress-bar progress-bar-purple" style="width: ${totalDisk}%;">
-                    <span class="sr-only">${totalDisk}%</span>
-                </div>
-            </div>`
-        )
-    }, 1000);
-
-}
-
 function genItem(file_id, title, modified_date = "", file_size = "") {
 
     function getFileType(file_name) {
@@ -561,7 +493,7 @@ function genItem(file_id, title, modified_date = "", file_size = "") {
         <div class="file-settings"><a id = "file-setting-${file_id}" href="#" ><i class="pci-ver-dots"></i></a>
         </div>
         <div class="file-attach-icon"></div>
-        <a href="#" class="file-details">
+        <a role="button" class="file-details">
             <div class="media-block">
                 <div class="media-left"><i class="${getFileType(title)}"></i></div>
                 <div class="media-body">
