@@ -1,8 +1,14 @@
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
+import mimetypes
 import logging
+import pathlib
 
-logging.basicConfig(filename='app.log', filemode='a', format='- %(levelname)s - %(asctime)s - %(message)s', level = logging.INFO)
+BASE_DIR = str(pathlib.Path(__file__).parent.absolute())
+LOG_PATH = BASE_DIR + '/../app.log'
+CREDENTIALS_PATH = BASE_DIR + '/mycreds.txt'
+
+logging.basicConfig(filename=LOG_PATH, filemode='a', format='- %(levelname)s - %(asctime)s - %(message)s', level = logging.INFO)
 
 """
 gauth = GoogleAuth()
@@ -39,14 +45,16 @@ sending key problem
 + use 1 key for timelife when login device
 + store key in secret file (local)
 + check key
-"""
 
+sync data problem
++ solution: when multy device modified data -> choose the last one is root
+"""
 
 class FileStorage():
 
     def __init__(self):
         self.gauth = gauth = GoogleAuth()
-        self.CREDENTIALS_FILE = "mycreds.txt"
+        self.CREDENTIALS_FILE = CREDENTIALS_PATH
         self.gauth.LoadCredentialsFile(self.CREDENTIALS_FILE)
         self.drive = GoogleDrive(gauth)
         logging.info('Init Server')
@@ -56,6 +64,15 @@ class FileStorage():
         file.SetContentString(file_content)
         file.Upload()
         logging.info(f'{self.upload_file.__name__} -> (file_name: {file_name}, file_content: {file_content[:50]})')
+
+    def upload_file_with_path(self, file_path):
+        file_name = file_path.split('/')[-1]
+        file = self.drive.CreateFile({'title': file_name})
+        file.content = open(file_path, 'rb')
+        if file.get('mimeType') is None:
+            file['mimeType'] = mimetypes.guess_type(file_path)[0]
+        file.Upload()
+        logging.info(f'{self.upload_file.__name__} -> (file_name: {file_name})')
 
     def change_title_file(self, file, new_title):
         file['title'] = new_title 

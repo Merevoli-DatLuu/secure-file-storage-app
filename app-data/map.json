@@ -1,1 +1,77 @@
-{"folders":{"000000":{"name":"/","parent":"","create_date":"17/03/2020"}},"files":{"000001":{"name":"Tổng quan về đồ án.docx","parent":"000000","size":770402,"create_date":"1617818907650"},"000002":{"name":"README.md","parent":"000000","size":1093,"create_date":"1617818907678"},"000003":{"name":"New Text Document.txt","parent":"000000","size":0,"create_date":"1617864424963"},"000004":{"name":"contents (1).txt","parent":"000000","size":1227,"create_date":"1618467579186"}}}
+{
+    "folders": {
+        "000000": {
+            "name": "/",
+            "parent": "",
+            "create_date": "17/03/2020"
+        }
+    },
+    "files": {
+        "000001": {
+            "name": "Tổng quan về đồ án.docx",
+            "parent": "000000",
+            "size": 770402,
+            "create_date": "1617818907650"
+        },
+        "000002": {
+            "name": "README.md",
+            "parent": "000000",
+            "size": 1093,
+            "create_date": "1617818907678"
+        },
+        "000004": {
+            "name": "contents (1).txt",
+            "parent": "000000",
+            "size": 1227,
+            "create_date": "1618467579186"
+        },
+        "000005": {
+            "name": "3New Text Document.txt",
+            "parent": "000000",
+            "size": 0,
+            "create_date": "1618646047218"
+        },
+        "000007": {
+            "name": "private_key.txt",
+            "parent": "000000",
+            "size": 52,
+            "create_date": "1618647671252"
+        },
+        "000008": {
+            "name": "public_key.txt",
+            "parent": "000000",
+            "size": 51,
+            "create_date": "1618647671259"
+        },
+        "000009": {
+            "name": "plain.txt",
+            "parent": "000000",
+            "size": 62,
+            "create_date": "1618647671323"
+        },
+        "000011": {
+            "name": "poasdljasd.pdf",
+            "parent": "000000",
+            "size": 17426,
+            "create_date": "1618647671348"
+        },
+        "000012": {
+            "name": "requirements.txt",
+            "parent": "000000",
+            "size": 8,
+            "create_date": "1619062614721"
+        },
+        "000013": {
+            "name": "vi_pass.txt",
+            "parent": "000000",
+            "size": 9819438,
+            "create_date": "1619062766541"
+        },
+        "000014": {
+            "name": "download (2).png",
+            "parent": "000000",
+            "size": 7356,
+            "create_date": "1619071586069"
+        }
+    }
+}

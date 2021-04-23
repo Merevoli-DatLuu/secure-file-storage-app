@@ -44,3 +44,5 @@
 - INFO - 2021-04-05 15:22:18,999 - get_files_by_title -> (title: test)
 - INFO - 2021-04-05 15:23:15,355 - get_file_by_id -> (file_id: 1n8qrUC7ZTyE9Ne1-vmnA05NT4q_3hh17)
 - INFO - 2021-04-05 15:23:16,587 - delete_file_by_id -> (file_id: 1n8qrUC7ZTyE9Ne1-vmnA05NT4q_3hh17)
+- INFO - 2021-04-23 20:57:18,617 - D:\GitHub\secure-file-storage-app\api\file_manager\file_storage\file_storage.py changed, reloading.
+- INFO - 2021-04-23 21:04:59,165 - D:\GitHub\secure-file-storage-app\api\file_manager\file_storage\file_storage.py changed, reloading.
