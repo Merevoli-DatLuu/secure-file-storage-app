@@ -1,7 +1,8 @@
 const electron = require('electron')
 const app = electron.app
+const { dialog } = require('electron')
 const BrowserWindow = electron.BrowserWindow
-
+const ipcMain = electron.ipcMain
 let mainWindow
 
 function createWindow() {
@@ -33,3 +34,7 @@ app.on('activate', function () {
         createWindow()
     }
 })
+
+ipcMain.handle( 'app:on-folder-dialog-open', ( event ) => {
+    return dialog.showOpenDialogSync(mainWindow, { properties: ['openDirectory'] })
+} );

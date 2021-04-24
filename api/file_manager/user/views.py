@@ -49,7 +49,7 @@ class UserLoginView(APIView):
                 return Response(data, status=status.HTTP_200_OK)
 
             return Response({
-                'error_message': 'Email or password is incorrect!',
+                'error_messages': 'Email or password is incorrect!',
                 'error_code': 400
             }, status=status.HTTP_400_BAD_REQUEST)
 

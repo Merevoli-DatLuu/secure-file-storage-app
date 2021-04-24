@@ -5,8 +5,8 @@ var maxFileID = 0
 
 $(document).ready(handleFileManager());
 
-function handleFileManager(){
-    
+function handleFileManager() {
+
     // Init & Loading
     loadFileList();
     updateMaxFileID();
@@ -17,6 +17,7 @@ function handleFileManager(){
     // Remove Files
     $("#submit-upload-file").click(handleFileStore);
     $("#delete-files").click(handleRemoveFiles);
+    $("#download-files").click(handleDownloadFiles);
 
     // Files in sub-sidebar
     $('#file-type-user-folder').click(loadFileList);
@@ -24,7 +25,7 @@ function handleFileManager(){
     $('#file-type-video').click(() => loadFileListByType('video'));
     $('#file-type-music').click(() => loadFileListByType('music'));
     $('#file-type-document').click(() => loadFileListByType('document'));
-    $('#file-type-zip').click(() =>loadFileListByType('zip'));
+    $('#file-type-zip').click(() => loadFileListByType('zip'));
 }
 
 function updateMaxFileID() {
@@ -141,6 +142,68 @@ function toFileID(id) {
     return fileID + String(id);
 }
 
+function getHashFile(filePath) {
+    let hash = crypto.createHash('md5');
+    var data = fs.readFileSync(filePath)
+    hash.update(data);
+    var result = result = hash.digest('hex')
+    console.log(`${result} ${filePath}`);
+
+    return result
+}
+
+function checkIntenet(callback) {
+    require('dns').resolve('www.google.com', function (err) {
+        if (err) {
+            console.log("No connection");
+        }
+        else {
+            callback()
+        }
+    });
+}
+
+async function uploadFilesToServer(fileID) {
+    checkIntenet(() => { uploadFiles(fileID) })
+}
+
+function uploadFiles(fileID) {
+    var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
+    let tree_file = JSON.parse(data);
+    let file = tree_file.files[fileID]
+    filePath = path.resolve(__dirname, "..\\app-data\\data\\" + fileID + file.name + '.aes');
+
+    // Post the form, just make sure to set the 'Content-Type' header
+    const res = (async (data) => await axios.post('http://127.0.0.1:8000/api/file', {
+        data: data,
+        name: file['name'] + '.aes'
+        //...file
+    }).then(e => console.log(e.data)).catch(e => console.log(e)));
+
+    fs.readFile(filePath, (err, data) => {
+        if (err) {
+            console.error(err)
+            return
+        }
+        res(data)
+    })
+}
+
+function downloadFiles(fileID) {
+    const res = (async (data) => await axios.get('http://127.0.0.1:8000/api/file/' + fileID)
+        .then(e => {
+            data = e.data
+            //data = JSON.parse(data)
+            fs.writeFile('test.txt', Buffer.from(data['message']['data']), function (err) {
+                if (err) throw err;
+                console.log('Saved!');
+            });
+        })
+        .catch(e => console.log(e)));
+
+    res()
+}
+
 async function handleFileStore() {
     let mapPath = path.resolve(__dirname, "..\\app-data\\map.json")
     let data = fs.readFileSync(mapPath, 'utf8')
@@ -150,8 +213,8 @@ async function handleFileStore() {
         //encrypt(file);
         //Storage(file);
         //fs.writeFileSync(path.resolve(__dirname, "..\\app-data\\data\\" + file.file_name), file.file_data);
-
-        filePath = path.resolve(__dirname, "..\\app-data\\data\\" + maxFileID + file.file_name);
+        var fileID = toFileID(maxFileID)
+        filePath = path.resolve(__dirname, "..\\app-data\\data\\" + toFileID(maxFileID) + file.file_name);
         if (!fs.existsSync(filePath)) {
             fs.copyFileSync(file.file_obj.path, filePath);
         }
@@ -160,7 +223,8 @@ async function handleFileStore() {
             "name": file.file_name,
             "parent": "000000",
             "size": file.file_obj.size,
-            "create_date": String(Date.now())
+            "create_date": String(Date.now()),
+            'check_sum': getHashFile(filePath)
         }
 
         tree_file.files[toFileID(maxFileID++)] = file_store
@@ -183,13 +247,15 @@ async function handleFileStore() {
         output.on('finish', async function () {
             console.log('Encrypted file written to disk!');
 
-            /*
+            // Remove plain file
             if (fs.existsSync(filePath)) {
                 fs.unlinkSync(filePath);
             }
-            else{
+            else {
                 console.log(`file ${filePath} not found`)
             }
+
+            uploadFilesToServer(fileID)
             /*await input.close();
             await output.close();
 
@@ -225,29 +291,32 @@ async function handleOpenFile(filePath) {
     }
 }
 
+function showAlert(action_message, content_message) {
+    $('#alert-open-file').empty()
+    $('#alert-open-file').append(`
+        <div style="padding: 5px;">
+            <div class="alert alert-success" id="success-alert" style='margin: 0 auto;' >
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <strong>${action_message} </strong> ${content_message}.
+            </div>
+        </div>
+    `)
+
+    $("#success-alert").fadeTo(2000, 500).fadeOut(500, function () {
+        $("#success-alert").fadeOut(500);
+    });
+}
+
 async function viewFile(id) {
     var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
     let tree_file = JSON.parse(data);
     let file = tree_file.files[id]
 
     // Alert
+    showAlert("Openning", ` File: ${file.name}`)
 
-    $('#alert-open-file').empty()
-    $('#alert-open-file').append(`
-        <div style="padding: 5px;">
-            <div class="alert alert-success" id="success-alert" style='margin: 0 auto;' >
-                <button type="button" class="close" data-dismiss="alert">x</button>
-                <strong>Openning </strong> File: ${file.name}.
-            </div>
-        </div>
-    `)
-
-    $("#success-alert").fadeTo(2000, 500).fadeOut(500, function(){
-        $("#success-alert").fadeOut(500);
-    });
-
-    filePath = path.resolve(__dirname, "..\\app-data\\data\\" + parseInt(id) + file.name);
-    filePathOutput = path.resolve(__dirname, "..\\app-data\\data\\temp\\" + parseInt(id) + file.name);
+    filePath = path.resolve(__dirname, "..\\app-data\\data\\" + id + file.name);
+    filePathOutput = path.resolve(__dirname, "..\\app-data\\data\\temp\\" + id + file.name);
     var decrypt = crypto.createDecipheriv('aes-256-cbc', key, iv);
     let input = fs.createReadStream(filePath + ".aes");
     let output = fs.createWriteStream(filePathOutput)
@@ -265,11 +334,11 @@ function removeFile(id) {
     let file = tree_file.files[id];
 
     // remove file
-    filePath = path.resolve(__dirname, "..\\app-data\\data\\" + parseInt(id) + file.name + ".aes");
+    filePath = path.resolve(__dirname, "..\\app-data\\data\\" + id + file.name + ".aes");
     if (fs.existsSync(filePath)) {
         fs.unlinkSync(filePath);
     }
-    else{
+    else {
         console.log(`file ${filePath} not found`)
     }
 
@@ -283,22 +352,87 @@ function removeFile(id) {
     $(nodeID).remove()
 }
 
-function handleRemoveFile(id){
+function handleRemoveFile(id) {
     if (confirm("Are you sure you want to delete this file?")) {
         removeFile(id)
     }
 }
 
-function handleRemoveFiles(){
+function handleRemoveFiles() {
     if (confirm("Are you sure you want to delete this file?")) {
         var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
         let tree_file = JSON.parse(data);
-    
+
         let fileIDs = Object.keys(tree_file.files)
-        fileIDs = fileIDs.filter(e => {return document.getElementById(`file-list-${e}`).checked})
+        fileIDs = fileIDs.filter(e => { return document.getElementById(`file-list-${e}`).checked })
         console.log(fileIDs)
         fileIDs.forEach(e => removeFile(e))
     }
+}
+
+window.openFolderDialog = (callback, file, id) => {
+    ipcRenderer.invoke('app:on-folder-dialog-open').then((data) => {
+        callback(data[0], file, id)
+    });
+}
+
+function downloadFileToFolder(download_dir, file, id) {
+    filePath = path.resolve(__dirname, "..\\app-data\\data\\" + id + file.name);
+    filePathOutput = download_dir + '/' + file.name;
+
+    var decrypt = crypto.createDecipheriv('aes-256-cbc', key, iv);
+    let input = fs.createReadStream(filePath + ".aes");
+    let output = fs.createWriteStream(filePathOutput)
+    input.pipe(decrypt).pipe(output);
+    output.on('finish', () => {
+        console.log(filePathOutput)
+        output.end()
+        showAlert("Download", "file " + file.name + " successfully")
+    })
+}
+
+function downloadFilesToFolder(download_dir, files, ids) {
+    for (var i = 0; i < ids.length; i++) {
+        file = files[i]
+        id = ids[i]
+        filePath = path.resolve(__dirname, "..\\app-data\\data\\" + id + file.name);
+        filePathOutput = download_dir + '/' + file.name;
+
+        var decrypt = crypto.createDecipheriv('aes-256-cbc', key, iv);
+        let input = fs.createReadStream(filePath + ".aes");
+        let output = fs.createWriteStream(filePathOutput)
+        input.pipe(decrypt).pipe(output);
+        output.on('finish', () => {
+            console.log(filePathOutput)
+            output.end()
+        })
+    }
+    showAlert("Download", "file " + file.name + " successfully")
+
+    ids.forEach(e => { document.getElementById(`file-list-${e}`).checked = false })
+}
+
+async function downloadFile(id) {
+    var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
+    let tree_file = JSON.parse(data);
+
+    let file = tree_file.files[id];
+
+    openFolderDialog(downloadFileToFolder, file, id)
+
+}
+
+function handleDownloadFiles() {
+    var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
+    let tree_file = JSON.parse(data);
+
+    let fileIDs = Object.keys(tree_file.files)
+    fileIDs = fileIDs.filter(e => { return document.getElementById(`file-list-${e}`).checked })
+    console.log(fileIDs)
+    files = fileIDs.map(e => tree_file.files[e])
+
+    openFolderDialog(downloadFilesToFolder, files, fileIDs)
+
 }
 
 function popupMenu(id) {
@@ -317,6 +451,11 @@ function popupMenu(id) {
                 icon: 'glyphicon-edit',
                 text: '  Edit',
                 action: function (e, selector) { viewFile(id) }
+            },
+            {
+                icon: 'glyphicon glyphicon-download',
+                text: '  Download',
+                action: function (e, selector) { downloadFile(id) }
             },
             {
                 divider: true
@@ -401,23 +540,23 @@ function loadFileListByType(type) {
     let photo_extensions = ['png', 'jpg', 'jpeg', 'gif'];
     let video_extensions = ['mp4', 'mov', 'wmv', 'flv', 'avi', 'webm'];
     let music_extensions = ['mp3', 'm4a', 'flac', 'wav', 'wma', 'aac'];
-    let document_extensions = ['doc','docm','docx','dot','dotm','dotx','htm','html','mht','mhtml','odt','pdf','rtf','txt','wps','xml','xps'];
-    let zip_extensions = ['zip', 'rar', 'tar']   
-    
+    let document_extensions = ['doc', 'docm', 'docx', 'dot', 'dotm', 'dotx', 'htm', 'html', 'mht', 'mhtml', 'odt', 'pdf', 'rtf', 'txt', 'wps', 'xml', 'xps'];
+    let zip_extensions = ['zip', 'rar', 'tar']
+
     let file_extensions;
-    if (type == 'photo'){
+    if (type == 'photo') {
         file_extensions = photo_extensions;
     }
-    else if (type == 'video'){
+    else if (type == 'video') {
         file_extensions = video_extensions;
     }
-    else if (type == 'music'){
+    else if (type == 'music') {
         file_extensions = music_extensions;
-    }    
-    else if (type == 'document'){
+    }
+    else if (type == 'document') {
         file_extensions = document_extensions;
     }
-    else if (type == 'zip'){
+    else if (type == 'zip') {
         file_extensions = zip_extensions;
     }
 
@@ -427,7 +566,7 @@ function loadFileListByType(type) {
     for (file_id in files) {
         let file_name = files[file_id].name
         file_extension = file_name.split('.')[file_name.split('.').length - 1]
-        if (file_extensions.includes(file_extension)){
+        if (file_extensions.includes(file_extension)) {
             $('#demo-mail-list').append(
                 genItem(
                     file_id,

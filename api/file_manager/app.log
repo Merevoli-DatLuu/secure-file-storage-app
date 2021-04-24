@@ -46,3 +46,281 @@
 - INFO - 2021-04-05 15:23:16,587 - delete_file_by_id -> (file_id: 1n8qrUC7ZTyE9Ne1-vmnA05NT4q_3hh17)
 - INFO - 2021-04-23 20:57:18,617 - D:\GitHub\secure-file-storage-app\api\file_manager\file_storage\file_storage.py changed, reloading.
 - INFO - 2021-04-23 21:04:59,165 - D:\GitHub\secure-file-storage-app\api\file_manager\file_storage\file_storage.py changed, reloading.
+- INFO - 2021-04-24 13:08:59,400 - Init Server
+- INFO - 2021-04-24 13:08:59,427 - access_token is expired. Now: 2021-04-24 06:08:59.427114, token_expiry: 2021-04-23 14:45:19
+- INFO - 2021-04-24 13:08:59,449 - access_token is expired. Now: 2021-04-24 06:08:59.449116, token_expiry: 2021-04-23 14:45:19
+- INFO - 2021-04-24 13:09:03,079 - Received token response with no refresh_token. Consider reauthenticating with prompt='consent'.
+- INFO - 2021-04-24 13:09:03,079 - Successfully retrieved access token
+- INFO - 2021-04-24 13:09:03,243 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-24 13:09:05,614 - upload_file -> (file_name: Statistics_StateDiagram.png)
+- INFO - 2021-04-24 13:10:13,378 - Init Server
+- INFO - 2021-04-24 13:10:13,384 - access_token is expired. Now: 2021-04-24 06:10:13.384344, token_expiry: 2021-04-23 14:45:19
+- INFO - 2021-04-24 13:10:13,391 - access_token is expired. Now: 2021-04-24 06:10:13.391345, token_expiry: 2021-04-23 14:45:19
+- INFO - 2021-04-24 13:10:14,250 - Received token response with no refresh_token. Consider reauthenticating with prompt='consent'.
+- INFO - 2021-04-24 13:10:14,250 - Successfully retrieved access token
+- INFO - 2021-04-24 13:10:14,328 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-24 13:10:16,724 - upload_file -> (file_name: girl_xinh.jpg)
+- INFO - 2021-04-24 14:30:38,227 - D:\GitHub\secure-file-storage-app\api\file_manager\file_storage\file_storage.py changed, reloading.
+- INFO - 2021-04-24 14:32:25,336 - Init Server
+- INFO - 2021-04-24 14:33:01,673 - access_token is expired. Now: 2021-04-24 07:33:01.673686, token_expiry: 2021-04-23 14:45:19
+- INFO - 2021-04-24 14:33:01,674 - access_token is expired. Now: 2021-04-24 07:33:01.674686, token_expiry: 2021-04-23 14:45:19
+- INFO - 2021-04-24 14:34:00,793 - Init Server
+- INFO - 2021-04-24 14:34:09,480 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-24 14:34:11,016 - get_file_list
+- INFO - 2021-04-24 14:34:29,214 - get_file_list
+- INFO - 2021-04-24 14:35:56,406 - get_files_by_title -> (title: download (2).png)
+- INFO - 2021-04-24 14:37:19,936 - get_content_file -> (file : 1_oFafQUOGbszJGMP0sw7eNMzgbpltUjL - download (2).png)
+- ERROR - 2021-04-24 18:07:59,635 - Internal Server Error: /api/test
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 426, in finalize_response
+    % type(response)
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+- INFO - 2021-04-24 18:09:31,184 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 18:21:12,704 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 18:21:46,816 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- ERROR - 2021-04-24 18:27:05,583 - Internal Server Error: /api/test
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py", line 61, in post
+    if serializer.is_valid():
+  File "C:\Python37\lib\site-packages\rest_framework\serializers.py", line 220, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "C:\Python37\lib\site-packages\rest_framework\serializers.py", line 419, in run_validation
+    value = self.to_internal_value(data)
+  File "C:\Python37\lib\site-packages\rest_framework\serializers.py", line 472, in to_internal_value
+    for field in fields:
+  File "C:\Python37\lib\site-packages\rest_framework\serializers.py", line 355, in _writable_fields
+    for field in self.fields.values():
+  File "C:\Python37\lib\site-packages\django\utils\functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "C:\Python37\lib\site-packages\rest_framework\serializers.py", line 349, in fields
+    for key, value in self.get_fields().items():
+  File "C:\Python37\lib\site-packages\rest_framework\serializers.py", line 1006, in get_fields
+    serializer_class=self.__class__.__name__
+AssertionError: Class FileUploadSerializer missing "Meta" attribute
+- INFO - 2021-04-24 18:27:16,573 - D:\GitHub\secure-file-storage-app\api\file_manager\file\serializers.py changed, reloading.
+- WARNING - 2021-04-24 18:38:31,651 - Method Not Allowed: /api/test
+- WARNING - 2021-04-24 18:38:38,866 - Bad Request: /api/test
+- WARNING - 2021-04-24 18:39:28,240 - Bad Request: /api/test
+- WARNING - 2021-04-24 18:40:05,898 - Bad Request: /api/test
+- WARNING - 2021-04-24 18:40:38,803 - Bad Request: /api/test
+- WARNING - 2021-04-24 18:41:48,305 - Bad Request: /api/test
+- INFO - 2021-04-24 18:44:32,720 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 18:45:02,710 - Init Server
+- INFO - 2021-04-24 18:45:02,772 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-24 18:45:04,867 - upload_file -> (file_name: requirements.txt)
+- WARNING - 2021-04-24 18:45:41,325 - Bad Request: /api/file
+- INFO - 2021-04-24 18:47:11,443 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 18:54:48,826 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 18:55:16,802 - D:\GitHub\secure-file-storage-app\api\file_manager\file\urls.py changed, reloading.
+- INFO - 2021-04-24 18:57:33,710 - D:\GitHub\secure-file-storage-app\api\file_manager\file\urls.py changed, reloading.
+- WARNING - 2021-04-24 18:57:52,081 - Method Not Allowed: /api/test
+- WARNING - 2021-04-24 18:57:58,988 - Not Found: /api/test/á
+- ERROR - 2021-04-24 18:58:06,249 - Internal Server Error: /api/test/123
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+TypeError: get() got an unexpected keyword argument 'file_id'
+- INFO - 2021-04-24 18:59:32,432 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- ERROR - 2021-04-24 19:00:02,110 - Internal Server Error: /api/test/123
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py", line 66, in get
+    print(args)
+NameError: name 'arg' is not defined
+- INFO - 2021-04-24 19:00:13,458 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 19:01:39,629 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 19:03:28,458 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 19:06:23,394 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 19:07:26,354 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 19:08:01,355 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 19:08:49,315 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 19:09:21,512 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 19:11:22,273 - Init Server
+- INFO - 2021-04-24 19:11:22,348 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-24 19:11:23,110 - get_files_by_title -> (title: map.json)
+- ERROR - 2021-04-24 19:11:23,309 - Internal Server Error: /api/test/123
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py", line 70, in get
+    if len(FileUploadSerializer) == 0:
+TypeError: object of type 'SerializerMetaclass' has no len()
+- INFO - 2021-04-24 19:11:35,642 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 19:12:07,842 - Init Server
+- INFO - 2021-04-24 19:12:07,912 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-24 19:12:08,496 - get_files_by_title -> (title: map.json)
+- INFO - 2021-04-24 19:12:08,497 - get_content_file -> (file : 1r-4t6DsmI89FDjHQdK4oEIYtRFkJxXv7 - map.json)
+- INFO - 2021-04-24 19:12:11,575 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 19:21:16,382 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 19:21:49,048 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 19:23:06,765 - Init Server
+- INFO - 2021-04-24 19:23:06,851 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-24 19:23:07,590 - get_files_by_title -> (title: map.json)
+- INFO - 2021-04-24 19:23:07,590 - get_content_file -> (file : 1r-4t6DsmI89FDjHQdK4oEIYtRFkJxXv7 - map.json)
+- INFO - 2021-04-24 19:23:16,698 - Init Server
+- INFO - 2021-04-24 19:23:16,701 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-24 19:23:17,273 - get_files_by_title -> (title: map.json)
+- INFO - 2021-04-24 19:23:17,274 - get_content_file -> (file : 1r-4t6DsmI89FDjHQdK4oEIYtRFkJxXv7 - map.json)
+- INFO - 2021-04-24 19:23:30,228 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 19:28:17,981 - Init Server
+- INFO - 2021-04-24 19:28:18,057 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-24 19:28:18,668 - get_files_by_title -> (title: map.json)
+- INFO - 2021-04-24 19:28:18,669 - get_content_file -> (file : 1r-4t6DsmI89FDjHQdK4oEIYtRFkJxXv7 - map.json)
+- INFO - 2021-04-24 19:28:26,179 - Init Server
+- INFO - 2021-04-24 19:28:26,182 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-24 19:28:26,682 - get_files_by_title -> (title: map.json)
+- INFO - 2021-04-24 19:28:26,682 - get_content_file -> (file : 1r-4t6DsmI89FDjHQdK4oEIYtRFkJxXv7 - map.json)
+- INFO - 2021-04-24 19:29:56,306 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 19:30:26,647 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 19:31:11,298 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 19:37:01,880 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 19:37:25,563 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 19:37:57,155 - Init Server
+- INFO - 2021-04-24 19:37:57,242 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-24 19:37:57,887 - get_files_by_title -> (title: map.json)
+- INFO - 2021-04-24 19:37:57,887 - get_content_file -> (file : 1r-4t6DsmI89FDjHQdK4oEIYtRFkJxXv7 - map.json)
+- INFO - 2021-04-24 19:37:59,382 - get_files_by_title -> (title: 000007private_key.txt.aes)
+- ERROR - 2021-04-24 19:37:59,643 - Internal Server Error: /api/test/007
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py", line 91, in get
+    file_storage.download_file(files[0], base_dir + file_name)
+TypeError: download_file() missing 1 required positional argument: 'file_path'
+- INFO - 2021-04-24 19:38:22,724 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 19:38:43,480 - Init Server
+- INFO - 2021-04-24 19:38:43,554 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-24 19:38:44,202 - get_files_by_title -> (title: map.json)
+- INFO - 2021-04-24 19:38:44,202 - get_content_file -> (file : 1r-4t6DsmI89FDjHQdK4oEIYtRFkJxXv7 - map.json)
+- INFO - 2021-04-24 19:38:45,721 - get_files_by_title -> (title: 000007private_key.txt.aes)
+- INFO - 2021-04-24 19:38:46,889 - download_file -> (file_name: .temp/000007private_key.txt.aes)
+- INFO - 2021-04-24 19:47:33,354 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 20:34:58,742 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-04-24 20:36:59,379 - Init Server
+- INFO - 2021-04-24 20:36:59,426 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-24 20:37:00,058 - get_files_by_title -> (title: map.json)
+- INFO - 2021-04-24 20:37:00,058 - get_content_file -> (file : 1r-4t6DsmI89FDjHQdK4oEIYtRFkJxXv7 - map.json)
+- INFO - 2021-04-24 20:37:01,939 - get_files_by_title -> (title: 000007private_key.txt.aes)
+- INFO - 2021-04-24 20:37:03,201 - download_file -> (file_name: .temp/000007private_key.txt.aes)
+- WARNING - 2021-04-24 21:12:54,103 - Not Found: /api/file/0007
+- INFO - 2021-04-24 21:13:19,041 - Init Server
+- INFO - 2021-04-24 21:13:19,103 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-24 21:13:19,879 - get_files_by_title -> (title: map.json)
+- INFO - 2021-04-24 21:13:19,879 - get_content_file -> (file : 1r-4t6DsmI89FDjHQdK4oEIYtRFkJxXv7 - map.json)
+- INFO - 2021-04-24 21:13:21,628 - get_files_by_title -> (title: 000007private_key.txt.aes)
+- INFO - 2021-04-24 21:13:22,874 - download_file -> (file_name: .temp/000007private_key.txt.aes)
+- INFO - 2021-04-24 21:15:16,278 - Init Server
+- INFO - 2021-04-24 21:15:16,306 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-24 21:15:17,022 - get_files_by_title -> (title: map.json)
+- INFO - 2021-04-24 21:15:17,022 - get_content_file -> (file : 1r-4t6DsmI89FDjHQdK4oEIYtRFkJxXv7 - map.json)
+- INFO - 2021-04-24 21:15:18,552 - get_files_by_title -> (title: 000007private_key.txt.aes)
+- INFO - 2021-04-24 21:15:19,701 - download_file -> (file_name: .temp/000007private_key.txt.aes)
+- INFO - 2021-04-24 21:16:24,132 - Init Server
+- INFO - 2021-04-24 21:16:24,159 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-04-24 21:16:24,678 - get_files_by_title -> (title: map.json)
+- INFO - 2021-04-24 21:16:24,679 - get_content_file -> (file : 1r-4t6DsmI89FDjHQdK4oEIYtRFkJxXv7 - map.json)
+- INFO - 2021-04-24 21:16:26,370 - get_files_by_title -> (title: 000007private_key.txt.aes)
+- INFO - 2021-04-24 21:16:27,469 - download_file -> (file_name: .temp/000007private_key.txt.aes)
+- INFO - 2021-04-24 21:21:01,368 - D:\GitHub\secure-file-storage-app\api\file_manager\file\urls.py changed, reloading.
+- WARNING - 2021-04-25 00:02:46,031 - Bad Request: /api/login
+- WARNING - 2021-04-25 00:04:17,371 - Bad Request: /api/login
+- WARNING - 2021-04-25 00:05:51,288 - Bad Request: /api/login
+- WARNING - 2021-04-25 00:05:57,817 - Bad Request: /api/login
+- WARNING - 2021-04-25 00:06:04,295 - Bad Request: /api/login
+- WARNING - 2021-04-25 00:11:13,009 - Bad Request: /api/login
+- WARNING - 2021-04-25 00:11:28,350 - Bad Request: /api/login
+- WARNING - 2021-04-25 00:15:01,646 - Bad Request: /api/login
+- WARNING - 2021-04-25 00:15:19,167 - Bad Request: /api/login
+- WARNING - 2021-04-25 00:15:24,304 - Bad Request: /api/login
+- WARNING - 2021-04-25 00:15:29,408 - Bad Request: /api/login
+- INFO - 2021-04-25 00:16:24,586 - D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py changed, reloading.
+- WARNING - 2021-04-25 00:17:04,510 - Bad Request: /api/login
+- WARNING - 2021-04-25 00:17:40,069 - Bad Request: /api/login
+- WARNING - 2021-04-25 00:19:04,101 - Bad Request: /api/login
+- WARNING - 2021-04-25 00:20:09,873 - Bad Request: /api/login
+- WARNING - 2021-04-25 00:20:14,041 - Bad Request: /api/login
+- WARNING - 2021-04-25 00:21:14,038 - Bad Request: /api/login
+- WARNING - 2021-04-25 00:21:27,748 - Bad Request: /api/login

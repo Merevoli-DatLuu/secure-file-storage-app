@@ -6,7 +6,7 @@ const FormData = require('form-data')
 var data = fs.readFileSync(path.resolve(__dirname, "..\\..\\app-data\\map.json"), 'utf8')
 let tree_file = JSON.parse(data);
 let file = tree_file.files["000012"]
-filePath = path.resolve(__dirname, "..\\..\\app-data\\data\\" + parseInt("000012") + file.name);
+filePath = path.resolve(__dirname, "..\\..\\app-data\\data\\" + "000012" + file.name);
 const formData = new FormData()
 formData.append(file.name, "fs.createReadStream(filePath)")
 

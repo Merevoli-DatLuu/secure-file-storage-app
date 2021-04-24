@@ -99,16 +99,16 @@
 		            </div>
 		            <form action="#">
 		                <div class="form-group">
-		                    <input type="text" class="form-control" placeholder="Username" autofocus="">
+		                    <input type="email" class="form-control" placeholder="Email" id='email' autofocus="" required>
 		                </div>
 		                <div class="form-group">
-		                    <input type="password" class="form-control" placeholder="Password">
+		                    <input type="password" class="form-control" placeholder="Password" id="password" required>
 		                </div>
 		                <div class="checkbox pad-btm text-left">
 		                    <input id="demo-form-checkbox" class="magic-checkbox" type="checkbox">
 		                    <label for="demo-form-checkbox">Remember me</label>
 		                </div>
-		                <button class="btn btn-primary btn-lg btn-block" type="submit">Sign In</button>
+		                <button id = "login_submit" class="btn btn-primary btn-lg btn-block">Sign In</button>
 		            </form>
 		        </div>
 		
@@ -151,6 +151,10 @@
 
     <!--NiftyJS [ RECOMMENDED ]-->
     <script src="js/nifty.js"></script>
+    
+    <!--handle login-->
+    <script src="js/packages.js"></script>
+    <script src="js/login.js"></script>
 
 
 
