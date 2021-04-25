@@ -15,6 +15,10 @@ function handleLogin() {
             access_token = response.data['access_token']
             console.log(refresh_token, access_token)
 
+            //storage access token and refresh token to local storage
+            localStorage.setItem("refresh_token", refresh_token);
+            localStorage.setItem("access_token", access_token);
+            window.location.replace("./app-file-manager.html");
         }
     })
     .catch((error) => {
@@ -47,5 +51,5 @@ function handleLogin() {
     }))
 
     request(email, password)
-
 }
+

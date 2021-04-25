@@ -2,15 +2,18 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework.permissions import IsAuthenticated
 
 from .models import User
-from .serializers import UserRegisterSerializer, UserLoginSerializer
+from .serializers import UserRegisterSerializer, UserLoginSerializer, UserSerializer
 
 class UserRegisterView(APIView):
     def post(self, request):
@@ -57,3 +60,15 @@ class UserLoginView(APIView):
             'error_messages': serializer.errors,
             'error_code': 400
         }, status=status.HTTP_400_BAD_REQUEST)
+
+# @method_decorator(csrf_exempt, name='dispatch')
+class UserView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        data = {
+            'email': request.user.email,
+            'first_name': request.user.first_name,
+            'last_name': request.user.last_name
+        }
+        return Response(data)

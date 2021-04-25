@@ -3,6 +3,9 @@ const iv = '35e75ff31d7502e2';
 var fileUploadQueue = []
 var maxFileID = 0
 
+// Modified File
+var last_modified = 0
+
 $(document).ready(handleFileManager());
 
 function handleFileManager() {
@@ -277,13 +280,61 @@ async function handleFileStore() {
 
 }
 
+/*
+    + Watcher 
+- max_time (last modified): 10 minutes -> delete temp file & close watcher & alert to user "Your time to watch is end"
+- modified -> (wait) 30s -> request API
+
+"You have 10 minutes to View/Modified the File. When overtime, it will not save the modified"
+*/
+
+async function watchModifiedFile(watcher, filePath){
+    max_time = 1
+    current_modified = new Date().getTime()
+    if (current_modified - last_modified > max_time*60*1000){ 
+        last_modified = 0
+
+        // Write file
+
+        // delete temp file
+        if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+        }
+        else {
+            console.log(`file ${filePath} not found`)
+        }
+
+        // close the watcher
+        watcher.close();
+
+        // alert 
+        showAlert("Warning", " It's overtime. Any change after this time will not be saved", 'warning', 5000)
+        console.log('timeout')
+
+        // Clear the interval
+        
+    }
+}
+
+function clearIntervalModifiedFile(idInterval){
+    // set interval is map - global
+    // set id 
+    // call this in watchModified...()
+}
+
 async function handleOpenFile(filePath) {
     if (fs.existsSync(filePath)) {
         console.log(filePath)
-        /*const watcher = fs.watch(filePath, (eventType, filename) => {
+
+        const watcher = fs.watch(filePath, (eventType, filename) => {
             console.log(eventType)
-            console.log('ed');
-        });*/
+            current_modified = new Date().getTime()
+            last_modified = current_modified
+            console.log('change')
+        });
+
+        var interval_watcher = setInterval(() => {watchModifiedFile(watcher, filePath)}, 10000)
+
         // Can't Fix - solution: use timeout
         const result = await open(filePath)
         //watcher.close();
@@ -291,18 +342,18 @@ async function handleOpenFile(filePath) {
     }
 }
 
-function showAlert(action_message, content_message) {
+function showAlert(action_message, content_message, type, timeout = 2000) {
     $('#alert-open-file').empty()
     $('#alert-open-file').append(`
         <div style="padding: 5px;">
-            <div class="alert alert-success" id="success-alert" style='margin: 0 auto;' >
+            <div class="alert alert-${type}" id="success-alert" style='margin: 0 auto;' >
                 <button type="button" class="close" data-dismiss="alert">x</button>
                 <strong>${action_message} </strong> ${content_message}.
             </div>
         </div>
     `)
 
-    $("#success-alert").fadeTo(2000, 500).fadeOut(500, function () {
+    $("#success-alert").fadeTo(timeout, 500).fadeOut(500, function () {
         $("#success-alert").fadeOut(500);
     });
 }
@@ -313,7 +364,7 @@ async function viewFile(id) {
     let file = tree_file.files[id]
 
     // Alert
-    showAlert("Openning", ` File: ${file.name}`)
+    showAlert("Openning", ` File: ${file.name}`, 'success')
 
     filePath = path.resolve(__dirname, "..\\app-data\\data\\" + id + file.name);
     filePathOutput = path.resolve(__dirname, "..\\app-data\\data\\temp\\" + id + file.name);
@@ -359,14 +410,19 @@ function handleRemoveFile(id) {
 }
 
 function handleRemoveFiles() {
-    if (confirm("Are you sure you want to delete this file?")) {
-        var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
-        let tree_file = JSON.parse(data);
+    var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
+    let tree_file = JSON.parse(data);
 
-        let fileIDs = Object.keys(tree_file.files)
-        fileIDs = fileIDs.filter(e => { return document.getElementById(`file-list-${e}`).checked })
-        console.log(fileIDs)
-        fileIDs.forEach(e => removeFile(e))
+    let fileIDs = Object.keys(tree_file.files)
+    fileIDs = fileIDs.filter(e => { return document.getElementById(`file-list-${e}`).checked })
+    if (fileIDs.length > 0){
+        if (confirm("Are you sure you want to delete this file?")) {
+            console.log(fileIDs)
+            fileIDs.forEach(e => removeFile(e))
+        }
+    }
+    else{
+        showAlert("Info", " No files selected", "primary")
     }
 }
 
@@ -387,7 +443,7 @@ function downloadFileToFolder(download_dir, file, id) {
     output.on('finish', () => {
         console.log(filePathOutput)
         output.end()
-        showAlert("Download", "file " + file.name + " successfully")
+        showAlert("Download", "file " + file.name + " successfully", 'success')
     })
 }
 
@@ -407,7 +463,7 @@ function downloadFilesToFolder(download_dir, files, ids) {
             output.end()
         })
     }
-    showAlert("Download", "file " + file.name + " successfully")
+    showAlert("Download", "file " + file.name + " successfully", "success")
 
     ids.forEach(e => { document.getElementById(`file-list-${e}`).checked = false })
 }

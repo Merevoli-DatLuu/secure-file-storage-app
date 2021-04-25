@@ -1,3 +1,5 @@
+const { access } = require("fs");
+
 // Side bar
 $('#dashboard-sidebar').click(useDashboard);
 $('#filemanager-sidebar').click(useFilemanager);
@@ -5,6 +7,13 @@ $('#favorites-sidebar').click(useFavorites);
 $('#appinfo-sidebar').click(useAppinfo);
 setInterval(handleClientStatus, 1000); 
  
+$(document).ready(checkLogin());
+
+user_info = {
+    email: "",
+    first_name: "",
+    last_name: ""
+}
 
 function useDashboard(){
     console.log('useDashboard');
@@ -80,5 +89,38 @@ function handleClientStatus(){
             </div>`
         )
     }, 1000);
+
+}
+
+function loadUserInfo(){
+    document.getElementById('user_name').innerHTML = user_info.last_name + ' ' + user_info.first_name
+    document.getElementById('user_email').innerHTML = user_info.email
+}
+
+function checkLogin(){
+    access_token = localStorage.getItem('access_token')
+
+    if (access_token == null){
+        // window.location.replace("./login.html");
+    }
+    axios.get('http://127.0.0.1:8000/api/user',
+        {
+            headers: {
+                'Authorization': `Bearer ${access_token}`,
+                'Content-Type': 'application/json'
+            }
+        }
+    )
+    .then((res) => {
+        data = res.data
+        user_info.email = data['email']
+        user_info.first_name = data['first_name']
+        user_info.last_name = data['last_name']
+        loadUserInfo()
+    })
+    .catch((error) => {
+        console.error(error)
+        // window.location.replace("./login.html");
+    })
 
 }
