@@ -37,6 +37,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 class UserLoginSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)
     password = serializers.CharField(required=True)
+    device_info = serializers.CharField(required = False)
 
     
 class UserSerializer(serializers.Serializer):

@@ -20,6 +20,7 @@
     "jquery": "^3.6.0",
     "open": "^8.0.5",
     "openurl": "^1.1.1",
-    "os-utils": "^0.0.14"
+    "os-utils": "^0.0.14",
+    "v8-compile-cache": "^2.3.0"
   }
 }

@@ -7,3 +7,4 @@ const open = require('open');
 const FormData = require('form-data')
 const axios = require('axios')
 const { ipcRenderer } = require( 'electron' );
+const os_info = require('os')

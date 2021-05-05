@@ -93,8 +93,8 @@
 		    <div class="cls-content-sm panel">
 		        <div class="panel-body">
 		            <div class="mar-ver pad-btm">
-		                <h1 class="h3">Aaron Chavez</h1>
-		                <span>Administrator</span>
+		                <h1 id = "user_name" class="h3">Aaron Chavez</h1>
+		                <span id = "user_email" >Administrator</span>
 		            </div>
 		            <div class="pad-btm mar-btm">
 		                <img alt="Profile Picture" class="img-lg img-circle img-border-light" src="./img/1.png">
@@ -102,10 +102,10 @@
 		            <p>Please enter your password to unlock the screen!</p>
 		            <form action="#">
 		                <div class="form-group">
-		                    <input type="password" class="form-control" placeholder="Password">
+		                    <input type="password" class="form-control" placeholder="Password" id = 'password'>
 		                </div>
 		                <div class="form-group text-right">
-		                    <button class="btn btn-block btn-lg btn-success" type="submit">Login In</button>
+		                    <button id = 'lock_screen_submit' class="btn btn-block btn-lg btn-success" type="button">Login In</button>
 		                </div>
 		            </form>
 		            <div class="pad-ver">
@@ -135,6 +135,11 @@
 
     <!--NiftyJS [ RECOMMENDED ]-->
     <script src="js/nifty.js"></script>
+
+    
+    <!--handle resgister-->
+    <script src="js/packages.js"></script>
+    <script src="js/lock-screen.js"></script>
 
 
 

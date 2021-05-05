@@ -81,6 +81,9 @@ WSGI_APPLICATION = 'file_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

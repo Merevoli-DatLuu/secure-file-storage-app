@@ -7,83 +7,46 @@
         }
     },
     "files": {
-        "000001": {
-            "name": "Tổng quan về đồ án.docx",
-            "parent": "000000",
-            "size": 770402,
-            "create_date": "1617818907650"
-        },
         "000002": {
             "name": "README.md",
             "parent": "000000",
             "size": 1093,
-            "create_date": "1617818907678"
+            "create_date": "1617818907678",
+            "check_sum": "1f2a8788b9170ca247f21e3dfcbb1566"
         },
         "000004": {
             "name": "contents (1).txt",
             "parent": "000000",
             "size": 1227,
-            "create_date": "1618467579186"
-        },
-        "000005": {
-            "name": "3New Text Document.txt",
-            "parent": "000000",
-            "size": 0,
-            "create_date": "1618646047218"
-        },
-        "000007": {
-            "name": "private_key.txt",
-            "parent": "000000",
-            "size": 52,
-            "create_date": "1618647671252"
-        },
-        "000008": {
-            "name": "public_key.txt",
-            "parent": "000000",
-            "size": 51,
-            "create_date": "1618647671259"
+            "create_date": "1618467579186",
+            "check_sum": "9562ec6de54ea09a557298525141befe"
         },
         "000009": {
             "name": "plain.txt",
             "parent": "000000",
             "size": 62,
-            "create_date": "1618647671323"
+            "create_date": "1618647671323",
+            "check_sum": "5a7874aeb2f7242e52381345e58fcd40"
         },
         "000011": {
             "name": "poasdljasd.pdf",
             "parent": "000000",
             "size": 17426,
-            "create_date": "1618647671348"
+            "create_date": "1618647671348",
+            "check_sum": "e76fd07625f5ebdaa4d78a2bebf3addf"
         },
         "000012": {
             "name": "requirements.txt",
             "parent": "000000",
             "size": 8,
-            "create_date": "1619062614721"
-        },
-        "000013": {
-            "name": "vi_pass.txt",
-            "parent": "000000",
-            "size": 9819438,
-            "create_date": "1619062766541"
+            "create_date": "1619062614721",
+            "check_sum": "3298f13049d19cffaa37ca931dd4d421"
         },
         "000014": {
             "name": "download (2).png",
             "parent": "000000",
             "size": 7356,
-            "create_date": "1619071586069"
-        },
-        "000015": {
-            "name": "test.txt",
-            "parent": "000000",
-            "size": 1227,
-            "create_date": "1619237532592"
-        },
-        "000016": {
-            "name": "test.txt",
-            "parent": "000000",
-            "size": 1227,
-            "create_date": "1619241796731",
+            "create_date": "1619071586069",
             "check_sum": "615743be8ff49c4eefc257aec77c0ab8"
         },
         "000017": {
@@ -98,7 +61,7 @@
             "parent": "000000",
             "size": 1228,
             "create_date": "1619241827838",
-            "check_sum": "a092fa7b101e259eed97750c3b57a939"
+            "check_sum": "10bfd542ea58c53856b126a333a06b1f"
         },
         "000019": {
             "name": "test.txt",
@@ -136,11 +99,33 @@
             "check_sum": "b321c7cb74fcb0b850ab66e0980b9397"
         },
         "000026": {
-            "name": "girl_xinh.jpg",
+            "name": "ecommerce-shop-sitemap-template.png",
             "parent": "000000",
-            "size": 82496,
-            "create_date": "1619244612078",
-            "check_sum": "2390ae92b59dc12a66a1aea672a85598"
+            "size": 75555,
+            "create_date": "1620036924787",
+            "check_sum": "4dca0f762283e0d91c800f8a5da61879"
+        },
+        "000027": {
+            "name": "Steinf - KETQUA.xlsx",
+            "parent": "000000",
+            "size": 11023,
+            "create_date": "1620056427668",
+            "check_sum": "c20c4810acba1d5f2fba6da8b4a0b5bb"
+        },
+        "000028": {
+            "name": "github.com_Merevoli-DatLuu_MST_blob_main_main.cpp (1).png",
+            "parent": "000000",
+            "size": 70084,
+            "create_date": "1620057528572",
+            "check_sum": "24caf454345293c46ce2300b0c0b1eb3"
+        },
+        "000029": {
+            "name": "Cải tiến thuật toán.docx",
+            "parent": "000000",
+            "size": 13403,
+            "create_date": "1620140348078",
+            "check_sum": "14c3222f9633fe19cd3578667b3f8c77"
         }
-    }
+    },
+    "last_submission": "1620140348107"
 }

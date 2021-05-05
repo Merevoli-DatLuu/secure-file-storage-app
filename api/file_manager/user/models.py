@@ -18,3 +18,13 @@ class User(AbstractUser):
 
     class Meta:
         db_table = 'User'
+
+class UserHistory(models.Model):
+    email = models.EmailField(max_length=100)
+    ip = models.CharField(max_length=16)
+    device_info = models.CharField(max_length=500)
+    login_time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.email
+    

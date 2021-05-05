@@ -1,10 +1,36 @@
+$(document).ready(loadingLockScreen());
 
-$('#login_submit').click(handleLogin)
+function loadingLockScreen(){
+    localStorage.removeItem('refresh_token')
+    localStorage.removeItem('access_token')
+    email = localStorage.getItem('email')
+    last_name = localStorage.getItem('last_name')
+    first_name = localStorage.getItem('first_name')
+    
+    if (email == null || last_name == null || first_name == null){
+        alert("Something's wrong. Please login")
+        return false
+    }
+    
+    document.getElementById('user_email').innerHTML = email
+    document.getElementById('user_name').innerHTML = `${last_name} ${first_name}`
+}
 
-function handleLogin() {
-    email = document.getElementById('email').value
+$('#lock_screen_submit').click(handleLockScreen)
+
+function handleLockScreen() {
+    email = localStorage.getItem('email')
     password = document.getElementById('password').value
     device_info = `${os_info.arch()} - ${os_info.platform()} - ${os_info.version()} - ${os_info.hostname()}`
+
+    if (password == ""){
+        return false
+    }
+    if (email == null){
+        alert("Something's wrong. Please login")
+        return false
+    }
+
 
     const request = (async (email, password) => await axios.post('http://127.0.0.1:8000/api/login', {
         email: email,

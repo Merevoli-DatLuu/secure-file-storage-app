@@ -74,6 +74,28 @@ class FileStorage():
         file.Upload()
         logging.info(f'{self.upload_file.__name__} -> (file_name: {file_name})')
 
+    def upload_file_with_path_in_specific_folder(self, file_path, folder_name):
+        file_name = file_path.split('/')[-1]
+        file = self.drive.CreateFile({'title': file_name, 'parents': [{'id': self.get_folder_id(folder_name)}]})
+        file.content = open(file_path, 'rb')
+        if file.get('mimeType') is None:
+            file['mimeType'] = mimetypes.guess_type(file_path)[0]
+        file.Upload()
+        logging.info(f'{self.upload_file.__name__} -> (file_name: {file_name})')
+
+    def create_folder(self, folder_name):
+        folder = self.drive.CreateFile({'title' : folder_name, 'mimeType' : 'application/vnd.google-apps.folder'})
+        folder.Upload()
+
+    def get_folder_id(self, folder_name):
+
+        folders = self.drive.ListFile(
+            {'q': "title='" + folder_name + "' and mimeType='application/vnd.google-apps.folder' and trashed=false"}).GetList()
+        if len(folders) == 0:
+            print("ERROR")
+        else:
+            return folders[0]['id']
+
     def download_file(self, file, file_path):
         file.GetContentFile(file_path)
         logging.info(f'{self.download_file.__name__} -> (file_name: {file_path})')
@@ -101,6 +123,11 @@ class FileStorage():
 
     def get_file_list(self):
         file_list = self.drive.ListFile({'q': "'root' in parents"}).GetList()
+        logging.info(f'{self.get_file_list.__name__}')
+        return file_list
+
+    def get_file_list_in_specific_folder(self, folder_name):
+        file_list = self.drive.ListFile({'q': f"'{self.get_folder_id(folder_name)}' in parents"}).GetList()
         logging.info(f'{self.get_file_list.__name__}')
         return file_list
 

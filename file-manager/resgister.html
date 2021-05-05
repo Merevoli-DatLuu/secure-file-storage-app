@@ -98,28 +98,28 @@
 		                <h1 class="h3">Create a New Account</h1>
 		                <p>Come join the Nifty community! Let's set up your account.</p>
 		            </div>
-		            <form action="#">
+		            <form>
 		                <div class="row">
 		                    <div class="col-sm-12">
 		                        <div class="form-group">
-		                            <input type="email" class="form-control" placeholder="E-mail" id = "email" name="email">
+		                            <input type="email" class="form-control" placeholder="E-mail" id = "email" name="email" required>
 		                        </div>
 								<div class="form-group"> </div>
 		                    </div>
 		                    <div class="col-sm-6">
 		                        <div class="form-group">
-		                            <input type="text" class="form-control" placeholder="First Name" id = "first_name" name="first_name">
+		                            <input type="text" class="form-control" placeholder="First Name" id = "first_name" name="first_name" required>
 		                        </div>
 		                        <div class="form-group">
-		                            <input type="text" class="form-control" placeholder="Last Name" id = "last_name" name="last_name">
+		                            <input type="text" class="form-control" placeholder="Last Name" id = "last_name" name="last_name" required>
 		                        </div>
 		                    </div>
 							<div class="col-sm-6">
 		                        <div class="form-group">
-		                            <input type="password" class="form-control" placeholder="Password" id = "password" name="password">
+		                            <input type="password" class="form-control" placeholder="Password" id = "password" name="password" required>
 		                        </div>
 		                        <div class="form-group">
-		                            <input type="password" class="form-control" placeholder="Retype password" id = "password2" name="password">
+		                            <input type="password" class="form-control" placeholder="Retype password" id = "password2" name="password" required>
 		                        </div>
 		                    </div>
 		                </div>
@@ -127,7 +127,7 @@
 		                    <input id="demo-form-checkbox" class="magic-checkbox" type="checkbox">
 		                    <label for="demo-form-checkbox">I agree with the <a href="https://themeon.net/nifty/v2.9.1/pages-register.html#" class="btn-link text-bold">Terms and Conditions</a></label>
 		                </div>
-		                <button class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
+		                <button id = 'resgister_submit' class="btn btn-primary btn-lg btn-block" type="button">Register</button>
 		            </form>
 		        </div>
 		        <div class="pad-all">
@@ -167,6 +167,9 @@
     <!--NiftyJS [ RECOMMENDED ]-->
     <script src="js/nifty.js"></script>
 
-
+		
+    <!--handle resgister-->
+    <script src="js/packages.js"></script>
+    <script src="js/resgister.js"></script>
 
 </body></html>

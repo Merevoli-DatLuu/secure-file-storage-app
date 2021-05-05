@@ -9,6 +9,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework.permissions import IsAuthenticated
 
 from .serializers import FileUploadSerializer
 
@@ -21,6 +22,8 @@ import json
 from file_storage import FileStorage
 
 class FileUploadView(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def post(self, request):
         base_dir = ".temp/"
         try:
@@ -35,7 +38,7 @@ class FileUploadView(APIView):
                 file.close()
 
                 file_storage = FileStorage()
-                file_storage.upload_file_with_path(file_path)
+                file_storage.upload_file_with_path_in_specific_folder(file_path, request.user.email)
 
                 if os.path.exists(file_path):
                     os.remove(file_path)

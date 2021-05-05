@@ -139,12 +139,10 @@
                                     data-target="#nav-searchbox">
                                     <i class="demo-pli-magnifi-glass"></i>
                                 </label>
-                                <form>
-                                    <div class="search-container collapse" id="nav-searchbox">
-                                        <input id="search-input" type="text" class="form-control"
-                                            placeholder="Type for search...">
-                                    </div>
-                                </form>
+                                <div class="search-container collapse" id="nav-searchbox">
+                                    <input id="search-input" type="text" class="form-control"
+                                        placeholder="Type for search...">
+                                </div>
                             </div>
                         </li>
                         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -157,6 +155,13 @@
                         <!--Mega dropdown-->
                         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                         <li class="mega-dropdown">
+                            <a href="#">
+                                <i class="demo-pli-data-cloud"></i>
+                                <span id = "server_status" class="badge badge-header badge-danger" style="
+                                    font-size:  0.7em;
+                                    background-color: #46cb18;
+                                ">✔</span>
+                            </a>
                             <a href="#" class="mega-dropdown-toggle">
                                 <i class="demo-pli-layout-grid"></i>
                             </a>
@@ -422,7 +427,7 @@
                                                 class="demo-pli-gear icon-lg icon-fw"></i> Settings</a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="demo-pli-computer-secure icon-lg icon-fw"></i> Lock
+                                        <a href="./lock-screen.html"><i class="demo-pli-computer-secure icon-lg icon-fw"></i> Lock
                                             screen</a>
                                     </li>
                                     <li>
@@ -621,6 +626,24 @@
                                             <a class="btn btn-icon add-tooltip" href="#" data-original-title="Edit File"
                                                 data-toggle="tooltip"><i class="icon-2x demo-pli-file-edit"></i></a>
                                         </div>
+                                        <select
+                                                id="sort_file"
+                                                class="form-select"
+                                                style="
+                                                    padding: 2px;
+                                                    border-color: rgb(133, 133, 133);
+                                                    border-radius: 9px;
+                                                "
+                                                aria-label="Default select example"
+                                                onchange="sortFiles()"
+                                            >
+                                            <option selected value = 'create_date-0'>Created Date - Ascending</option>
+                                            <option value='create_date-1'>Created Date - Descending</option>
+                                            <option value='name-0'>Name - Ascending</option>
+                                            <option value='name-1'>Name - Descending</option>
+                                            <option value='size-0'>Size - Ascending</option>
+                                            <option value='size-1'>Size - Descending</option>
+                                        </select>
                                         <div class="btn-file-toolbar pull-right">
                                             <a id = "delete-files" class="btn btn-icon add-tooltip" href="#" data-original-title="Delete"
                                                 data-toggle="tooltip"><i class="icon-2x demo-pli-recycling"></i></a>
@@ -1150,7 +1173,7 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li class="pad-ver"><a href="#" class="btn btn-success btn-bock">View
+                                            <li class="pad-ver"><a href="#" class="btn btn-success btn-bock" data-toggle="modal" data-target="#modal_details">View
                                                     Details</a></li>
                                         </ul>
                                     </div>

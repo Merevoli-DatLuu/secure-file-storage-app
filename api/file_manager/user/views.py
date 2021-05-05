@@ -12,8 +12,13 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework.permissions import IsAuthenticated
 
-from .models import User
+from .models import User, UserHistory
 from .serializers import UserRegisterSerializer, UserLoginSerializer, UserSerializer
+
+import sys
+sys.path.append('./file_storage')
+
+from file_storage import FileStorage
 
 class UserRegisterView(APIView):
     def post(self, request):
@@ -22,12 +27,16 @@ class UserRegisterView(APIView):
             #serializer.validated_data['password'] = make_password(serializer.validated_data['password'])
             serializer.save()
 
+            # create personal folder
+            file_storage = FileStorage()
+            file_storage.create_folder(serializer.validated_data['email'])
+
             return JsonResponse({
                 'message': 'Register successful!'
             }, status=status.HTTP_201_CREATED)
 
         return JsonResponse({
-            'error_message': serializer.errors,
+            'error_messages': serializer.errors,
             'errors_code': 400,
         }, status=status.HTTP_400_BAD_REQUEST)
 
@@ -49,6 +58,22 @@ class UserLoginView(APIView):
                     'refresh_token': str(refresh),
                     'access_token': str(refresh.access_token)
                 }
+
+                device_info = ""
+                if 'device_info' not in serializer.validated_data:
+                    device_info = "Unknown"
+                else:
+                    device_info = serializer.validated_data['device_info']
+                ip = get_client_ip(request)
+
+                user_history = UserHistory(
+                    email = serializer.validated_data['email'], 
+                    device_info = device_info, 
+                    ip = str(ip)
+                )
+                print(user_history)
+                user_history.save()
+
                 return Response(data, status=status.HTTP_200_OK)
 
             return Response({
@@ -72,3 +97,30 @@ class UserView(APIView):
             'last_name': request.user.last_name
         }
         return Response(data)
+
+class UserHistoryView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        email = request.user.email
+        
+        data = []
+        for user_history in UserHistory.objects.all().filter(email = email):
+            data.append({
+                'device_info': user_history.device_info,
+                'ip': user_history.ip,
+                'login_time': user_history.login_time
+            })
+        return Response(data)
+
+class CheckConnection(APIView):
+    def get(self, request):
+        return Response("", status=status.HTTP_200_OK)
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip

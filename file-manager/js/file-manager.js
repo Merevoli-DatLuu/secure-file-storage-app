@@ -2,11 +2,13 @@ const key = '14189dc35ae35e75ff31d7502e245cd9';
 const iv = '35e75ff31d7502e2';
 var fileUploadQueue = []
 var maxFileID = 0
+var list_showed_file = []
+var watcher_manager = {}
 
 // Modified File
 var last_modified = 0
 
-$(document).ready(handleFileManager());
+$(document).ready(setTimeout(() => handleFileManager(), 0));
 
 function handleFileManager() {
 
@@ -29,6 +31,21 @@ function handleFileManager() {
     $('#file-type-music').click(() => loadFileListByType('music'));
     $('#file-type-document').click(() => loadFileListByType('document'));
     $('#file-type-zip').click(() => loadFileListByType('zip'));
+
+    // Searching
+    var input = document.getElementById("search-input");
+
+    // Execute a function when the user releases a key on the keyboard
+    input.addEventListener("keyup", function(event) {
+      // Number 13 is the "Enter" key on the keyboard
+      if (event.keyCode === 13) {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Trigger the button element with a click
+        searchFiles();
+      }
+    });
+    
 }
 
 function updateMaxFileID() {
@@ -181,6 +198,12 @@ function uploadFiles(fileID) {
         data: data,
         name: file['name'] + '.aes'
         //...file
+    },
+    {
+        headers: {
+            'Authorization': `Bearer ${access_token}`,
+            'Content-Type': 'application/json'
+        }
     }).then(e => console.log(e.data)).catch(e => console.log(e)));
 
     fs.readFile(filePath, (err, data) => {
@@ -231,6 +254,7 @@ async function handleFileStore() {
         }
 
         tree_file.files[toFileID(maxFileID++)] = file_store
+        list_showed_file[toFileID(maxFileID -1)] = file_store
 
         $('#demo-mail-list').append(
             genItem(
@@ -271,6 +295,7 @@ async function handleFileStore() {
         });
 
     })
+    tree_file.last_submission = String(Date.now())
     fs.writeFileSync(mapPath, JSON.stringify(tree_file));
     $('#previews').empty()
     $('.preview-container').css('visibility', 'hidden');
@@ -288,31 +313,50 @@ async function handleFileStore() {
 "You have 10 minutes to View/Modified the File. When overtime, it will not save the modified"
 */
 
-async function watchModifiedFile(watcher, filePath){
+async function watchModifiedFile(watcher, filePath, id){
     max_time = 1
     current_modified = new Date().getTime()
     if (current_modified - last_modified > max_time*60*1000){ 
         last_modified = 0
 
         // Write file
+        var cipher = crypto.createCipheriv('aes-256-cbc', key, iv)
+        var input = fs.createReadStream(filePath);
+        console.log(filePath)
+        var output = fs.createWriteStream(filePath.substr(0,filePath.lastIndexOf('\\')) + '\\..\\' + filePath.split('\\')[filePath.split('\\').length - 1] + ".aes");
+        input.pipe(cipher).pipe(output);
 
-        // delete temp file
-        if (fs.existsSync(filePath)) {
-            fs.unlinkSync(filePath);
-        }
-        else {
-            console.log(`file ${filePath} not found`)
-        }
+        output.on('finish', async function () {
 
-        // close the watcher
-        watcher.close();
+            // Change hash file 
+            let mapPath = path.resolve(__dirname, "..\\app-data\\map.json")
+            var data = fs.readFileSync(mapPath, 'utf8')
+            let tree_file = JSON.parse(data);
 
-        // alert 
-        showAlert("Warning", " It's overtime. Any change after this time will not be saved", 'warning', 5000)
-        console.log('timeout')
+            tree_file.files[id].check_sum = getHashFile(filePath)
 
-        // Clear the interval
-        
+            tree_file.last_submission = String(Date.now())
+            fs.writeFileSync(mapPath, JSON.stringify(tree_file));
+
+            // delete temp file
+            if (fs.existsSync(filePath)) {
+                fs.unlinkSync(filePath);
+            }
+            else {
+                console.log(`file ${filePath} not found`)
+            }
+
+            // close the watcher
+            watcher.close();
+
+            // alert 
+            showAlert("Warning", " It's overtime. Any change after this time will not be saved", 'warning', 5000)
+            console.log('timeout')
+
+            // Clear the interval
+            clearIntervalModifiedFile(filePath)
+
+        });
     }
 }
 
@@ -320,21 +364,29 @@ function clearIntervalModifiedFile(idInterval){
     // set interval is map - global
     // set id 
     // call this in watchModified...()
+
+    clearInterval(watcher_manager[idInterval])
+    delete watcher_manager[idInterval]
+
 }
 
-async function handleOpenFile(filePath) {
+async function handleOpenFile(filePath, id, type) {
     if (fs.existsSync(filePath)) {
         console.log(filePath)
-
-        const watcher = fs.watch(filePath, (eventType, filename) => {
-            console.log(eventType)
+        
+        if (type == "edit"){
+            const watcher = fs.watch(filePath, (eventType, filename) => {
+                console.log(eventType)
+                current_modified = new Date().getTime()
+                last_modified = current_modified
+                console.log('change')
+            });
+            
             current_modified = new Date().getTime()
             last_modified = current_modified
-            console.log('change')
-        });
 
-        var interval_watcher = setInterval(() => {watchModifiedFile(watcher, filePath)}, 10000)
-
+            watcher_manager[filePath] = setInterval(() => {watchModifiedFile(watcher, filePath, id)}, 5000)
+        }
         // Can't Fix - solution: use timeout
         const result = await open(filePath)
         //watcher.close();
@@ -358,13 +410,18 @@ function showAlert(action_message, content_message, type, timeout = 2000) {
     });
 }
 
-async function viewFile(id) {
+async function viewFile(id, type = "open") {
     var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
     let tree_file = JSON.parse(data);
     let file = tree_file.files[id]
 
     // Alert
-    showAlert("Openning", ` File: ${file.name}`, 'success')
+    if (type == "edit"){
+        showAlert("Openning to edit", ` File: ${file.name}`, 'success')
+    }
+    else{
+        showAlert("Openning", ` File: ${file.name}`, 'success')
+    }
 
     filePath = path.resolve(__dirname, "..\\app-data\\data\\" + id + file.name);
     filePathOutput = path.resolve(__dirname, "..\\app-data\\data\\temp\\" + id + file.name);
@@ -374,7 +431,7 @@ async function viewFile(id) {
     input.pipe(decrypt).pipe(output);
     output.on('finish', () => {
         output.end()
-        handleOpenFile(filePathOutput);
+        handleOpenFile(filePathOutput, id, type);
     })
 }
 
@@ -396,6 +453,7 @@ function removeFile(id) {
     // update map.json
     let mapPath = path.resolve(__dirname, "..\\app-data\\map.json")
     delete tree_file.files[id];
+    tree_file.last_submission = String(Date.now())
     fs.writeFileSync(mapPath, JSON.stringify(tree_file));
 
     // update UI
@@ -506,7 +564,7 @@ function popupMenu(id) {
             {
                 icon: 'glyphicon-edit',
                 text: '  Edit',
-                action: function (e, selector) { viewFile(id) }
+                action: function (e, selector) { viewFile(id, "edit") }
             },
             {
                 icon: 'glyphicon glyphicon-download',
@@ -528,6 +586,178 @@ function popupMenu(id) {
 
     // Open file by clicking
     $('#file-' + id).children('a').dblclick(() => viewFile(id));
+
+}
+
+function loadFiles(files){
+    $('#demo-mail-list').empty()
+    $('#demo-mail-list').append(
+        `
+        <!--File list item-->
+        <li>
+            <div class="file-control">
+                <input id="file-list-1" class="magic-checkbox" type="checkbox">
+                <label for="file-list-1"></label>
+            </div>
+            <div class="file-attach-icon"></div>
+            <a href="#" class="file-details">
+                <div class="media-block">
+                    <div class="media-left"><i class="demo-psi-folder"></i></div>
+                    <div class="media-body">
+                        <p class="file-name single-line">...</p>
+                    </div>
+                </div>
+            </a>
+        </li>`
+    );
+
+    for (file_id in files) {
+
+        $('#demo-mail-list').append(
+            genItem(
+                file_id,
+                files[file_id].name,
+                files[file_id].create_date,
+                files[file_id].size
+            )
+        );
+        popupMenu(file_id)
+    }
+}
+
+function searchFiles() {
+    var search_string = document.getElementById('search-input').value.toLowerCase()
+    var pass = searchFiles == "";
+    var is_regex = search_string[0] == '/'
+    var patt
+    if (is_regex){
+        try {
+            patt = new RegExp(search_string.substr(1));
+        }
+        catch{
+            showAlert("Warning", "Invalid regular expression", 'warning')
+            return false;
+        }
+    }
+
+    $('#demo-mail-list').empty()
+    $('#demo-mail-list').append(
+        `
+        <!--File list item-->
+        <li>
+            <div class="file-control">
+                <input id="file-list-1" class="magic-checkbox" type="checkbox">
+                <label for="file-list-1"></label>
+            </div>
+            <div class="file-attach-icon"></div>
+            <a href="#" class="file-details">
+                <div class="media-block">
+                    <div class="media-left"><i class="demo-psi-folder"></i></div>
+                    <div class="media-body">
+                        <p class="file-name single-line">...</p>
+                    </div>
+                </div>
+            </a>
+        </li>`
+    );
+
+    _renderFileSidebar("user-folder")
+    $('#sort_file').val("create_date-0")
+    
+
+    var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
+    let tree_file = JSON.parse(data);
+    let files = tree_file.files;
+
+    list_showed_file = files
+    for (file_id in files) {
+        if (is_regex){
+            if (patt.test(files[file_id].name.toLowerCase())){
+                $('#demo-mail-list').append(
+                    genItem(
+                        file_id,
+                        files[file_id].name,
+                        files[file_id].create_date,
+                        files[file_id].size
+                    )
+                );
+                popupMenu(file_id)
+            }
+        }
+        else{
+            if (files[file_id].name.toLowerCase().includes(search_string) || pass){
+                $('#demo-mail-list').append(
+                    genItem(
+                        file_id,
+                        files[file_id].name,
+                        files[file_id].create_date,
+                        files[file_id].size
+                    )
+                );
+                popupMenu(file_id)
+            }
+        }
+    }
+}
+
+function sortFiles(){
+    id_type = $('#sort_file').val()
+
+    var info_name = id_type.split('-')[0]
+    var sort_type = id_type.split('-')[1]
+
+    var sorted_files = []
+    for (file_id in list_showed_file){
+        sorted_files.push({'id': file_id, ...list_showed_file[file_id]})   
+    }
+
+    sorted_files.sort((a, b) => {
+        if (sort_type == '0'){
+            return (a[info_name] > b[info_name])?1:-1
+        }
+        else{
+            return (a[info_name] < b[info_name])?1:-1
+        }
+    })
+
+    console.log(sorted_files)
+    
+    $('#demo-mail-list').empty()
+    $('#demo-mail-list').append(
+        `
+        <!--File list item-->
+        <li>
+            <div class="file-control">
+                <input id="file-list-1" class="magic-checkbox" type="checkbox">
+                <label for="file-list-1"></label>
+            </div>
+            <div class="file-attach-icon"></div>
+            <a href="#" class="file-details">
+                <div class="media-block">
+                    <div class="media-left"><i class="demo-psi-folder"></i></div>
+                    <div class="media-body">
+                        <p class="file-name single-line">...</p>
+                    </div>
+                </div>
+            </a>
+        </li>`
+    );
+
+
+
+    for (f of sorted_files) {
+
+        $('#demo-mail-list').append(
+            genItem(
+                f['id'],
+                f['name'],
+                f['create_date'],
+                f['size']
+            )
+        );
+        popupMenu(f['id'])
+    }
+
 
 }
 
@@ -553,9 +783,13 @@ function loadFileList() {
         </li>`
     );
 
+    _renderFileSidebar("user-folder")
+    $('#sort_file').val("create_date-0")
+
     var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
     let tree_file = JSON.parse(data);
     let files = tree_file.files;
+    list_showed_file = files
     for (file_id in files) {
 
         $('#demo-mail-list').append(
@@ -568,6 +802,38 @@ function loadFileList() {
         );
         popupMenu(file_id)
     }
+}
+
+function _renderFileSidebar(type){
+    $('#file-type-user-folder').css({
+        "font-weight": "400",
+        "color": "rgb(122, 135, 142)"
+    })
+    $('#file-type-photo').css({
+        "font-weight": "400",
+        "color": "rgb(122, 135, 142)"
+    })
+    $('#file-type-video').css({
+        "font-weight": "400",
+        "color": "rgb(122, 135, 142)"
+    })
+    $('#file-type-music').css({
+        "font-weight": "400",
+        "color": "rgb(122, 135, 142)"
+    })
+    $('#file-type-document').css({
+        "font-weight": "400",
+        "color": "rgb(122, 135, 142)"
+    })
+    $('#file-type-zip').css({
+        "font-weight": "400",
+        "color": "rgb(122, 135, 142)"
+    })
+
+    $('#file-type-' + type).css({
+        "font-weight": "bold",
+        "color": "#4d627b"
+    })
 }
 
 function loadFileListByType(type) {
@@ -591,7 +857,9 @@ function loadFileListByType(type) {
             </a>
         </li>`
     );
-    console.log(type)
+    
+    _renderFileSidebar(type)
+    $('#sort_file').val("create_date-0")
 
     let photo_extensions = ['png', 'jpg', 'jpeg', 'gif'];
     let video_extensions = ['mp4', 'mov', 'wmv', 'flv', 'avi', 'webm'];
@@ -619,20 +887,26 @@ function loadFileListByType(type) {
     var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
     let tree_file = JSON.parse(data);
     let files = tree_file.files;
-    for (file_id in files) {
+
+    filtered_files = {}
+    for (file_id in files){
         let file_name = files[file_id].name
         file_extension = file_name.split('.')[file_name.split('.').length - 1]
         if (file_extensions.includes(file_extension)) {
-            $('#demo-mail-list').append(
-                genItem(
-                    file_id,
-                    files[file_id].name,
-                    files[file_id].create_date,
-                    files[file_id].size
-                )
-            );
-            popupMenu(file_id)
+            filtered_files[file_id] = files[file_id]   
         }
+    }    
+    list_showed_file = filtered_files
+    for (file_id in filtered_files) {
+        $('#demo-mail-list').append(
+            genItem(
+                file_id,
+                filtered_files[file_id].name,
+                filtered_files[file_id].create_date,
+                filtered_files[file_id].size
+            )
+        );
+        popupMenu(file_id)
     }
 }
 

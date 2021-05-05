@@ -4,6 +4,8 @@ const { dialog } = require('electron')
 const BrowserWindow = electron.BrowserWindow
 const ipcMain = electron.ipcMain
 let mainWindow
+require('v8-compile-cache');
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1';
 
 function createWindow() {
     mainWindow = new BrowserWindow({

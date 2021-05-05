@@ -36,3 +36,9 @@ fs.readFile(filePath, (err, data) => {
     }
 }
 */
+
+function testFunction(a, b){
+    return a + b;
+}
+
+testFunction(1, 3)
