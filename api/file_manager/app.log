@@ -140,7 +140,7 @@ AssertionError: Class FileUploadSerializer missing "Meta" attribute
 - INFO - 2021-04-24 18:55:16,802 - D:\GitHub\secure-file-storage-app\api\file_manager\file\urls.py changed, reloading.
 - INFO - 2021-04-24 18:57:33,710 - D:\GitHub\secure-file-storage-app\api\file_manager\file\urls.py changed, reloading.
 - WARNING - 2021-04-24 18:57:52,081 - Method Not Allowed: /api/test
-- WARNING - 2021-04-24 18:57:58,988 - Not Found: /api/test/á
+- WARNING - 2021-04-24 18:57:58,988 - Not Found: /api/test/ï¿½
 - ERROR - 2021-04-24 18:58:06,249 - Internal Server Error: /api/test/123
 Traceback (most recent call last):
   File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
@@ -1120,8 +1120,8 @@ TypeError: 'UserHistory' object is not iterable
 - WARNING - 2021-05-04 14:26:29,762 - Bad Request: /api/login
 - WARNING - 2021-05-04 14:26:59,177 - Bad Request: /api/login
 - WARNING - 2021-05-04 14:27:14,775 - Bad Request: /api/login
-- WARNING - 2021-05-04 14:58:43,377 - Not Found: /api/resgister
-- WARNING - 2021-05-04 14:59:29,623 - Bad Request: /api/register
+- WARNING - 2021-05-04 14:58:43,377 - Not Found: /api/register
+- WARNING - 2021-05-04 14:59:29,623 - Bad Request: /api/reister
 - WARNING - 2021-05-04 15:00:46,256 - Bad Request: /api/register
 - WARNING - 2021-05-04 15:01:06,313 - Bad Request: /api/register
 - WARNING - 2021-05-04 15:01:18,393 - Bad Request: /api/register
@@ -1183,3 +1183,114 @@ pydrive.auth.AuthenticationError: No code found in redirect
 - INFO - 2021-05-04 15:06:59,616 - file_cache is only supported with oauth2client<4.0.0
 - WARNING - 2021-05-05 11:43:00,449 - Not Found: /
 - WARNING - 2021-05-05 11:43:02,664 - Not Found: /favicon.ico
+- WARNING - 2021-05-07 09:31:47,428 - Bad Request: /api/login
+- WARNING - 2021-05-07 09:31:47,619 - Bad Request: /api/login
+- WARNING - 2021-05-07 09:32:03,254 - Bad Request: /api/login
+- WARNING - 2021-05-07 09:44:07,553 - Bad Request: /api/login
+- WARNING - 2021-05-07 09:48:46,969 - Bad Request: /api/login
+- WARNING - 2021-05-07 09:49:04,084 - Bad Request: /api/login
+- WARNING - 2021-05-07 09:51:24,954 - Bad Request: /api/login
+- WARNING - 2021-05-07 09:52:55,085 - Bad Request: /api/login
+- WARNING - 2021-05-07 09:52:59,056 - Bad Request: /api/login
+- WARNING - 2021-05-07 09:53:02,416 - Bad Request: /api/login
+- WARNING - 2021-05-07 09:56:48,856 - Bad Request: /api/login
+- WARNING - 2021-05-07 09:57:01,399 - Bad Request: /api/login
+- WARNING - 2021-05-07 09:57:18,964 - Bad Request: /api/login
+- WARNING - 2021-05-07 09:57:21,158 - Bad Request: /api/login
+- WARNING - 2021-05-07 09:58:11,969 - Bad Request: /api/login
+- WARNING - 2021-05-07 09:58:21,112 - Bad Request: /api/login
+- WARNING - 2021-05-07 09:58:24,410 - Bad Request: /api/login
+- WARNING - 2021-05-07 09:58:28,565 - Bad Request: /api/login
+- WARNING - 2021-05-07 10:03:46,154 - Bad Request: /api/login
+- WARNING - 2021-05-07 10:04:47,585 - Bad Request: /api/register
+- WARNING - 2021-05-07 10:04:50,776 - Bad Request: /api/register
+- WARNING - 2021-05-07 10:05:05,661 - Bad Request: /api/register
+- WARNING - 2021-05-07 10:05:09,822 - Bad Request: /api/register
+- WARNING - 2021-05-07 10:06:23,994 - Bad Request: /api/register
+- WARNING - 2021-05-07 10:06:28,381 - Bad Request: /api/register
+- WARNING - 2021-05-07 10:07:39,132 - Bad Request: /api/login
+- WARNING - 2021-05-07 10:07:55,732 - Bad Request: /api/register
+- WARNING - 2021-05-07 10:08:00,761 - Bad Request: /api/register
+- WARNING - 2021-05-07 10:12:16,407 - Unauthorized: /api/user
+- WARNING - 2021-05-07 10:12:16,413 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 10:14:24,003 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 10:14:24,008 - Unauthorized: /api/user
+- WARNING - 2021-05-07 10:14:27,739 - Bad Request: /api/register
+- WARNING - 2021-05-07 10:18:03,347 - Unauthorized: /api/user
+- WARNING - 2021-05-07 10:18:03,350 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 10:18:45,091 - Bad Request: /api/login
+- WARNING - 2021-05-07 10:20:34,280 - Unauthorized: /api/user
+- WARNING - 2021-05-07 10:20:34,285 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 10:20:54,502 - Bad Request: /api/login
+- WARNING - 2021-05-07 10:21:24,796 - Unauthorized: /api/user
+- WARNING - 2021-05-07 10:21:24,798 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 10:21:45,910 - Bad Request: /api/login
+- WARNING - 2021-05-07 10:26:46,624 - Unauthorized: /api/user
+- WARNING - 2021-05-07 10:26:46,630 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 10:28:40,509 - Unauthorized: /api/user
+- WARNING - 2021-05-07 10:28:40,516 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 10:34:02,516 - Unauthorized: /api/user
+- WARNING - 2021-05-07 10:34:02,520 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 10:34:32,191 - Unauthorized: /api/file
+- WARNING - 2021-05-07 10:34:32,207 - Unauthorized: /api/file
+- WARNING - 2021-05-07 10:34:32,233 - Unauthorized: /api/file
+- WARNING - 2021-05-07 10:34:32,243 - Unauthorized: /api/file
+- WARNING - 2021-05-07 10:34:32,243 - Unauthorized: /api/file
+- WARNING - 2021-05-07 10:34:32,248 - Unauthorized: /api/file
+- WARNING - 2021-05-07 10:42:00,603 - Unauthorized: /api/user
+- WARNING - 2021-05-07 10:42:00,615 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 10:42:52,357 - Unauthorized: /api/user
+- WARNING - 2021-05-07 10:42:52,360 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 10:44:08,701 - Unauthorized: /api/user
+- WARNING - 2021-05-07 10:44:08,742 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 10:44:45,488 - Unauthorized: /api/user
+- WARNING - 2021-05-07 10:44:45,499 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 10:48:37,751 - Unauthorized: /api/user
+- WARNING - 2021-05-07 10:48:37,762 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 10:59:17,674 - Unauthorized: /api/user
+- WARNING - 2021-05-07 10:59:17,681 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 11:10:04,518 - Unauthorized: /api/user
+- WARNING - 2021-05-07 11:10:04,533 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 11:11:47,355 - Unauthorized: /api/user
+- WARNING - 2021-05-07 11:11:47,359 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 11:13:34,634 - Unauthorized: /api/user
+- WARNING - 2021-05-07 11:13:34,639 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 11:14:36,288 - Unauthorized: /api/user
+- WARNING - 2021-05-07 11:14:36,294 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 11:15:37,306 - Unauthorized: /api/user
+- WARNING - 2021-05-07 11:15:37,309 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 11:16:18,584 - Unauthorized: /api/user
+- WARNING - 2021-05-07 11:16:18,588 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 11:19:07,125 - Unauthorized: /api/user
+- WARNING - 2021-05-07 11:19:07,128 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 11:20:04,178 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 11:20:04,183 - Unauthorized: /api/user
+- WARNING - 2021-05-07 12:00:46,891 - Unauthorized: /api/user
+- WARNING - 2021-05-07 12:00:46,898 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 12:02:20,256 - Unauthorized: /api/user
+- WARNING - 2021-05-07 12:02:20,259 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 12:08:35,117 - Unauthorized: /api/user
+- WARNING - 2021-05-07 12:08:35,141 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 12:17:45,268 - Unauthorized: /api/user
+- WARNING - 2021-05-07 12:17:45,273 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 12:23:10,182 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 12:23:10,186 - Unauthorized: /api/user
+- WARNING - 2021-05-07 13:46:03,469 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 13:46:03,483 - Unauthorized: /api/user
+- WARNING - 2021-05-07 13:49:52,043 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 13:49:52,043 - Unauthorized: /api/user
+- WARNING - 2021-05-07 17:30:12,903 - Unauthorized: /api/user
+- WARNING - 2021-05-07 17:30:12,901 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 17:44:59,039 - Unauthorized: /api/user
+- WARNING - 2021-05-07 17:44:59,043 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 18:15:22,341 - Unauthorized: /api/user
+- WARNING - 2021-05-07 18:15:22,346 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 19:17:21,405 - Unauthorized: /api/user
+- WARNING - 2021-05-07 19:17:21,410 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 19:17:24,830 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 19:17:27,437 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 19:17:51,191 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 19:18:17,151 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 19:18:22,448 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 19:18:37,674 - Unauthorized: /api/login_history
+- WARNING - 2021-05-07 19:18:37,685 - Unauthorized: /api/user

@@ -6,7 +6,8 @@ var list_showed_file = []
 var watcher_manager = {}
 
 // Modified File
-var last_modified = 0
+var last_modified = {}
+
 
 $(document).ready(setTimeout(() => handleFileManager(), 0));
 
@@ -235,6 +236,9 @@ async function handleFileStore() {
     let data = fs.readFileSync(mapPath, 'utf8')
     var tree_file = JSON.parse(data);
 
+    var numFile = fileUploadQueue.length
+    var numUploadedFile = 0
+
     fileUploadQueue.forEach(file => {
         //encrypt(file);
         //Storage(file);
@@ -277,12 +281,16 @@ async function handleFileStore() {
             // Remove plain file
             if (fs.existsSync(filePath)) {
                 fs.unlinkSync(filePath);
+                numUploadedFile += 1
+                if (numUploadedFile == numFile){
+                    showAlert("success", `${numUploadedFile} file(s) upload successful`, "success")
+                }
             }
             else {
-                console.log(`file ${filePath} not found`)
+                showAlert("error", `file ${filePath} upload failed`, "danger")
             }
 
-            uploadFilesToServer(fileID)
+            //uploadFilesToServer(fileID)
             /*await input.close();
             await output.close();
 
@@ -316,8 +324,8 @@ async function handleFileStore() {
 async function watchModifiedFile(watcher, filePath, id){
     max_time = 1
     current_modified = new Date().getTime()
-    if (current_modified - last_modified > max_time*60*1000){ 
-        last_modified = 0
+    if (current_modified - last_modified[id] > max_time*60*1000){ 
+        last_modified[id] = 0
 
         // Write file
         var cipher = crypto.createCipheriv('aes-256-cbc', key, iv)
@@ -354,7 +362,7 @@ async function watchModifiedFile(watcher, filePath, id){
             console.log('timeout')
 
             // Clear the interval
-            clearIntervalModifiedFile(filePath)
+            clearIntervalModifiedFile(id)
 
         });
     }
@@ -367,6 +375,7 @@ function clearIntervalModifiedFile(idInterval){
 
     clearInterval(watcher_manager[idInterval])
     delete watcher_manager[idInterval]
+    delete last_modified[idInterval]
 
 }
 
@@ -377,18 +386,25 @@ async function handleOpenFile(filePath, id, type) {
         if (type == "edit"){
             const watcher = fs.watch(filePath, (eventType, filename) => {
                 console.log(eventType)
-                current_modified = new Date().getTime()
-                last_modified = current_modified
+                last_modified[id] = new Date().getTime()
                 console.log('change')
             });
             
-            current_modified = new Date().getTime()
-            last_modified = current_modified
+            last_modified[id] = new Date().getTime()
 
-            watcher_manager[filePath] = setInterval(() => {watchModifiedFile(watcher, filePath, id)}, 5000)
+            watcher_manager[id] = setInterval(() => {watchModifiedFile(watcher, filePath, id)}, 5000)
         }
         // Can't Fix - solution: use timeout
         const result = await open(filePath)
+        await new Promise(resolve => setTimeout(resolve, 30000));
+        if (type == "open"){
+            if (fs.existsSync(filePath)) {
+                fs.unlinkSync(filePath);
+            }
+            else {
+                console.log(`file ${filePath} not found`)
+            }
+        }
         //watcher.close();
         //fs.unlinkSync(filePath)
     }
@@ -415,16 +431,18 @@ async function viewFile(id, type = "open") {
     let tree_file = JSON.parse(data);
     let file = tree_file.files[id]
 
+    filePath = path.resolve(__dirname, "..\\app-data\\data\\" + id + file.name);
+    filePathOutput = path.resolve(__dirname, "..\\app-data\\data\\temp\\" + id + file.name);
+
     // Alert
     if (type == "edit"){
         showAlert("Openning to edit", ` File: ${file.name}`, 'success')
     }
     else{
         showAlert("Openning", ` File: ${file.name}`, 'success')
+        filePathOutput = path.resolve(__dirname, "..\\app-data\\data\\temp\\" + id + ".open." + file.name);
     }
 
-    filePath = path.resolve(__dirname, "..\\app-data\\data\\" + id + file.name);
-    filePathOutput = path.resolve(__dirname, "..\\app-data\\data\\temp\\" + id + file.name);
     var decrypt = crypto.createDecipheriv('aes-256-cbc', key, iv);
     let input = fs.createReadStream(filePath + ".aes");
     let output = fs.createWriteStream(filePathOutput)

@@ -1,4 +1,5 @@
 $(document).ready(loadingLockScreen());
+$('#lock_screen_submit').click(handleLockScreen)
 
 function loadingLockScreen(){
     localStorage.removeItem('refresh_token')
@@ -16,7 +17,22 @@ function loadingLockScreen(){
     document.getElementById('user_name').innerHTML = `${last_name} ${first_name}`
 }
 
-$('#lock_screen_submit').click(handleLockScreen)
+function showAlert(action_message, content_message, type, timeout = 2000) {
+    $('#alert-open-file').empty()
+    $('#alert-open-file').append(`
+        <div style="padding: 5px;">
+            <div class="alert alert-${type}" id="success-alert" style='margin: 0 auto;' >
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <strong>${action_message} </strong> ${content_message}
+            </div>
+        </div>
+    `)
+
+    $("#success-alert").fadeTo(timeout, 500).fadeOut(500, function () {
+        $("#success-alert").fadeOut(500);
+    });
+}
+
 
 function handleLockScreen() {
     email = localStorage.getItem('email')
@@ -24,10 +40,11 @@ function handleLockScreen() {
     device_info = `${os_info.arch()} - ${os_info.platform()} - ${os_info.version()} - ${os_info.hostname()}`
 
     if (password == ""){
+        showAlert("Warning", "<b>password</b> field can't be blank. ", "danger")
         return false
     }
     if (email == null){
-        alert("Something's wrong. Please login")
+        showAlert("Warning", "Something's wrong. Please login", "danger")
         return false
     }
 
@@ -51,17 +68,21 @@ function handleLockScreen() {
     })
     .catch((error) => {
         if (error.response) {
-            /*
-            * The request was made and the server responded with a
-            * status code that falls out of the range of 2xx
-            */
             error_data = error.response.data['error_messages']
-            error_issue = Object.keys(error_data)
-            console.log(error_data)
-            console.log(error_issue)
-            error_issue.forEach(element => {
-                console.log(element, error_data[element])
-            });
+            if (typeof error_data == "string"){
+                showAlert("Warning", error_data, "danger")
+            }
+            else{
+                error_issue = Object.keys(error_data)
+                console.log(error_data)
+                console.log(error_issue)
+                warning_message = ""
+                error_issue.forEach(element => {
+                    console.log(element, error_data[element])
+                    warning_message += `<p> <b>${element}</b> ${error_data[element]} </p>`
+                });
+                showAlert("Warning", warning_message, "danger")
+            }
             
         } 
         else if (error.request) {

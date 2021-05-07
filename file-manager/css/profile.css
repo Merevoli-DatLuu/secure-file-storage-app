@@ -1,0 +1,137 @@
+        .card-container {
+            width: 400px;
+            height: 550px;
+            background: #fff;
+            border-radius: 8px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0px 1px 10px 1px #000;
+            overflow: hidden;
+            display: inline-block;
+            margin: 0px;
+            padding: 0px;
+            background: #f1f1f1;
+            box-sizing: border-box;
+            font-family: Candara;
+            animation: fadeIn ease 0.7s;
+        }
+
+        .upper-container {
+            height: 100px;
+            background: #2a9df4;
+        }
+
+        .image-container {
+            background: white;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            padding: 5px;
+            transform: translate(150px, 60px);
+        }
+
+        .image-container .img-card {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+
+        .lower-container {
+            height: 450px;
+            background: #fff;
+            padding: 20px;
+            padding-top: 40px;
+            text-align: center;
+        }
+
+        .lower-container .h3-card,
+        .h4-card {
+            box-sizing: border-box;
+            line-height: 0.4;
+        }
+
+        .h3-card {
+            display: block;
+            font-size: 18.72px;
+            margin-block-start: 18.72px;
+            margin-block-end: 18.72px;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+        }
+
+        .h4-card {
+            display: block;
+            font-size: 16px;
+            margin-block-start: 21.28px;
+            margin-block-end: 21.28px;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+        }
+        
+
+        .lower-container .h4-card {
+            color: #2a9df4;
+            opacity: 0.6;
+            font-weight: bold;
+        }
+
+        .lower-container .p-card {
+            font-size: 16px;
+            color: gray;
+            margin-bottom: 30px;
+        }
+
+        .lower-container .btn{
+            padding: 12px 20px;
+            margin-right: 20px;
+            margin-top: 40px;
+            background: #2a9df4;
+            border: none;
+            color: white;
+            border-radius: 30px;
+            font-size: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease-in;
+        }
+
+        .lower-container .btn:hover{
+            background: transparent;
+            color: #2a9df4;
+            border: 2px solid #2a9df4;
+        }
+
+        .btn-exit {            
+            padding: 12px 20px;
+            margin-right: 10px;
+            margin-top: 40px;
+            background: gray;
+            border: none;
+            color: white;
+            border-radius: 30px;
+            font-size: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease-in;
+        }
+
+        .btn-exit:hover {
+            background: transparent;
+            color: gray;
+            border: 2px solid gray;
+        }
+        .row-card {
+            display: flex;
+            padding-top: 5px;
+        }
+
+        .column-card-3 {
+            flex: 33%;
+        }
+        .column-card-5 {
+            flex: 50%;
+        }

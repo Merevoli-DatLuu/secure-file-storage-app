@@ -30,7 +30,7 @@ let defaultOptions = {
    * How many file uploads to process in parallel (See the
    * Enqueuing file uploads documentation section for more info)
    */
-  parallelUploads: 2,
+  parallelUploads: 100,
 
   /**
    * Whether to send multiple files in one request. If

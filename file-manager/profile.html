@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .card-container {
+            width: 300px;
+            height: 500px;
+            background: #fff;
+            border-radius: 8px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0px 1px 10px 1px #000;
+            overflow: hidden;
+            display: inline-block;
+            margin: 0px;
+            padding: 0px;
+            background: #f1f1f1;
+            box-sizing: border-box;
+            font-family: Candara;
+        }
+
+        .upper-container {
+            height: 100px;
+            background: #2a9df4;
+        }
+
+        .image-container {
+            background: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            padding: 5px;
+            transform: translate(100px, 60px);
+        }
+
+        .image-container img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+
+        .lower-container {
+            height: 350px;
+            background: #fff;
+            padding: 20px;
+            padding-top: 40px;
+            text-align: center;
+        }
+
+        .lower-container h3,
+        h4 {
+            box-sizing: border-box;
+            line-height: 0.4;
+        }
+
+        .lower-container h4 {
+            color: #2a9df4;
+            opacity: 0.6;
+            font-weight: bold;
+        }
+
+        .lower-container p {
+            font-size: 16px;
+            color: gray;
+            margin-bottom: 30px;
+        }
+
+        .lower-container .btn{
+            padding: 12px 20px;
+            margin-right: 10px;
+            margin-top: 50px;
+            background: #2a9df4;
+            border: none;
+            color: white;
+            border-radius: 30px;
+            font-size: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease-in;
+        }
+
+        .lower-container .btn:hover{
+            background: transparent;
+            color: #2a9df4;
+            border: 2px solid #2a9df4;
+        }
+
+        .btn-exit {            
+            padding: 12px 20px;
+            margin-right: 10px;
+            margin-top: 50px;
+            background: gray;
+            border: none;
+            color: white;
+            border-radius: 30px;
+            font-size: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease-in;
+        }
+
+        .btn-exit:hover {
+            background: transparent;
+            color: gray;
+            border: 2px solid gray;
+        }
+        .row-card {
+            display: flex;
+            padding-top: 5px;
+        }
+
+        .column-card-3 {
+            flex: 33%;
+        }
+        .column-card-5 {
+            flex: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card-container">
+        <div class="upper-container">
+            <div class="image-container">
+                <img src="img/1.png">
+            </div>
+        </div>
+        <div class="lower-container">
+            <div>
+                <h3>Thanh Dat</h3>
+                <h4>test5@fm.com</h4>
+            </div>  
+            <div class="row-card" style = "font-size: 20px; font-weight: bold; padding-top: 12px; color: #2a9df4">
+                <div class="column-card-5">33</div>
+                <div class="column-card-5">22/500</div>
+            </div>
+            <div class="row-card" style = "font-size: 14px; color: dimgray">
+                <div class="column-card-5">Files</div>
+                <div class="column-card-5">MB</div>
+            </div>
+            <div class="row-card" style = "font-size: 20px; font-weight: bold; padding-top: 20px; color: #2a9df4">
+                <div class="column-card-3">12</div>
+                <div class="column-card-3">0</div>
+                <div class="column-card-3">55</div>
+            </div>
+            <div class="row-card" style = "font-size: 14px; color: dimgray">
+                <div class="column-card-3">Docs</div>
+                <div class="column-card-3">Media</div>
+                <div class="column-card-3">Zips</div>
+            </div>
+            <div class="row-card" style = "font-size: 16px; font-weight: bold; padding-top: 25px; color: #2a9df4">
+                <div class="column-card-5">Login Time</div>
+                <div class="column-card-5">Device Name</div>
+            </div>
+            <div class="row-card" style = "font-size: 14px; color: gray">
+                <div class="column-card-5">Documents</div>
+                <div class="column-card-5">Media</div>
+            </div>
+            <div>
+                <a href="#" class="btn">View profile</a>
+                <a href="#" class="btn-exit">Close</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+</body>
+
+</html>

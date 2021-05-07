@@ -1,5 +1,3 @@
-const { access } = require("fs");
-
 $(document).ready(loadingSidebar());
 
 user_info = {
@@ -14,6 +12,7 @@ function loadingSidebar() {
     $('#filemanager-sidebar').click(useFilemanager);
     $('#favorites-sidebar').click(useFavorites);
     $('#appinfo-sidebar').click(useAppinfo);
+    $('#view-profile').click(showProfile)
     setInterval(handleClientStatus, 1000);
 
     checkLogin()
@@ -121,17 +120,17 @@ function checkLogin() {
             }
         }
     )
-        .then((res) => {
-            data = res.data
-            user_info.email = data['email']
-            user_info.first_name = data['first_name']
-            user_info.last_name = data['last_name']
-            loadUserInfo()
-        })
-        .catch((error) => {
-            console.error(error)
-            // window.location.replace("./login.html");
-        })
+    .then((res) => {
+        data = res.data
+        user_info.email = data['email']
+        user_info.first_name = data['first_name']
+        user_info.last_name = data['last_name']
+        loadUserInfo()
+    })
+    .catch((error) => {
+        console.error(error)
+        // window.location.replace("./login.html");
+    })
 
 }
 
@@ -231,7 +230,9 @@ function renderModalMoreDetals(data) {
         </div>
     </div>`
 
-    document.body.innerHTML += show_data
+    var elem = document.createElement('div');
+    elem.innerHTML = show_data
+    document.body.appendChild(elem)
 }
 
 function showMoreDetails() {
@@ -252,6 +253,130 @@ function showMoreDetails() {
     .then((res) => {
         data = res.data
         renderModalMoreDetals(data)
+    })
+    .catch((error) => {
+        console.error(error)
+        // window.location.replace("./login.html");
+    })
+
+}
+
+function getNumFilesByType(type){
+    let media_extensions = ['png', 'jpg', 'jpeg', 'gif', 'mp4', 'mov', 'wmv', 'flv', 'avi', 'webm', 'mp3', 'm4a', 'flac', 'wav', 'wma', 'aac'];
+    let document_extensions = ['doc', 'docm', 'docx', 'dot', 'dotm', 'dotx', 'htm', 'html', 'mht', 'mhtml', 'odt', 'pdf', 'rtf', 'txt', 'wps', 'xml', 'xps'];
+    let zip_extensions = ['zip', 'rar', 'tar']
+
+    let file_extensions;
+    if (type == 'media') {
+        file_extensions = media_extensions;
+    }
+    else if (type == 'document') {
+        file_extensions = document_extensions;
+    }
+    else if (type == 'zip') {
+        file_extensions = zip_extensions;
+    }
+
+    var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
+    let tree_file = JSON.parse(data);
+    let files = tree_file.files;
+
+    filtered_files = {}
+    for (file_id in files){
+        let file_name = files[file_id].name
+        file_extension = file_name.split('.')[file_name.split('.').length - 1]
+        if (file_extensions.includes(file_extension)) {
+            filtered_files[file_id] = files[file_id]   
+        }
+    }    
+
+    return Object.keys(filtered_files).length;
+}
+
+function showProfile(){
+    axios.get('http://127.0.0.1:8000/api/login_history',
+        {
+            headers: {
+                'Authorization': `Bearer ${access_token}`,
+                'Content-Type': 'application/json'
+            }
+        }
+    )
+    .then((res) => {
+        let data = res.data 
+
+        let maxSize = 200// Max Size 200MB 
+        let datafile = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
+        let tree_file = JSON.parse(datafile);
+        let files = tree_file.files;
+        let totalSize = 0;
+        Object.keys(files).forEach(function (key) {
+            totalSize += files[key]['size'];
+        })
+        totalDisk = parseInt(100 * totalSize / (maxSize * 1024 * 1024));
+
+        let profile_data = `
+        <div class="card-container">
+            <div class="upper-container">
+                <div class="image-container">
+                    <img class = "img-card" src="img/1.png">
+                </div>
+            </div>
+            <div class="lower-container">
+                <div>
+                    <h3 class = "h3-card">${user_info.last_name} ${user_info.first_name}</h3>
+                    <h4 class = "h4-card">${user_info.email}</h4>
+                </div>  
+                <div class="row-card" style = "font-size: 20px; font-weight: bold; padding-top: 12px; color: #2a9df4">
+                    <div class="column-card-5">${Object.keys(files).length}</div>
+                    <div class="column-card-5">${totalDisk}/500</div>
+                </div>
+                <div class="row-card" style = "font-size: 14px; color: dimgray">
+                    <div class="column-card-5">Files</div>
+                    <div class="column-card-5">MB</div>
+                </div>
+                <div class="row-card" style = "font-size: 20px; font-weight: bold; padding-top: 20px; color: #2a9df4">
+                    <div class="column-card-3">${getNumFilesByType('document')}</div>
+                    <div class="column-card-3">${getNumFilesByType('media')}</div>
+                    <div class="column-card-3">${getNumFilesByType('zip')}</div>
+                </div>
+                <div class="row-card" style = "font-size: 14px; color: dimgray">
+                    <div class="column-card-3">Docs</div>
+                    <div class="column-card-3">Media</div>
+                    <div class="column-card-3">Zips</div>
+                </div>
+                <div class="row-card" style = "font-size: 16px; font-weight: bold; padding-top: 25px; color: #2a9df4">
+                    <div class="column-card-5">Login Time</div>
+                    <div class="column-card-5">Device Name</div>
+                </div>
+                <div class="row-card" style = "font-size: 14px; color: gray">
+                    <div class="column-card-5">${data[0].login_time}</div>
+                    <div class="column-card-5">${data[0].device_info}</div>
+                </div>
+                <div style = "display : inline-flex;">
+                    <a href="#" class="btn">View profile</a>
+                    <a id = "close-profile" class="btn-exit">Close</a>
+                </div>
+            </div>
+        </div>
+        `
+
+        if (document.getElementById("view-profiles")){
+            document.getElementById("view-profiles").remove()
+        }
+
+        
+        var elem = document.createElement('div');
+        elem.id = "view-profiles"
+        elem.innerHTML = profile_data
+        elem.style = "top: 50%; left: 50%; position: fixed;"
+        document.body.appendChild(elem)
+        
+        $('#close-profile').click(() => {
+            if (document.getElementById("view-profiles")){
+                document.getElementById("view-profiles").remove()
+            }
+        })
     })
     .catch((error) => {
         console.error(error)
