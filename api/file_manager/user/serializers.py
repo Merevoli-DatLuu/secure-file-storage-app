@@ -33,6 +33,17 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
         return user
 
+class UserChangePasswordSerializer(serializers.Serializer):
+    old_password = serializers.CharField(required=True)
+    password = serializers.CharField(required=True)
+    password2 = serializers.CharField(required=True)
+
+    def validate(self, attrs):
+        if attrs['password'] != attrs['password2']:
+            raise serializers.ValidationError({"password": "Password fields didn't match."})
+
+        return attrs
+        
 
 class UserLoginSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)

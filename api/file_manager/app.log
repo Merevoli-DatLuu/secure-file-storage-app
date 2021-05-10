@@ -1294,3 +1294,651 @@ pydrive.auth.AuthenticationError: No code found in redirect
 - WARNING - 2021-05-07 19:18:22,448 - Unauthorized: /api/login_history
 - WARNING - 2021-05-07 19:18:37,674 - Unauthorized: /api/login_history
 - WARNING - 2021-05-07 19:18:37,685 - Unauthorized: /api/user
+- INFO - 2021-05-07 20:14:01,740 - D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py changed, reloading.
+- INFO - 2021-05-07 20:15:03,458 - D:\GitHub\secure-file-storage-app\api\file_manager\user\serializers.py changed, reloading.
+- INFO - 2021-05-07 20:15:31,351 - D:\GitHub\secure-file-storage-app\api\file_manager\user\serializers.py changed, reloading.
+- INFO - 2021-05-07 20:15:56,886 - D:\GitHub\secure-file-storage-app\api\file_manager\user\serializers.py changed, reloading.
+- INFO - 2021-05-07 20:16:28,731 - D:\GitHub\secure-file-storage-app\api\file_manager\user\serializers.py changed, reloading.
+- INFO - 2021-05-07 20:16:53,836 - D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py changed, reloading.
+- INFO - 2021-05-07 20:17:19,519 - D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py changed, reloading.
+- INFO - 2021-05-07 20:17:48,051 - D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py changed, reloading.
+- INFO - 2021-05-07 20:49:10,705 - D:\GitHub\secure-file-storage-app\api\file_manager\user\urls.py changed, reloading.
+- INFO - 2021-05-07 20:50:32,377 - D:\GitHub\secure-file-storage-app\api\file_manager\user\urls.py changed, reloading.
+- WARNING - 2021-05-07 20:51:00,679 - Bad Request: /api/login
+- WARNING - 2021-05-07 20:52:05,502 - Method Not Allowed: /api/change_password
+- ERROR - 2021-05-07 20:52:12,283 - Internal Server Error: /api/change_password
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py", line 94, in post
+    if serializer.is_valid():
+  File "C:\Python37\lib\site-packages\rest_framework\serializers.py", line 220, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "C:\Python37\lib\site-packages\rest_framework\serializers.py", line 419, in run_validation
+    value = self.to_internal_value(data)
+  File "C:\Python37\lib\site-packages\rest_framework\serializers.py", line 472, in to_internal_value
+    for field in fields:
+  File "C:\Python37\lib\site-packages\rest_framework\serializers.py", line 355, in _writable_fields
+    for field in self.fields.values():
+  File "C:\Python37\lib\site-packages\django\utils\functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "C:\Python37\lib\site-packages\rest_framework\serializers.py", line 349, in fields
+    for key, value in self.get_fields().items():
+  File "C:\Python37\lib\site-packages\rest_framework\serializers.py", line 1006, in get_fields
+    serializer_class=self.__class__.__name__
+AssertionError: Class UserChangePasswordSerializer missing "Meta" attribute
+- INFO - 2021-05-07 20:52:29,852 - D:\GitHub\secure-file-storage-app\api\file_manager\user\serializers.py changed, reloading.
+- ERROR - 2021-05-07 20:52:49,694 - Internal Server Error: /api/change_password
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py", line 96, in post
+    request.user.set_password(serializer.validated_data['device_info']['password'])
+KeyError: 'device_info'
+- INFO - 2021-05-07 20:53:12,071 - D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py changed, reloading.
+- INFO - 2021-05-07 20:53:45,426 - D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py changed, reloading.
+- WARNING - 2021-05-07 20:54:19,413 - Bad Request: /api/login
+- INFO - 2021-05-07 21:59:50,114 - Init Server
+- INFO - 2021-05-07 21:59:50,177 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-07 21:59:52,655 - upload_file -> (file_name: Algorithm PD.docx.aes)
+- INFO - 2021-05-07 22:01:34,019 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-07 22:02:48,144 - Init Server
+- INFO - 2021-05-07 22:02:48,240 - file_cache is only supported with oauth2client<4.0.0
+- ERROR - 2021-05-07 22:02:49,636 - Internal Server Error: /api/file
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 426, in finalize_response
+    % type(response)
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+- INFO - 2021-05-07 22:03:47,526 - D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py changed, reloading.
+- INFO - 2021-05-07 22:05:50,124 - Init Server
+- INFO - 2021-05-07 22:05:50,221 - file_cache is only supported with oauth2client<4.0.0
+- ERROR - 2021-05-07 22:05:52,134 - Internal Server Error: /api/file
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 426, in finalize_response
+    % type(response)
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+- INFO - 2021-05-07 22:10:26,135 - D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py changed, reloading.
+- INFO - 2021-05-07 22:11:53,811 - Init Server
+- INFO - 2021-05-07 22:11:53,910 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-07 22:12:05,217 - upload_file -> (file_name: Modern Vim Craft Your Development Environment with Vim 8 and Neovim by Drew Neil (z-lib.org).pdf.aes)
+- INFO - 2021-05-07 22:16:40,467 - Init Server
+- INFO - 2021-05-07 22:16:40,567 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-07 22:16:44,312 - Init Server
+- INFO - 2021-05-07 22:16:44,316 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-07 22:16:46,688 - upload_file -> (file_name: 00003420191006194349.mp4.aes)
+- INFO - 2021-05-07 22:16:52,072 - upload_file -> (file_name: 00003320191006194424.mp4.aes)
+- INFO - 2021-05-07 22:18:51,955 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-07 22:19:20,428 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-07 22:20:01,023 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-07 22:21:49,167 - Init Server
+- INFO - 2021-05-07 22:21:55,973 - Init Server
+- INFO - 2021-05-07 22:22:08,555 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-07 22:22:09,446 - get_file_list
+- INFO - 2021-05-07 22:31:02,825 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- WARNING - 2021-05-07 22:32:35,709 - Method Not Allowed: /api/file/000033
+- WARNING - 2021-05-07 22:32:42,614 - Method Not Allowed: /api/file/000033
+- WARNING - 2021-05-07 22:32:49,046 - Method Not Allowed: /api/file/33
+- WARNING - 2021-05-07 22:34:01,692 - Method Not Allowed: /api/file/33
+- WARNING - 2021-05-07 22:34:09,849 - Method Not Allowed: /api/file
+- WARNING - 2021-05-07 22:34:13,289 - Method Not Allowed: /api/file/1
+- INFO - 2021-05-07 22:35:24,049 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- WARNING - 2021-05-07 22:35:43,024 - Method Not Allowed: /api/file/1
+- INFO - 2021-05-07 22:35:47,765 - Init Server
+- INFO - 2021-05-07 22:35:47,858 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-07 22:35:48,802 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-07 22:35:48,802 - get_content_file -> (file : 1r-4t6DsmI89FDjHQdK4oEIYtRFkJxXv7 - map.json)
+- ERROR - 2021-05-07 22:35:50,746 - Service Unavailable: /api/file/1
+- INFO - 2021-05-07 22:36:29,852 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- WARNING - 2021-05-07 22:36:49,747 - Method Not Allowed: /api/file/1
+- WARNING - 2021-05-07 22:36:57,952 - Method Not Allowed: /api/file/1
+- INFO - 2021-05-07 22:37:54,896 - D:\GitHub\secure-file-storage-app\api\file_manager\file\urls.py changed, reloading.
+- INFO - 2021-05-07 22:38:30,216 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- WARNING - 2021-05-07 22:38:51,634 - Method Not Allowed: /api/file
+- WARNING - 2021-05-07 22:42:05,126 - Method Not Allowed: /api/test
+- WARNING - 2021-05-07 22:42:07,806 - Method Not Allowed: /api/test
+- WARNING - 2021-05-07 22:42:20,345 - Bad Request: /api/test
+- INFO - 2021-05-07 22:42:34,158 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- WARNING - 2021-05-07 22:42:53,023 - Method Not Allowed: /api/test
+- WARNING - 2021-05-07 22:42:57,924 - Bad Request: /api/test
+- INFO - 2021-05-07 22:43:25,180 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- WARNING - 2021-05-07 22:43:53,644 - Not Found: /api/tremove_file
+- INFO - 2021-05-07 22:44:05,908 - Init Server
+- INFO - 2021-05-07 22:44:05,966 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-07 22:44:07,491 - get_file_list
+- INFO - 2021-05-07 22:44:07,492 - get_file_by_id -> (file_id: 1DvkKQnyqgvV8IMzMRonBg5KlOF5M_oIv)
+- INFO - 2021-05-07 22:44:08,541 - delete_file_by_id -> (file_id: 1DvkKQnyqgvV8IMzMRonBg5KlOF5M_oIv)
+- INFO - 2021-05-07 22:44:47,065 - D:\GitHub\secure-file-storage-app\api\file_manager\file\urls.py changed, reloading.
+- WARNING - 2021-05-07 22:45:09,740 - Not Found: /api/remove_file
+- WARNING - 2021-05-07 22:45:15,074 - Method Not Allowed: /api/file
+- WARNING - 2021-05-07 22:45:22,194 - Method Not Allowed: /api/file
+- INFO - 2021-05-07 22:45:28,984 - D:\GitHub\secure-file-storage-app\api\file_manager\file\urls.py changed, reloading.
+- INFO - 2021-05-07 22:50:55,920 - D:\GitHub\secure-file-storage-app\api\file_manager\file\urls.py changed, reloading.
+- INFO - 2021-05-07 22:55:25,269 - Init Server
+- INFO - 2021-05-07 22:55:25,336 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-07 22:55:26,919 - get_file_list
+- ERROR - 2021-05-07 22:55:26,921 - Service Unavailable: /api/remove_file
+- INFO - 2021-05-07 22:55:45,099 - Init Server
+- INFO - 2021-05-07 22:55:45,133 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-07 22:55:46,290 - get_file_list
+- INFO - 2021-05-07 22:55:46,290 - get_file_by_id -> (file_id: 15tOqvOBxdCY6ZUMeZGhbcl7GXdT5RoOd)
+- INFO - 2021-05-07 22:55:47,316 - delete_file_by_id -> (file_id: 15tOqvOBxdCY6ZUMeZGhbcl7GXdT5RoOd)
+- INFO - 2021-05-07 22:56:04,035 - Init Server
+- INFO - 2021-05-07 22:56:04,065 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-07 22:56:05,420 - get_file_list
+- INFO - 2021-05-07 22:56:05,421 - get_file_by_id -> (file_id: 1MwdxR0RxaRLMELBk0jFUj9fz2UMeawVT)
+- INFO - 2021-05-07 22:56:06,650 - delete_file_by_id -> (file_id: 1MwdxR0RxaRLMELBk0jFUj9fz2UMeawVT)
+- WARNING - 2021-05-08 11:07:26,233 - Bad Request: /api/login
+- WARNING - 2021-05-08 11:09:22,473 - Method Not Allowed: /api/change_password
+- WARNING - 2021-05-08 11:09:26,413 - Bad Request: /api/change_password
+- ERROR - 2021-05-08 11:09:57,610 - Internal Server Error: /api/change_password
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py", line 97, in post
+    if make_password(serializer.validated_data['old_password']) == request.user['password']:
+TypeError: 'User' object is not subscriptable
+- INFO - 2021-05-08 11:12:14,966 - D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py changed, reloading.
+- WARNING - 2021-05-08 11:12:37,079 - Bad Request: /api/change_password
+- INFO - 2021-05-08 11:12:57,889 - D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py changed, reloading.
+- WARNING - 2021-05-08 11:13:14,144 - Bad Request: /api/change_password
+- WARNING - 2021-05-08 11:13:18,093 - Bad Request: /api/change_password
+- INFO - 2021-05-08 11:13:36,794 - D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py changed, reloading.
+- WARNING - 2021-05-08 11:14:33,044 - Bad Request: /api/change_password
+- INFO - 2021-05-08 11:14:43,362 - D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py changed, reloading.
+- WARNING - 2021-05-08 11:15:35,373 - Bad Request: /api/change_password
+- WARNING - 2021-05-08 11:15:41,170 - Bad Request: /api/change_password
+- WARNING - 2021-05-08 11:15:44,268 - Bad Request: /api/change_password
+- WARNING - 2021-05-08 11:15:47,555 - Bad Request: /api/change_password
+- WARNING - 2021-05-08 11:16:06,223 - Bad Request: /api/change_password
+- INFO - 2021-05-08 11:16:14,850 - D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py changed, reloading.
+- INFO - 2021-05-08 11:16:47,712 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- WARNING - 2021-05-08 11:17:07,863 - Bad Request: /api/change_password
+- INFO - 2021-05-08 11:18:36,916 - D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py changed, reloading.
+- WARNING - 2021-05-08 11:19:17,841 - Bad Request: /api/change_password
+- WARNING - 2021-05-08 11:19:27,783 - Bad Request: /api/login
+- WARNING - 2021-05-08 11:20:11,003 - Bad Request: /api/change_password
+- WARNING - 2021-05-08 11:20:15,858 - Bad Request: /api/change_password
+- WARNING - 2021-05-08 11:20:20,197 - Bad Request: /api/change_password
+- INFO - 2021-05-08 11:20:43,435 - D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py changed, reloading.
+- WARNING - 2021-05-08 11:20:57,513 - Bad Request: /api/change_password
+- WARNING - 2021-05-08 11:21:05,947 - Bad Request: /api/change_password
+- WARNING - 2021-05-08 11:21:16,243 - Bad Request: /api/change_password
+- WARNING - 2021-05-08 11:21:21,542 - Bad Request: /api/login
+- WARNING - 2021-05-08 12:13:32,209 - Unauthorized: /api/user
+- WARNING - 2021-05-08 12:13:32,213 - Unauthorized: /api/login_history
+- INFO - 2021-05-08 12:23:09,980 - D:\GitHub\secure-file-storage-app\api\file_manager\user\views.py changed, reloading.
+- WARNING - 2021-05-08 12:24:51,280 - Unauthorized: /api/user
+- WARNING - 2021-05-08 12:24:51,282 - Unauthorized: /api/login_history
+- WARNING - 2021-05-08 12:25:17,616 - Bad Request: /api/change_password
+- WARNING - 2021-05-08 12:26:34,610 - Bad Request: /api/change_password
+- WARNING - 2021-05-08 12:26:41,420 - Bad Request: /api/change_password
+- WARNING - 2021-05-08 12:26:44,416 - Bad Request: /api/change_password
+- WARNING - 2021-05-08 12:26:50,798 - Bad Request: /api/change_password
+- WARNING - 2021-05-08 12:26:59,471 - Bad Request: /api/change_password
+- WARNING - 2021-05-08 12:27:25,646 - Bad Request: /api/change_password
+- WARNING - 2021-05-08 12:27:44,446 - Bad Request: /api/login
+- WARNING - 2021-05-08 13:20:23,955 - Bad Request: /api/test
+- INFO - 2021-05-08 13:20:52,815 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- ERROR - 2021-05-08 13:21:34,773 - Internal Server Error: /api/test
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py", line 208, in post
+    }, status=status.HTTP_200_OK)
+  File "C:\Python37\lib\site-packages\django\http\response.py", line 603, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+  File "C:\Python37\lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "C:\Python37\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Python37\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Python37\lib\site-packages\django\core\serializers\json.py", line 105, in default
+    return super().default(o)
+  File "C:\Python37\lib\json\encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type InMemoryUploadedFile is not JSON serializable
+- ERROR - 2021-05-08 13:22:21,522 - Internal Server Error: /api/test
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py", line 208, in post
+    }, status=status.HTTP_200_OK)
+  File "C:\Python37\lib\site-packages\django\http\response.py", line 603, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+  File "C:\Python37\lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "C:\Python37\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Python37\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Python37\lib\site-packages\django\core\serializers\json.py", line 105, in default
+    return super().default(o)
+  File "C:\Python37\lib\json\encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type InMemoryUploadedFile is not JSON serializable
+- INFO - 2021-05-08 13:22:21,617 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- ERROR - 2021-05-08 13:23:05,768 - Internal Server Error: /api/test
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py", line 208, in post
+    }, status=status.HTTP_200_OK)
+  File "C:\Python37\lib\site-packages\django\http\response.py", line 603, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+  File "C:\Python37\lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "C:\Python37\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Python37\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Python37\lib\site-packages\django\core\serializers\json.py", line 105, in default
+    return super().default(o)
+  File "C:\Python37\lib\json\encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type InMemoryUploadedFile is not JSON serializable
+- INFO - 2021-05-08 13:23:20,882 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 13:24:00,311 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 13:24:36,110 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 13:29:18,853 - D:\GitHub\secure-file-storage-app\api\file_manager\file\urls.py changed, reloading.
+- INFO - 2021-05-08 13:33:04,268 - Init Server
+- INFO - 2021-05-08 13:33:04,273 - access_token is expired. Now: 2021-05-08 06:33:04.272114, token_expiry: 2021-05-07 15:56:55
+- INFO - 2021-05-08 13:33:04,278 - access_token is expired. Now: 2021-05-08 06:33:04.278114, token_expiry: 2021-05-07 15:56:55
+- INFO - 2021-05-08 13:36:12,715 - Init Server
+- INFO - 2021-05-08 13:36:12,785 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 13:36:14,145 - get_file_list
+- INFO - 2021-05-08 13:36:14,145 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- ERROR - 2021-05-08 13:36:15,675 - Internal Server Error: /api/sync_file
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 426, in finalize_response
+    % type(response)
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+- INFO - 2021-05-08 13:38:18,978 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 13:38:48,893 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 13:39:32,167 - Init Server
+- INFO - 2021-05-08 13:39:32,238 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 13:39:33,519 - get_file_list
+- INFO - 2021-05-08 13:39:33,520 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- ERROR - 2021-05-08 13:39:35,106 - Internal Server Error: /api/sync_file
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 426, in finalize_response
+    % type(response)
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+- INFO - 2021-05-08 13:40:35,474 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 13:41:46,027 - Init Server
+- INFO - 2021-05-08 13:41:46,086 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 13:41:47,307 - get_file_list
+- INFO - 2021-05-08 13:41:47,308 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- ERROR - 2021-05-08 13:41:48,812 - Internal Server Error: /api/sync_file
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 426, in finalize_response
+    % type(response)
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+- INFO - 2021-05-08 13:42:27,078 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 13:43:01,311 - Init Server
+- INFO - 2021-05-08 13:43:01,397 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 13:43:02,775 - get_file_list
+- INFO - 2021-05-08 13:43:02,796 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- ERROR - 2021-05-08 13:43:04,233 - Internal Server Error: /api/sync_file
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 426, in finalize_response
+    % type(response)
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+- INFO - 2021-05-08 13:43:32,046 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 13:44:13,438 - Init Server
+- INFO - 2021-05-08 13:44:13,520 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 13:44:15,564 - get_file_list
+- INFO - 2021-05-08 13:44:15,564 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- ERROR - 2021-05-08 13:44:17,078 - Internal Server Error: /api/sync_file
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 426, in finalize_response
+    % type(response)
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+- INFO - 2021-05-08 13:44:38,940 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 13:44:52,454 - Init Server
+- INFO - 2021-05-08 13:44:52,496 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 13:44:53,822 - get_file_list
+- INFO - 2021-05-08 13:44:53,866 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- ERROR - 2021-05-08 13:44:55,072 - Internal Server Error: /api/sync_file
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 426, in finalize_response
+    % type(response)
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+- INFO - 2021-05-08 13:45:13,707 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 13:45:29,710 - Init Server
+- INFO - 2021-05-08 13:45:29,753 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 13:45:30,967 - get_file_list
+- INFO - 2021-05-08 13:45:30,969 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- ERROR - 2021-05-08 13:45:32,321 - Internal Server Error: /api/sync_file
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 426, in finalize_response
+    % type(response)
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+- INFO - 2021-05-08 13:45:53,981 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 13:46:07,706 - Init Server
+- INFO - 2021-05-08 13:46:07,748 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 13:46:08,971 - get_file_list
+- INFO - 2021-05-08 13:46:08,971 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- ERROR - 2021-05-08 13:46:10,239 - Internal Server Error: /api/sync_file
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 426, in finalize_response
+    % type(response)
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+- INFO - 2021-05-08 13:46:26,271 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 13:46:42,703 - Init Server
+- INFO - 2021-05-08 13:46:42,753 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 13:46:44,353 - get_file_list
+- INFO - 2021-05-08 13:46:44,353 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- ERROR - 2021-05-08 13:46:45,791 - Internal Server Error: /api/sync_file
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 426, in finalize_response
+    % type(response)
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+- INFO - 2021-05-08 13:46:57,994 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 13:48:19,640 - Init Server
+- INFO - 2021-05-08 13:48:19,709 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 13:48:20,997 - get_file_list
+- INFO - 2021-05-08 13:48:20,997 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- ERROR - 2021-05-08 13:48:22,611 - Internal Server Error: /api/sync_file
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 426, in finalize_response
+    % type(response)
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+- INFO - 2021-05-08 13:49:09,480 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 13:49:59,105 - Init Server
+- INFO - 2021-05-08 13:49:59,172 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 13:50:00,455 - get_file_list
+- INFO - 2021-05-08 13:50:00,455 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- WARNING - 2021-05-08 13:50:01,711 - Bad Request: /api/sync_file
+- INFO - 2021-05-08 13:52:43,794 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 13:53:05,673 - Init Server
+- INFO - 2021-05-08 13:53:05,759 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 13:53:07,061 - get_file_list
+- INFO - 2021-05-08 13:53:07,062 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- WARNING - 2021-05-08 13:53:08,200 - Bad Request: /api/sync_file
+- WARNING - 2021-05-08 14:06:09,760 - Unauthorized: /api/user
+- WARNING - 2021-05-08 14:06:09,764 - Unauthorized: /api/login_history
+- INFO - 2021-05-08 14:06:37,515 - Init Server
+- INFO - 2021-05-08 14:06:37,550 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 14:06:38,977 - get_file_list
+- INFO - 2021-05-08 14:06:38,977 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- WARNING - 2021-05-08 14:06:40,052 - Bad Request: /api/sync_file
+- INFO - 2021-05-08 14:07:16,653 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 14:07:58,365 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 14:09:27,159 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 14:10:21,401 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 14:11:40,471 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 14:12:55,150 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 14:13:55,740 - Init Server
+- INFO - 2021-05-08 14:13:55,817 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 14:13:57,087 - get_file_list
+- INFO - 2021-05-08 14:13:57,087 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- WARNING - 2021-05-08 14:13:58,259 - Bad Request: /api/sync_file
+- WARNING - 2021-05-08 14:14:39,930 - Unauthorized: /api/user
+- WARNING - 2021-05-08 14:14:39,933 - Unauthorized: /api/login_history
+- INFO - 2021-05-08 14:18:45,932 - Init Server
+- INFO - 2021-05-08 14:18:45,971 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 14:18:47,315 - get_file_list
+- INFO - 2021-05-08 14:18:47,316 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- WARNING - 2021-05-08 14:18:48,295 - Bad Request: /api/sync_file
+- INFO - 2021-05-08 14:19:36,370 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 14:20:03,818 - Init Server
+- INFO - 2021-05-08 14:20:03,901 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 14:20:05,214 - get_file_list
+- INFO - 2021-05-08 14:20:05,214 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- WARNING - 2021-05-08 14:22:04,443 - Unauthorized: /api/user
+- WARNING - 2021-05-08 14:22:04,450 - Unauthorized: /api/login_history
+- INFO - 2021-05-08 14:24:36,000 - Init Server
+- INFO - 2021-05-08 14:24:36,035 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 14:24:37,349 - get_file_list
+- INFO - 2021-05-08 14:24:37,349 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- INFO - 2021-05-08 14:31:39,790 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 14:32:13,224 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 14:33:49,662 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- WARNING - 2021-05-08 14:35:48,506 - Unauthorized: /api/sync_file
+- INFO - 2021-05-08 14:37:48,921 - Init Server
+- INFO - 2021-05-08 14:37:48,922 - access_token is expired. Now: 2021-05-08 07:37:48.922303, token_expiry: 2021-05-08 07:33:31
+- INFO - 2021-05-08 14:37:48,928 - access_token is expired. Now: 2021-05-08 07:37:48.928304, token_expiry: 2021-05-08 07:33:31
+- INFO - 2021-05-08 14:39:10,955 - Init Server
+- INFO - 2021-05-08 14:39:11,040 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 14:39:12,640 - get_file_list
+- INFO - 2021-05-08 14:39:12,641 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- INFO - 2021-05-08 14:40:34,770 - Init Server
+- INFO - 2021-05-08 14:40:34,794 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 14:40:36,076 - get_file_list
+- INFO - 2021-05-08 14:40:36,076 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- INFO - 2021-05-08 14:40:38,288 - Init Server
+- INFO - 2021-05-08 14:40:38,290 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 14:40:39,462 - get_file_list
+- INFO - 2021-05-08 14:40:39,462 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- INFO - 2021-05-08 14:41:14,739 - Init Server
+- INFO - 2021-05-08 14:41:14,743 - Init Server
+- INFO - 2021-05-08 14:41:14,768 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 14:41:14,770 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 14:41:16,048 - get_file_list
+- INFO - 2021-05-08 14:41:16,048 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- INFO - 2021-05-08 14:41:16,059 - get_file_list
+- INFO - 2021-05-08 14:41:16,059 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- INFO - 2021-05-08 14:44:06,185 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 14:47:22,050 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 14:48:10,838 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 14:49:01,228 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 14:50:10,769 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 14:50:30,200 - Init Server
+- INFO - 2021-05-08 14:50:30,263 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 14:50:31,489 - get_file_list
+- INFO - 2021-05-08 14:50:31,490 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- INFO - 2021-05-08 14:51:31,500 - D:\GitHub\secure-file-storage-app\api\file_manager\file\views.py changed, reloading.
+- INFO - 2021-05-08 14:51:53,367 - Init Server
+- INFO - 2021-05-08 14:51:53,432 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 14:51:54,634 - get_file_list
+- INFO - 2021-05-08 14:51:54,635 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- INFO - 2021-05-08 15:18:36,985 - Init Server
+- INFO - 2021-05-08 15:18:37,022 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-08 15:18:38,548 - get_file_list
+- INFO - 2021-05-08 15:18:38,548 - get_content_file -> (file : 1s21uBO0G69wc_FyB_BASX-6AaLas5VQn - map.json)
+- WARNING - 2021-05-08 16:59:26,830 - Unauthorized: /api/sync_file

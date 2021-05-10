@@ -134,6 +134,22 @@ function checkLogin() {
 
 }
 
+function showAlert(action_message, content_message, type, timeout = 2000) {
+    $('#alert-open-file').empty()
+    $('#alert-open-file').append(`
+        <div style="padding: 5px;">
+            <div class="alert alert-${type}" id="success-alert" style='margin: 0 auto;' >
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <strong>${action_message} </strong> ${content_message}.
+            </div>
+        </div>
+    `)
+
+    $("#success-alert").fadeTo(timeout, 500).fadeOut(500, function () {
+        $("#success-alert").fadeOut(500);
+    });
+}
+
 function activityWatcher() {
 
     //The number of seconds that have passed
@@ -354,7 +370,7 @@ function showProfile(){
                     <div class="column-card-5">${data[0].device_info}</div>
                 </div>
                 <div style = "display : inline-flex;">
-                    <a href="#" class="btn">View profile</a>
+                    <a id = "change-password" class="btn">Change Password</a>
                     <a id = "close-profile" class="btn-exit">Close</a>
                 </div>
             </div>
@@ -377,12 +393,161 @@ function showProfile(){
                 document.getElementById("view-profiles").remove()
             }
         })
+        $('#change-password').click(showChangePassword)
     })
     .catch((error) => {
         console.error(error)
         // window.location.replace("./login.html");
     })
 
+}
+
+function showChangePassword(){
+    change_password_data = `
+    <div class = "change-password-container">
+        <form
+            id="demo-bv-bsc-tabs"
+            class="form-horizontal"
+            action="#"
+            method="post"
+        >
+            <div class="tab-content">
+                <div class="tab-pane pad-btm fade in active" id="demo-bsc-tab-1">
+                    <p class="text-main text-bold" style="
+                        text-align: center;
+                        padding-top: 20px;
+                        font-size: 16px;
+                    ">Change Password</p>
+                    <a id = "exit-change-password" style="
+                        right: 4%;
+                        position: absolute;
+                        font-size:  20px;
+                        top: 6%;
+                    " >✘</a>
+                    <hr>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Old Password</label>
+                        <div class="col-lg-7">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id = "change_password_old_password"
+                                name="old_password"
+                                placeholder="old password"
+                            >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">New Password</label>
+                        <div class="col-lg-7">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id = "change_password_password"
+                                name="password"
+                                placeholder="new password"
+                            >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">New Password</label>
+                        <div class="col-lg-7">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id = "change_password_password2"
+                                name="password2"
+                                placeholder="retype new password"
+                            >
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-footer clearfix">
+                    <div class="">
+                        <button id = "change_password_submit" type = "button" class="btn btn-primary" style="padding-left: 5%;padding-right: 5%;margin-left: 42%;text-align: center;">Change</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>`
+
+    if (document.getElementById("change-password-view")){
+        document.getElementById("change-password-view").remove()
+    }
+
+    
+    var elem = document.createElement('div');
+    elem.id = "change-password-view"
+    elem.innerHTML = change_password_data
+    elem.style = "top: 50%; left: 50%; position: fixed;"
+    document.body.appendChild(elem)
+
+    $('#exit-change-password').click(() => {
+        document.getElementById("change-password-view").remove()
+    })
+
+    $('#change_password_submit').click(changePassword)
+}
+
+function changePassword(){
+    old_password = $('#change_password_old_password').val()
+    password = $('#change_password_password').val()
+    password2 = $('#change_password_password2').val()
+
+    axios.post('http://127.0.0.1:8000/api/change_password',
+    {
+        old_password: old_password,
+        password: password,
+        password2: password2
+    },
+    {
+        headers: {
+            'Authorization': `Bearer ${access_token}`,
+            'Content-Type': 'application/json'
+        }
+    }
+    )
+    .then((res) => {
+        showAlert("Success", res.data['messages'], "success")
+        document.getElementById("change-password-view").remove()
+        // location.href = './login.html';
+    })
+    .catch((error) => {
+        if (error.response) {
+            /*
+            * The request was made and the server responded with a
+            * status code that falls out of the range of 2xx
+            */
+            error_data = error.response.data['error_messages']
+            if (typeof error_data == "string"){
+                showAlert("Warning", error_data, "danger")
+            }
+            else{
+                error_issue = Object.keys(error_data)
+                console.log(error_data)
+                console.log(error_issue)
+                warning_message = ""
+                error_issue.forEach(element => {
+                    console.log(element, error_data[element])
+                    warning_message += `<p> <b>${element}</b> ${error_data[element]} </p>`
+                });
+                showAlert("Warning", warning_message, "danger")
+            }
+            
+        } 
+        else if (error.request) {
+            /*
+            * The request was made but no response was received, `error.request`
+            * is an instance of XMLHttpRequest in the browser and an instance
+            * of http.ClientRequest in Node.js
+            */
+            console.log(error.request);
+        } 
+        else {
+            // Something happened in setting up the request and triggered an Error
+            console.log('Error', error.message);
+        }
+    })
 }
 
 server_status = $('#server_status')

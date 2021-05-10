@@ -197,7 +197,7 @@ function uploadFiles(fileID) {
     // Post the form, just make sure to set the 'Content-Type' header
     const res = (async (data) => await axios.post('http://127.0.0.1:8000/api/file', {
         data: data,
-        name: file['name'] + '.aes'
+        name: fileID + file['name'] + '.aes'
         //...file
     },
     {
@@ -214,6 +214,46 @@ function uploadFiles(fileID) {
         }
         res(data)
     })
+}
+
+function checkSync(){
+    const res = (async (data) => await axios.post('http://127.0.0.1:8000/api/sync_file', {
+        data: data,
+        name: "map.json"
+    },
+    {
+        headers: {
+            'Authorization': `Bearer ${access_token}`,
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => {
+        let data = res.data
+
+        if (data['code'] == 1){
+            syncToServer(data['data'])
+        }
+        else if (data['code'] == 2){
+            syncToClient(data['data'])
+        }
+    })
+    .catch(e => console.log(e)));
+
+    fs.readFile(path.resolve(__dirname, "..\\..\\app-data\\map.json"), (err, data) => {
+        if (err) {
+            console.error(err)
+            return
+        }
+        res(data)
+    })
+}
+
+function syncToServer(data){
+
+}
+
+function syncToClient(data){
+
 }
 
 function downloadFiles(fileID) {
@@ -290,7 +330,7 @@ async function handleFileStore() {
                 showAlert("error", `file ${filePath} upload failed`, "danger")
             }
 
-            //uploadFilesToServer(fileID)
+            // uploadFilesToServer(fileID)
             /*await input.close();
             await output.close();
 

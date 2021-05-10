@@ -9,3 +9,6 @@ class FileDataSerializer(serializers.Serializer):
 class FileUploadSerializer(serializers.Serializer):
     name = serializers.CharField(required = True)
     data = FileDataSerializer(required = True)
+
+class FileRemoveSerializer(serializers.Serializer):
+    name = serializers.CharField(required = True)

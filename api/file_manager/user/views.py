@@ -13,7 +13,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework.permissions import IsAuthenticated
 
 from .models import User, UserHistory
-from .serializers import UserRegisterSerializer, UserLoginSerializer, UserSerializer
+from .serializers import UserRegisterSerializer, UserLoginSerializer, UserSerializer, UserChangePasswordSerializer
 
 import sys
 sys.path.append('./file_storage')
@@ -30,6 +30,7 @@ class UserRegisterView(APIView):
             # create personal folder
             file_storage = FileStorage()
             file_storage.create_folder(serializer.validated_data['email'])
+            file_storage.create_folder(serializer.validated_data['email'] + "@" + "data")
 
             return JsonResponse({
                 'message': 'Register successful!'
@@ -84,6 +85,33 @@ class UserLoginView(APIView):
         return Response({
             'error_messages': serializer.errors,
             'error_code': 400
+        }, status=status.HTTP_400_BAD_REQUEST)
+
+class UserChangePasswordView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request):
+        serializer = UserChangePasswordSerializer(data=request.data)
+        if serializer.is_valid():
+
+            if request.user.check_password(serializer.validated_data['old_password']):
+                request.user.set_password(serializer.validated_data['password'])
+                request.user.save()
+
+                return JsonResponse({
+                    'messages': 'Change password successful!'
+                }, status=status.HTTP_201_CREATED)
+            else:
+                return JsonResponse({
+                    'error_messages': {
+                        'old_password': ["old password is not correct"]
+                    },
+                    'errors_code': 400,
+                }, status=status.HTTP_400_BAD_REQUEST)
+
+        return JsonResponse({
+            'error_messages': serializer.errors,
+            'errors_code': 400,
         }, status=status.HTTP_400_BAD_REQUEST)
 
 # @method_decorator(csrf_exempt, name='dispatch')
