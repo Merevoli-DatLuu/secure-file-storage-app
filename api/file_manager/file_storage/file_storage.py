@@ -86,6 +86,15 @@ class FileStorage():
     def create_folder(self, folder_name):
         folder = self.drive.CreateFile({'title' : folder_name, 'mimeType' : 'application/vnd.google-apps.folder'})
         folder.Upload()
+    
+    def create_folder_in_specific_folder(self, folder_name, folder_name_store):
+        folder = self.drive.CreateFile({
+            'title' : folder_name, 
+            'parents': [{'id': self.get_folder_id(folder_name_store)}], 
+            'mimeType' : 'application/vnd.google-apps.folder'
+        })
+        folder.Upload()
+
 
     def get_folder_id(self, folder_name):
 
@@ -135,6 +144,11 @@ class FileStorage():
         file_list = self.drive.ListFile({'q': f"title = '{title}'"}).GetList()
         logging.info(f'{self.get_files_by_title.__name__} -> (title: {title})')
         return file_list
+    
+    def get_files_by_title_in_specific_folder(self, title, folder_name):
+        file_list = self.drive.ListFile({'q': f"'{self.get_folder_id(folder_name)}' in parents"}).GetList()
+        logging.info(f'{self.get_files_by_title.__name__} -> (title: {title})')
+        return file_list
 
     def get_file_by_id(self, file_id):
         # result_file = self.drive.ListFile({'q': f"id = '{file_id}'"}).GetList()
@@ -147,13 +161,13 @@ class FileStorage():
             return None
 
     def delete_file(self, file):
-        file.Trash()
+        file.Delete()
         logging.info(f'{self.delete_file.__name__} -> (file: {file["id"]} - {file["title"]})')
     
     def delete_file_by_id(self, file_id):
         file = self.get_file_by_id(file_id)
         if file is not None:
-            file.Trash()
+            file.Delete()
             logging.info(f'{self.delete_file_by_id.__name__} -> (file_id: {file_id})')
         else:
             logging.warning(f'{self.delete_file_by_id.__name__} -> (file_id: {file_id})')

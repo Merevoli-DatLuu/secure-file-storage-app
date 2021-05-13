@@ -65,9 +65,12 @@ function handleRegister() {
     .then(response => {
         if (response.status == 201){
             message = response.data['message']
-            console.log(message)
-
-            //window.location.replace("./app-file-manager.html");
+            console.log(response.data)
+            let data_map = response.data['data_map']
+            
+            fs.writeFileSync('app-data/test-map.json', JSON.stringify(data_map))
+            
+            window.location.replace("./app-file-manager.html");
         }
     })
     .catch((error) => {

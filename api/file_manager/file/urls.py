@@ -14,12 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path, include
-from .views import FileUploadView, TestView, FileDownloadView, FileRemoveView, FileSyncDataView
+from .views import *
 
 urlpatterns = [
     path('file', FileUploadView.as_view()),
     path('test', TestView.as_view()),
     path('file/<int:file_id>', FileDownloadView.as_view()),
+    path('file/map', FileDownloadMapView.as_view()),
     path('remove_file', FileRemoveView.as_view()),
-    path('sync_file', FileSyncDataView.as_view())
+    path('update_file', FileUpdateView.as_view()),
+    path('sync_file', FileSyncDataView.as_view()),
+    path('update_file_map', FileUpdateMapView.as_view())
 ]

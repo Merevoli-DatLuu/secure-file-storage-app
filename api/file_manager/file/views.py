@@ -63,6 +63,7 @@ class FileUploadView(APIView):
 
 # api/file/<file:id>
 class FileDownloadView(APIView):
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, *args, **kwargs):
         base_dir = ".temp/"
@@ -71,7 +72,7 @@ class FileDownloadView(APIView):
 
         file_storage = FileStorage()
 
-        files = file_storage.get_files_by_title("map.json")
+        files = file_storage.get_files_by_title_in_specific_folder("map.json", request.user.email)
         if len(files) == 0:
             return JsonResponse({
                 'message': "Service unavaible"
@@ -101,10 +102,149 @@ class FileDownloadView(APIView):
         return JsonResponse({
             'message': {
                 'type': 'Buffer',
-                'data': list(bytearray(data))
+                'data': list(bytearray(data)),
+                'name': file_name,
+                'map_data': map_json_content['files'][file_id]
 
             }
         }, status=status.HTTP_200_OK)
+
+class FileDownloadMapView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request, *args, **kwargs):
+        base_dir = ".temp/"
+        file_name = "map.json"
+
+        file_storage = FileStorage()
+
+        files = file_storage.get_files_by_title_in_specific_folder(file_name, request.user.email)
+        if len(files) == 0:
+            return JsonResponse({
+                'message': "Service unavaible"
+            }, status=status.HTTP_503_SERVICE_UNAVAILABLE)
+
+        file_storage.download_file(files[0], base_dir + file_name)
+
+        f = open(base_dir + file_name, 'rb')
+        data = f.read()
+        f.close()
+
+        return JsonResponse({
+            'message': {
+                'type': 'Buffer',
+                'data': list(bytearray(data)),
+
+            }
+        }, status=status.HTTP_200_OK)
+
+class FileUpdateView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def put(self, request, *args, **kwargs):
+        base_dir = ".temp/"
+        try:
+            serializer = FileUploadSerializer(data = request.data)
+            if serializer.is_valid():
+                file_name = request.data['name']
+                file_data = request.data['data']['data']
+                file_path = base_dir + file_name
+                file = open(file_path, 'wb')
+                file.write(bytes(bytearray(file_data)))
+                file.close()
+
+                file_storage = FileStorage()
+                files = file_storage.get_file_list_in_specific_folder(request.user.email + "@" + "data")
+
+                remove_file = ""
+
+                for f in files:
+                    if f['title'] == file_name:
+                        remove_file=  f
+                        break
+
+                if remove_file != "":
+                    print(remove_file['id'])
+                    file_storage.delete_file_by_id(remove_file['id'])
+                    file_storage.upload_file_with_path_in_specific_folder(file_path, request.user.email + "@" + "data")
+
+                    if os.path.exists(file_path):
+                        os.remove(file_path)
+                        
+                        return JsonResponse({
+                            'message': request.data
+                        }, status=status.HTTP_200_OK)
+                    else:
+                        return JsonResponse({
+                            'message': "Service unavaible"
+                        }, status=status.HTTP_503_SERVICE_UNAVAILABLE)
+                else:
+                    return JsonResponse({
+                        'message': "Service unavaible"
+                    }, status=status.HTTP_503_SERVICE_UNAVAILABLE)
+
+            return JsonResponse({
+                        'message': "Request's data is wrong"
+                    }, status=status.HTTP_401_UNAUTHORIZED)
+        except:
+            JsonResponse({
+            'error_message': "Somethings Error",
+            'errors_code': 400,
+        }, status=status.HTTP_402_PAYMENT_REQUIRED)
+
+class FileUpdateMapView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def put(self, request, *args, **kwargs):
+        base_dir = ".temp/"
+        try:
+            serializer = FileUploadSerializer(data = request.data)
+            if serializer.is_valid():
+                file_name = request.data['name']
+                file_data = request.data['data']['data']
+                file_path = base_dir + file_name
+                file = open(file_path, 'wb')
+                file.write(bytes(bytearray(file_data)))
+                file.close()
+
+                file_storage = FileStorage()
+                files = file_storage.get_file_list_in_specific_folder(request.user.email)
+
+                remove_file = ""
+
+                for f in files:
+                    if f['title'] == file_name:
+                        remove_file=  f
+                        break
+
+                if remove_file != "":
+                    print(remove_file['id'])
+                    file_storage.delete_file_by_id(remove_file['id'])
+                    file_storage.upload_file_with_path_in_specific_folder(file_path, request.user.email)
+
+                    if os.path.exists(file_path):
+                        os.remove(file_path)
+                        
+                        return JsonResponse({
+                            'message': request.data
+                        }, status=status.HTTP_200_OK)
+                    else:
+                        return JsonResponse({
+                            'message': "Service unavaible"
+                        }, status=status.HTTP_503_SERVICE_UNAVAILABLE)
+                else:
+                    return JsonResponse({
+                        'message': "Service unavaible"
+                    }, status=status.HTTP_503_SERVICE_UNAVAILABLE)
+
+            return JsonResponse({
+                        'message': "Request's data is wrong"
+                    }, status=status.HTTP_401_UNAUTHORIZED)
+        except:
+            JsonResponse({
+            'error_message': "Somethings Error",
+            'errors_code': 400,
+        }, status=status.HTTP_402_PAYMENT_REQUIRED)
 
 class FileSyncDataView(APIView):
     permission_classes = (IsAuthenticated,)
@@ -216,7 +356,7 @@ class FileRemoveView(APIView):
                         break
 
                 if remove_file != "":
-                    file_storage.delete_file_by_id(f['id'])
+                    file_storage.delete_file_by_id(remove_file['id'])
                     
                     return JsonResponse({
                         'message': request.data
@@ -228,18 +368,15 @@ class FileRemoveView(APIView):
 
             return JsonResponse({
                         'message': "Request's data is wrong"
-                    }, status=status.HTTP_400_BAD_REQUEST)
+                    }, status=status.HTTP_401_UNAUTHORIZED)
         except:
             JsonResponse({
             'error_message': "Somethings Error",
             'errors_code': 400,
-        }, status=status.HTTP_400_BAD_REQUEST)
+        }, status=status.HTTP_402_PAYMENT_REQUIRED)
 
 class TestView(APIView):
-    def post(self, request):
-        print(request.data['data'].__dir__())
-        # serializer = FileUploadSerializer(data = request.data)
-        # if serializer.is_valid():
+    def get(self, request):
         return JsonResponse({
             'message': 123
         }, status=status.HTTP_200_OK)

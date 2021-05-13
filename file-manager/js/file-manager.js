@@ -229,7 +229,7 @@ function checkSync(){
     })
     .then(res => {
         let data = res.data
-
+        console.log(data)
         if (data['code'] == 1){
             syncToServer(data['data'])
         }
@@ -239,7 +239,7 @@ function checkSync(){
     })
     .catch(e => console.log(e)));
 
-    fs.readFile(path.resolve(__dirname, "..\\..\\app-data\\map.json"), (err, data) => {
+    fs.readFile(path.resolve(__dirname, "..\\app-data\\map.json"), (err, data) => {
         if (err) {
             console.error(err)
             return
@@ -249,26 +249,186 @@ function checkSync(){
 }
 
 function syncToServer(data){
+    
+    console.log("sync to server")
+
+    // handle upload
+    for (fileid of data['upload']){
+        uploadFilesToServer(fileid)
+    }
+
+    // handle update 
+    for (fileid of data['update']){
+        updateFilesServer(fileid)
+    }
+
+
+    // handle remove
+    for (fileid of data['remove']){
+        removeFileServer(fileid)
+    }
+
+    updateFileMapServer()
 
 }
 
 function syncToClient(data){
+    console.log("sync to client")
 
+    // handle upload
+    for (fileid of data['upload']){
+        downloadFilesServer(fileid)
+    }
+
+    // handle update 
+    for (fileid of data['update']){
+        downloadFilesServer(fileid)
+    }
+
+    // handle remove
+    for (fileid of data['remove']){
+        removeFile(fileid)
+    }
+
+    downloadFileMapServer()
+    loadFileList()
 }
 
-function downloadFiles(fileID) {
-    const res = (async (data) => await axios.get('http://127.0.0.1:8000/api/file/' + fileID)
-        .then(e => {
-            data = e.data
-            //data = JSON.parse(data)
-            fs.writeFile('test.txt', Buffer.from(data['message']['data']), function (err) {
-                if (err) throw err;
-                console.log('Saved!');
-            });
-        })
-        .catch(e => console.log(e)));
+async function downloadFilesServer(fileID, mode = "update") {
+    const res = (async (data) => await axios.get('http://127.0.0.1:8000/api/file/' + fileID,
+    {
+        headers: {
+            'Authorization': `Bearer ${access_token}`,
+            'Content-Type': 'application/json'
+        }
+    }
+    )
+    .then(e => {
+        data = e.data
+        //data = JSON.parse(data)
+        file_name = data['message']['name']
+        filePath = path.resolve(__dirname, "..\\app-data\\data\\" + file_name)
+        fs.writeFileSync(filePath, Buffer.from(data['message']['data']), function (err) {
+            if (err) throw err;
+            
+            console.log('Saved!');
+        });
+
+        /*
+        if (mode == "add"){
+            map_data = data['message']['map_data']
+            $('#demo-mail-list').append(
+                genItem(
+                    fileID,
+                    map_data['name'],
+                    map_data['create_date'],
+                    map_data['size']
+                )
+            );
+            popupMenu(fileID)
+        }
+        */
+    })
+    .catch(e => console.log(e)));
 
     res()
+}
+
+async function downloadFileMapServer(fileID, mode = "update") {
+    const res = (async (data) => await axios.get('http://127.0.0.1:8000/api/file/map',
+    {
+        headers: {
+            'Authorization': `Bearer ${access_token}`,
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(e => {
+        data = e.data
+
+        filePath = path.resolve(__dirname, "..\\app-data\\" + "map.json")
+        fs.writeFileSync(filePath, Buffer.from(data['message']['data']), function (err) {
+            if (err) throw err;
+            
+            console.log('Saved!');
+        });
+    })
+    .catch(e => console.log(e)));
+
+    res()
+}
+
+async function removeFileServer(fileID){
+    var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
+    let tree_file = JSON.parse(data);
+    let file = tree_file.files[fileID]
+
+    // Post the form, just make sure to set the 'Content-Type' header
+    const res = (async () => await axios.delete('http://127.0.0.1:8000/api/remove_file', 
+    {
+        headers: {
+            'Authorization': `Bearer ${access_token}`,
+            'Content-Type': 'application/json'
+        },
+        data: {
+            name: fileID + file['name'] + '.aes'
+            //...file
+        }
+    }).then(e => console.log(e.data)).catch(e => console.log(e.response.data)));
+
+    res()
+}
+
+function updateFilesServer(fileID) {
+    var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
+    let tree_file = JSON.parse(data);
+    let file = tree_file.files[fileID]
+    filePath = path.resolve(__dirname, "..\\app-data\\data\\" + fileID + file.name + '.aes');
+
+    // Post the form, just make sure to set the 'Content-Type' header
+    const res = (async (data) => await axios.put('http://127.0.0.1:8000/api/update_file', {
+        data: data,
+        name: fileID + file['name'] + '.aes'
+        //...file
+    },
+    {
+        headers: {
+            'Authorization': `Bearer ${access_token}`,
+            'Content-Type': 'application/json'
+        }
+    }).then(e => console.log(e.data)).catch(e => console.log(e)));
+
+    fs.readFile(filePath, (err, data) => {
+        if (err) {
+            console.error(err)
+            return
+        }
+        res(data)
+    })
+}
+
+function updateFileMapServer() {
+    filePath = path.resolve(__dirname, "..\\app-data\\map.json");
+
+    // Post the form, just make sure to set the 'Content-Type' header
+    const res = (async (data) => await axios.put('http://127.0.0.1:8000/api/update_file_map', {
+        data: data,
+        name: "map.json"
+        //...file
+    },
+    {
+        headers: {
+            'Authorization': `Bearer ${access_token}`,
+            'Content-Type': 'application/json'
+        }
+    }).then(e => console.log(e.data)).catch(e => console.log(e)));
+
+    fs.readFile(filePath, (err, data) => {
+        if (err) {
+            console.error(err)
+            return
+        }
+        res(data)
+    })
 }
 
 async function handleFileStore() {
@@ -513,7 +673,6 @@ function removeFile(id) {
     delete tree_file.files[id];
     tree_file.last_submission = String(Date.now())
     fs.writeFileSync(mapPath, JSON.stringify(tree_file));
-
     // update UI
     let nodeID = "#file-" + id;
     $(nodeID).remove()

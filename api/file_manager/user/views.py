@@ -19,6 +19,9 @@ import sys
 sys.path.append('./file_storage')
 
 from file_storage import FileStorage
+from datetime import datetime
+import json
+import os
 
 class UserRegisterView(APIView):
     def post(self, request):
@@ -28,12 +31,38 @@ class UserRegisterView(APIView):
             serializer.save()
 
             # create personal folder
+            email_info = serializer.validated_data['email']
             file_storage = FileStorage()
-            file_storage.create_folder(serializer.validated_data['email'])
-            file_storage.create_folder(serializer.validated_data['email'] + "@" + "data")
+            file_storage.create_folder(email_info)
+            file_storage.create_folder_in_specific_folder(email_info + "@" + "data", email_info)
+
+            data_map = {
+                "folders": {
+                    "000000": {
+                        "name": "/",
+                        "parent": "",
+                        "create_date": "17/03/2020"
+                    }
+                },
+                "files": {},
+                "last_submission": str(int(datetime.timestamp(datetime.now()) * 1000))
+            }
+
+            base_dir = ".temp/" 
+            try:
+                os.mkdir(os.path.join(base_dir, email_info))
+            except:
+                print("folder exists") 
+            file_path = base_dir + email_info + "/map.json"
+            map_file = open(file_path, 'w')
+            json.dump(data_map, map_file)
+            map_file.close()
+                
+            file_storage.upload_file_with_path_in_specific_folder(file_path, email_info)
 
             return JsonResponse({
-                'message': 'Register successful!'
+                'message': 'Register successful!',
+                'data_map': data_map
             }, status=status.HTTP_201_CREATED)
 
         return JsonResponse({
