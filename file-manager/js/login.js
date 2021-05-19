@@ -42,7 +42,61 @@ function handleLogin() {
             //storage access token and refresh token to local storage
             localStorage.setItem("refresh_token", refresh_token);
             localStorage.setItem("access_token", access_token);
-            window.location.replace("./app-file-manager.html");
+
+            // Check last user
+            // if not have last user or same last user
+            // else -> 
+            if (email == localStorage.getItem("last_user") || localStorage.getItem("last_user") == null){
+                localStorage.setItem("last_user", email)
+                localStorage.setItem("last_user_sync", "0")
+            }
+            else if (email != localStorage.getItem("last_user")){
+                localStorage.setItem("last_user", email)
+                localStorage.setItem("last_user_sync", "1")
+
+                filePath = path.resolve(__dirname, "..\\app-data\\")
+                // gen map
+                var map = {}
+
+                map.folders = {
+                    "000000": {
+                        name: "/",
+                        parent: "",
+                        create_date: "17/03/2020"
+                    }
+                }
+
+                map.files = {}
+
+                map.last_submission = "0"
+                fs.writeFileSync(path.join(filePath, 'map.json'), JSON.stringify(map))
+
+                const directory = path.join(filePath, 'data');
+
+                var files = fs.readdirSync(directory, { withFileTypes: true })
+                for (const file of files) {
+                    if (file.name != "temp"){
+                        fs.unlinkSync(path.join(directory, file.name))
+                    }
+                }
+
+            }
+
+            var getKey = () => axios.post('http://127.0.0.1:5000/api/get_key', {
+                token: access_token
+            })
+            .then(GKresponse => {
+                if (GKresponse.status == 200){
+                    console.log(GKresponse.data)
+                    localStorage.setItem('key', GKresponse.data['key'])
+                    localStorage.setItem('iv', GKresponse.data['iv'])
+                    window.location.replace("./app-file-manager.html");
+                }
+            })
+            .catch(err => showAlert("Error", "Get Key Error", "danger"))
+
+            getKey()
+
         }
     })
     .catch((error) => {

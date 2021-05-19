@@ -256,7 +256,7 @@ function showMoreDetails() {
     access_token = localStorage.getItem('access_token')
 
     if (access_token == null) {
-        // window.location.replace("./login.html");
+        window.location.replace("./login.html");
     }
     axios.get('http://127.0.0.1:8000/api/login_history',
         {

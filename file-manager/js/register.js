@@ -64,13 +64,14 @@ function handleRegister() {
     const request = (async (data) => await axios.post('http://127.0.0.1:8000/api/register', data)
     .then(response => {
         if (response.status == 201){
+            showAlert("Success", "register successful", "success")
             message = response.data['message']
             console.log(response.data)
             let data_map = response.data['data_map']
             
-            fs.writeFileSync('app-data/test-map.json', JSON.stringify(data_map))
+            fs.writeFileSync('app-data/map.json', JSON.stringify(data_map))
             
-            window.location.replace("./app-file-manager.html");
+            window.location.replace("./login.html");
         }
     })
     .catch((error) => {

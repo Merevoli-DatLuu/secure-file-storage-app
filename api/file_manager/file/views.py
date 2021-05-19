@@ -278,7 +278,7 @@ class FileSyncDataView(APIView):
 
                 if int(map_file['last_submission']) == int(file_data['last_submission']):
                     return JsonResponse({
-                        'message': "there is nothing to sync",
+                        'message': "There is nothing to sync",
                         'code': 0
                     }, status=status.HTTP_200_OK)
 
@@ -312,15 +312,15 @@ class FileSyncDataView(APIView):
                         'code': 1
                     }, status=status.HTTP_200_OK)
 
-                elif int(map_file['last_submission']) < int(file_data['last_submission']):
+                elif int(map_file['last_submission']) > int(file_data['last_submission']):
                     #sync to client
                     
                     return JsonResponse({
                         'message': "Sync data to client",
                         'data': {
-                            'upload': file_add,
+                            'upload': file_delete,
                             'update': file_modified,
-                            'remove': file_delete
+                            'remove': file_add
                         },
                         'code': 2
                     }, status=status.HTTP_200_OK)

@@ -1,5 +1,8 @@
-const key = '14189dc35ae35e75ff31d7502e245cd9';
-const iv = '35e75ff31d7502e2';
+const key = localStorage.getItem('key')
+const iv = localStorage.getItem('iv')
+
+// const key = '14189dc35ae35e75ff31d7502e245cd9';
+// const iv = '35e75ff31d7502e2';
 var fileUploadQueue = []
 var maxFileID = 0
 var list_showed_file = []
@@ -12,6 +15,11 @@ var last_modified = {}
 $(document).ready(setTimeout(() => handleFileManager(), 0));
 
 function handleFileManager() {
+
+    if (localStorage.getItem("last_user_sync") == "1"){
+        localStorage.setItem("last_user_sync", "0")
+        checkSync()
+    }
 
     // Init & Loading
     loadFileList();
@@ -230,10 +238,14 @@ function checkSync(){
     .then(res => {
         let data = res.data
         console.log(data)
+        showAlert("", data['message'], "success")
+        
         if (data['code'] == 1){
+            console.log(1, data['data'])
             syncToServer(data['data'])
         }
         else if (data['code'] == 2){
+            console.log(2, data['data'])
             syncToClient(data['data'])
         }
     })
@@ -287,7 +299,7 @@ function syncToClient(data){
 
     // handle remove
     for (fileid of data['remove']){
-        removeFile(fileid)
+        removeFile(fileid, "nosync")
     }
 
     downloadFileMapServer()
@@ -378,6 +390,24 @@ async function removeFileServer(fileID){
     res()
 }
 
+async function removeFileServerByName(fileName){
+
+    // Post the form, just make sure to set the 'Content-Type' header
+    const res = (async () => await axios.delete('http://127.0.0.1:8000/api/remove_file', 
+    {
+        headers: {
+            'Authorization': `Bearer ${access_token}`,
+            'Content-Type': 'application/json'
+        },
+        data: {
+            name: fileName
+            //...file
+        }
+    }).then(e => console.log(e.data)).catch(e => console.log(e.response.data)));
+
+    res()
+}
+
 function updateFilesServer(fileID) {
     var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
     let tree_file = JSON.parse(data);
@@ -432,6 +462,7 @@ function updateFileMapServer() {
 }
 
 async function handleFileStore() {
+    updateMaxFileID();
     let mapPath = path.resolve(__dirname, "..\\app-data\\map.json")
     let data = fs.readFileSync(mapPath, 'utf8')
     var tree_file = JSON.parse(data);
@@ -489,8 +520,6 @@ async function handleFileStore() {
             else {
                 showAlert("error", `file ${filePath} upload failed`, "danger")
             }
-
-            // uploadFilesToServer(fileID)
             /*await input.close();
             await output.close();
 
@@ -505,6 +534,7 @@ async function handleFileStore() {
     })
     tree_file.last_submission = String(Date.now())
     fs.writeFileSync(mapPath, JSON.stringify(tree_file));
+    checkSync()
     $('#previews').empty()
     $('.preview-container').css('visibility', 'hidden');
     $('#upload-file').modal('hide');
@@ -522,7 +552,7 @@ async function handleFileStore() {
 */
 
 async function watchModifiedFile(watcher, filePath, id){
-    max_time = 1
+    max_time = 0.2
     current_modified = new Date().getTime()
     if (current_modified - last_modified[id] > max_time*60*1000){ 
         last_modified[id] = 0
@@ -563,6 +593,11 @@ async function watchModifiedFile(watcher, filePath, id){
 
             // Clear the interval
             clearIntervalModifiedFile(id)
+
+            // Chưa nghĩ ra solution tốt hơn
+            while (JSON.stringify(last_modified) == JSON.stringify({})){
+                checkSync()
+            }
 
         });
     }
@@ -649,15 +684,25 @@ async function viewFile(id, type = "open") {
     input.pipe(decrypt).pipe(output);
     output.on('finish', () => {
         output.end()
-        handleOpenFile(filePathOutput, id, type);
+        if ((!last_modified[id] && type == "edit") || (type == "open")){
+            handleOpenFile(filePathOutput, id, type);
+        }
+        else if (last_modified[id]){
+            showAlert("Warning", `File ${file.name} have been opened`, "warning")
+        }
     })
 }
 
-function removeFile(id) {
+function removeFile(id, mode = "sync") {
     var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
     let tree_file = JSON.parse(data);
 
     let file = tree_file.files[id];
+
+    if (mode == "sync"){
+        // Sync to Server
+        removeFileServerByName(id + file.name + ".aes")
+    }
 
     // remove file
     filePath = path.resolve(__dirname, "..\\app-data\\data\\" + id + file.name + ".aes");
@@ -681,6 +726,7 @@ function removeFile(id) {
 function handleRemoveFile(id) {
     if (confirm("Are you sure you want to delete this file?")) {
         removeFile(id)
+        updateFileMapServer()
     }
 }
 
@@ -694,6 +740,7 @@ function handleRemoveFiles() {
         if (confirm("Are you sure you want to delete this file?")) {
             console.log(fileIDs)
             fileIDs.forEach(e => removeFile(e))
+            updateFileMapServer()
         }
     }
     else{

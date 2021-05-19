@@ -16,8 +16,7 @@ function createWindow() {
         }
     })
 
-    mainWindow.loadURL(`file://${__dirname}/file-manager/app-file-manager.html`)
-    console.log(`file://${__dirname}/file-manager/app-file-manager.html`)
+    mainWindow.loadURL(`file://${__dirname}/file-manager/login.html`)
     mainWindow.on('closed', function () {
         mainWindow = null
     })

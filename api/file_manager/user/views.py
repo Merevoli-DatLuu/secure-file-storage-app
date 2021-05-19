@@ -20,6 +20,7 @@ sys.path.append('./file_storage')
 
 from file_storage import FileStorage
 from datetime import datetime
+import requests
 import json
 import os
 
@@ -59,6 +60,11 @@ class UserRegisterView(APIView):
             map_file.close()
                 
             file_storage.upload_file_with_path_in_specific_folder(file_path, email_info)
+
+            requests.post('http://127.0.0.1:5000/api/gen_key', data={
+                "email": serializer.validated_data['email'],
+                "secret_password": "file_manager_kdc"
+            })
 
             return JsonResponse({
                 'message': 'Register successful!',
