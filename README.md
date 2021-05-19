@@ -4,7 +4,7 @@
 
 A **secure** and **easy-to-use** File Manager Application
 
-<img src="/reviews/Logo/logo_transparent.png" width="40%">
+<img src="/reviews/Logo/banner.png" width="40%">
 
 </div>
 
