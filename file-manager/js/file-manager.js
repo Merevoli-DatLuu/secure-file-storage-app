@@ -7,6 +7,8 @@ var fileUploadQueue = []
 var maxFileID = 0
 var list_showed_file = []
 var watcher_manager = {}
+var current_folder = "000000"
+var maxFolderID = 0
 
 // Modified File
 var last_modified = {}
@@ -40,6 +42,10 @@ function handleFileManager() {
     $('#file-type-music').click(() => loadFileListByType('music'));
     $('#file-type-document').click(() => loadFileListByType('document'));
     $('#file-type-zip').click(() => loadFileListByType('zip'));
+
+
+    // Folder
+    $('#new-folder-button').click(showNewFolder)
 
     // Searching
     var input = document.getElementById("search-input");
@@ -481,7 +487,7 @@ async function handleFileStore() {
 
         file_store = {
             "name": file.file_name,
-            "parent": "000000",
+            "parent": current_folder,
             "size": file.file_obj.size,
             "create_date": String(Date.now()),
             'check_sum': getHashFile(filePath)
@@ -815,7 +821,7 @@ function handleDownloadFiles() {
 }
 
 function popupMenu(id) {
-    test_menu = {
+    let test_menu = {
         id: id,
         data: [
             {
@@ -838,6 +844,11 @@ function popupMenu(id) {
             },
             {
                 divider: true
+            },
+            {
+                icon: 'glyphicon glyphicon-transfer',
+                text: '  Move',
+                action: function (e, selector) { moveFiletoFolder(id) }
             },
             {
                 icon: 'glyphicon-trash',
@@ -865,7 +876,7 @@ function loadFiles(files){
                 <label for="file-list-1"></label>
             </div>
             <div class="file-attach-icon"></div>
-            <a href="#" class="file-details">
+            <a href="javascript:backFolder('${current_folder}')" class="file-details">
                 <div class="media-block">
                     <div class="media-left"><i class="demo-psi-folder"></i></div>
                     <div class="media-body">
@@ -877,7 +888,9 @@ function loadFiles(files){
     );
 
     for (file_id in files) {
-
+        if (files[file_id]['parent'] != current_folder){
+            continue;
+        }
         $('#demo-mail-list').append(
             genItem(
                 file_id,
@@ -915,7 +928,7 @@ function searchFiles() {
                 <label for="file-list-1"></label>
             </div>
             <div class="file-attach-icon"></div>
-            <a href="#" class="file-details">
+            <a href="javascript:backFolder('${current_folder}')" class="file-details">
                 <div class="media-block">
                     <div class="media-left"><i class="demo-psi-folder"></i></div>
                     <div class="media-body">
@@ -938,6 +951,9 @@ function searchFiles() {
     for (file_id in files) {
         if (is_regex){
             if (patt.test(files[file_id].name.toLowerCase())){
+                if (files[file_id]['parent'] != current_folder){
+                    continue;
+                }
                 $('#demo-mail-list').append(
                     genItem(
                         file_id,
@@ -951,6 +967,9 @@ function searchFiles() {
         }
         else{
             if (files[file_id].name.toLowerCase().includes(search_string) || pass){
+                if (files[file_id]['parent'] != current_folder){
+                    continue;
+                }
                 $('#demo-mail-list').append(
                     genItem(
                         file_id,
@@ -997,7 +1016,7 @@ function sortFiles(){
                 <label for="file-list-1"></label>
             </div>
             <div class="file-attach-icon"></div>
-            <a href="#" class="file-details">
+            <a href="javascript:backFolder('${current_folder}')" class="file-details">
                 <div class="media-block">
                     <div class="media-left"><i class="demo-psi-folder"></i></div>
                     <div class="media-body">
@@ -1011,7 +1030,9 @@ function sortFiles(){
 
 
     for (f of sorted_files) {
-
+        if (f['parent'] != current_folder){
+            continue;
+        }
         $('#demo-mail-list').append(
             genItem(
                 f['id'],
@@ -1037,7 +1058,7 @@ function loadFileList() {
                 <label for="file-list-1"></label>
             </div>
             <div class="file-attach-icon"></div>
-            <a href="#" class="file-details">
+            <a href="javascript:backFolder('${current_folder}')" class="file-details">
                 <div class="media-block">
                     <div class="media-left"><i class="demo-psi-folder"></i></div>
                     <div class="media-body">
@@ -1051,12 +1072,16 @@ function loadFileList() {
     _renderFileSidebar("user-folder")
     $('#sort_file').val("create_date-0")
 
+    loadFolderList()
+
     var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
     let tree_file = JSON.parse(data);
     let files = tree_file.files;
     list_showed_file = files
     for (file_id in files) {
-
+        if (files[file_id]['parent'] != current_folder){
+            continue;
+        }
         $('#demo-mail-list').append(
             genItem(
                 file_id,
@@ -1112,7 +1137,7 @@ function loadFileListByType(type) {
                 <label for="file-list-1"></label>
             </div>
             <div class="file-attach-icon"></div>
-            <a href="#" class="file-details">
+            <a href="javascript:backFolder('${current_folder}')" class="file-details">
                 <div class="media-block">
                     <div class="media-left"><i class="demo-psi-folder"></i></div>
                     <div class="media-body">
@@ -1163,6 +1188,9 @@ function loadFileListByType(type) {
     }    
     list_showed_file = filtered_files
     for (file_id in filtered_files) {
+        if (filtered_files[file_id]['parent'] != current_folder){
+            continue;
+        }
         $('#demo-mail-list').append(
             genItem(
                 file_id,
@@ -1174,6 +1202,528 @@ function loadFileListByType(type) {
         popupMenu(file_id)
     }
 }
+
+function showNewFolder(){
+    new_folder_data = `
+    <div class = "open-folder-container">
+        <form
+            class="form-horizontal"
+            action="#"
+            method="post"
+        >
+            <div class="tab-content">
+                <div class="tab-pane pad-btm fade in active">
+                    <p class="text-main text-bold" style="
+                        text-align: center;
+                        padding-top: 20px;
+                        font-size: 16px;
+                    ">New Folder</p>
+                    <a id = "exit-new-folder" style="
+                        right: 4%;
+                        position: absolute;
+                        font-size:  20px;
+                        top: 6%;
+                    " class = "exit-button">✘</a>
+                    <hr>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Folder's Name</label>
+                        <div class="col-lg-7">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id = "folder_name"
+                                name="folder_name"
+                                placeholder="Folder's Name"
+                            >
+                        </div>
+                    </div>
+                <div class="tab-footer clearfix">
+                    <div class="">
+                        <button id = "new_folder_submit" type = "button" class="btn btn-primary" style="padding-left: 5%;padding-right: 5%;margin-left: 42%;text-align: center;">Create</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>`
+
+    if (document.getElementById("new_folder")){
+        document.getElementById("new_folder").remove()
+    }
+
+    
+    var elem = document.createElement('div');
+    elem.id = "new_folder"
+    elem.innerHTML = new_folder_data
+    elem.style = "top: 50%; left: 50%; position: fixed;"
+    document.body.appendChild(elem)
+
+    $('#exit-new-folder').click(() => {
+        document.getElementById("new_folder").remove()
+    })
+
+    $('#new_folder_submit').click(() => {
+        folder_name = $('#folder_name').val()
+        if (validate_new_folder(folder_name)){
+            add_new_folder(folder_name)
+        }
+    })
+}
+
+function updateMaxFolderID() {
+    var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
+    tree_file = JSON.parse(data);
+    maxFolderID = 0
+    if (JSON.stringify(tree_file.folders) != JSON.stringify({})) {
+        for (folderid in tree_file.folders) {
+            maxFolderID = Math.max(maxFolderID, parseInt(folderid))
+        }
+    }
+    maxFolderID++;
+}
+
+function toFolderID(id){
+    folderID = "";
+    for (let i = 1; i <= 6 - String(id).length; i++) {
+        folderID += "0";
+    }
+    return folderID + String(id);
+}
+
+function validate_new_folder(folder_name){
+
+    if (folder_name == ""){
+        showAlert("Warning", "Folder's Name is empty", "warning")
+        return false;
+    }
+
+    let mapPath = path.resolve(__dirname, "..\\app-data\\map.json")
+    var data = fs.readFileSync(mapPath, 'utf8')
+    let tree_file = JSON.parse(data);
+
+    folders = tree_file.folders
+
+    for (folderid of Object.keys(folders)){
+        if (folders[folderid]['name'] == folder_name){
+            showAlert("Warning", "Folder's Name is duplicated", "warning")
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function add_new_folder(folder_name){
+    updateMaxFolderID()
+    let mapPath = path.resolve(__dirname, "..\\app-data\\map.json")
+    var data = fs.readFileSync(mapPath, 'utf8')
+    let tree_file = JSON.parse(data);
+
+    tree_file.folders[toFolderID(maxFolderID)] = {
+        "name": folder_name,
+        "parent": current_folder,
+        "create_date": String(Date.now())
+    };
+
+    tree_file.last_submission = String(Date.now())
+    fs.writeFileSync(mapPath, JSON.stringify(tree_file));
+
+    showAlert("Success", `Create new folder (${folder_name}) successful`, "success")
+    document.getElementById("new_folder").remove()
+
+    loadFileList()
+    updateFileMapServer()
+}
+
+function toDate(timestamp) {
+    var d = new Date(parseInt(timestamp));
+    return d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear()
+}
+
+async function loadFolderList(){
+    var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
+    let tree_file = JSON.parse(data);
+    let folders = tree_file.folders;
+    
+    for (folder_id in folders) {
+        if (folders[folder_id]['parent'] == current_folder){
+            $('#demo-mail-list').append(
+                genFolderItem(
+                    folder_id,
+                    folders[folder_id].name,
+                    folders[folder_id].create_date
+                )
+            );
+            popupFolderMenu(folder_id)
+        }
+    }
+
+    showFolderSidebar()
+    showFolderPath()
+}
+
+function showRenameFolder(id){
+
+    
+    let mapPath = path.resolve(__dirname, "..\\app-data\\map.json")
+    var data = fs.readFileSync(mapPath, 'utf8')
+    let tree_file = JSON.parse(data);
+    
+    let folder_name = tree_file.folders[id]['name']
+
+    new_folder_data = `
+    <div class = "open-folder-container">
+        <form
+            class="form-horizontal"
+            action="#"
+            method="post"
+        >
+            <div class="tab-content">
+                <div class="tab-pane pad-btm fade in active">
+                    <p class="text-main text-bold" style="
+                        text-align: center;
+                        padding-top: 20px;
+                        font-size: 16px;
+                    ">Rename Folder</p>
+                    <a id = "exit-rename-folder" style="
+                        right: 4%;
+                        position: absolute;
+                        font-size:  20px;
+                        top: 6%;
+                    " class = "exit-button">✘</a>
+                    <hr>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Folder's Name</label>
+                        <div class="col-lg-7">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id = "folder_rename"
+                                name="folder_rename"
+                                placeholder="${folder_name}"
+                            >
+                        </div>
+                    </div>
+                <div class="tab-footer clearfix">
+                    <div class="">
+                        <button id = "rename_folder_submit" type = "button" class="btn btn-primary" style="padding-left: 5%;padding-right: 5%;margin-left: 42%;text-align: center;">Rename</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>`
+
+    if (document.getElementById("rename-folder")){
+        document.getElementById("rename-folder").remove()
+    }
+
+    
+    var elem = document.createElement('div');
+    elem.id = "rename-folder"
+    elem.innerHTML = new_folder_data
+    elem.style = "top: 50%; left: 50%; position: fixed;"
+    document.body.appendChild(elem)
+
+    $('#exit-rename-folder').click(() => {
+        document.getElementById("rename-folder").remove()
+    })
+
+    $('#rename_folder_submit').click(() => {
+        folder_name = $('#folder_rename').val()
+        if (validate_new_folder(folder_name)){
+            renameFolder(id, folder_name)
+            document.getElementById("rename-folder").remove()
+        }
+    })
+}
+
+function renameFolder(id, new_folder_name){
+    let mapPath = path.resolve(__dirname, "..\\app-data\\map.json")
+    var data = fs.readFileSync(mapPath, 'utf8')
+    let tree_file = JSON.parse(data);
+
+    folder_name = tree_file.folders[id]['name']
+    tree_file.folders[id]['name'] = new_folder_name
+    tree_file.last_submission = String(Date.now())
+
+    fs.writeFileSync(mapPath, JSON.stringify(tree_file));
+
+    showAlert("Success", `Rename folder (${folder_name}) -> (${new_folder_name}) successful`, "success")
+    loadFileList()
+    updateFileMapServer()
+}
+
+function popupFolderMenu(id) {
+    let test_menu = {
+        id: "folder" + id,
+        data: [
+            {
+                header: 'Actions'
+            },
+            {
+                icon: 'glyphicon-eye-open',
+                text: '  Open',
+                action: function (e, selector) { openFolder(id) }
+            },
+            {
+                icon: 'glyphicon-edit',
+                text: '  Rename',
+                action: function (e, selector) { showRenameFolder(id, "edit") }
+            },
+            {
+                icon: 'glyphicon glyphicon-trash',
+                text: '  Remove',
+                action: function (e, selector) { removeFolder(id) }
+            }
+        ]
+    };
+    context.init({ preventDoubleContext: false });
+    context.attach('#folder-setting-' + id, test_menu);
+
+    // Open file by clicking
+    $('#folder-' + id).children('a').dblclick(() => openFolder(id));
+
+}
+
+async function showFolderSidebar(){
+    folder_back = `<a href="javascript:backFolder('${current_folder}')" class="list-group-item">
+        <i class="demo-pli-folder icon-lg icon-fw"></i> ...
+    </a>`
+
+    folder_item = (folder_name, id) => { return `<a href="javascript:openFolder('${id}')" class="list-group-item">
+        <i class="demo-pli-folder icon-lg icon-fw"></i> ${folder_name}
+    </a>`}
+
+    var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
+    let tree_file = JSON.parse(data);
+    let folders = tree_file.folders;
+    
+    
+    $('#folder_sidebar').empty()
+    $('#folder_sidebar').append(folder_back)
+
+    for (folder_id in folders) {
+        if (folders[folder_id]['parent'] == current_folder){
+            $('#folder_sidebar').append(
+                folder_item(folders[folder_id]['name'], folder_id)
+            );
+        }
+    }
+}
+
+function genFolderItem(folder_id, folder_name, folder_created_date){
+    return `<li id = "folder-${folder_id}">
+        <div class="file-control">
+            <input id="folder-list-${folder_id}" class="magic-checkbox" type="checkbox">
+            <label for="folder-list-${folder_id}"></label>
+        </div>
+        <div class="file-settings"><a id = "folder-setting-${folder_id}" href="#" ><i class="pci-ver-dots"></i></a>
+        </div>
+        <div class="file-attach-icon"></div>
+        <a role="button" class="file-details">
+            <div class="media-block">
+                <div class="media-left"><i class="demo-psi-folder"></i></div>
+                <div class="media-body">
+                    <p class="file-name">${folder_name}</p>
+                    <small>${toDate(folder_created_date)}</small>
+                </div>
+            </div>
+        </a>
+        <div class="dropdown-menu dropdown-menu-sm" id="context-menu">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+    </li>`;
+}
+
+async function showFolderPath(){
+    let mapPath = path.resolve(__dirname, "..\\app-data\\map.json")
+    var data = fs.readFileSync(mapPath, 'utf8')
+    let tree_file = JSON.parse(data);
+    let folders = tree_file.folders
+    let folder_id = current_folder
+    data = ""
+    if (folder_id != "000000"){
+        data = `
+            <li class="active">${folders[folder_id]['name']}</li>
+        `
+    }
+
+    while (folder_id != "000000" && folders[folder_id]['parent'] != "000000"){
+        folder_id = folders[folder_id]['parent']
+
+        data = `
+            <li><a href="javascript:openFolder('${folder_id}')">${folders[folder_id]['name']}</a></li>
+        ` + data
+    }
+
+    data = `
+        <li><a href="javascript:openFolder('000000')">Home</a></li>
+    ` + data
+
+    $('#folder_path').html(data)
+}
+
+function removeFolder(folder_id){
+    let mapPath = path.resolve(__dirname, "..\\app-data\\map.json")
+    var data = fs.readFileSync(mapPath, 'utf8')
+    let tree_file = JSON.parse(data);
+    let folders = tree_file.folders;
+    
+    let check = true;
+    for (let id in folders) {
+        if (folders[id]['parent'] == folder_id){
+            check = false;
+            break;
+        }
+    }
+
+    let files = tree_file.files;
+
+    for (let id in files) {
+        if (files[id]['parent'] == folder_id){
+            check = false;
+            break;
+        }
+    }
+    if (!check){
+        showAlert("Warning", "Could only remove empty folder", "warning")
+    }
+
+    if (check && confirm("Are you sure you want to delete this folder?")) {
+        
+        let folder_name = tree_file.folders[folder_id]['name']
+        delete tree_file.folders[folder_id];
+        tree_file.last_submission = String(Date.now())
+
+        fs.writeFileSync(mapPath, JSON.stringify(tree_file));
+
+        showAlert("Success", `Remove folder (${folder_name}) successful`, "success")
+        loadFileList()
+        updateFileMapServer()
+    }
+}
+
+function openFolder(id){
+    current_folder = id
+    loadFileList()
+}
+
+function backFolder(id){
+    let mapPath = path.resolve(__dirname, "..\\app-data\\map.json")
+    var data = fs.readFileSync(mapPath, 'utf8')
+    let tree_file = JSON.parse(data);
+    
+    let folder_id = tree_file.folders[id]['parent']
+
+    if (folder_id != ""){
+        current_folder = folder_id
+        loadFileList()
+    }
+}
+
+
+function moveFiletoFolder(id){
+    let mapPath = path.resolve(__dirname, "..\\app-data\\map.json")
+    var data = fs.readFileSync(mapPath, 'utf8')
+    let tree_file = JSON.parse(data);
+
+    folder_choice_data = ""
+    if (tree_file.files[id]['parent'] != "000000"){
+        folder_choice_data = `
+            <a href="javascript:moveFiletoAction('${id}', '${tree_file.folders[tree_file.files[id]['parent']]['parent']}')" class="list-group-item" style = "padding-left: 10%; padding-top: 3%; padding-bottom:3%">
+                <i class="demo-pli-folder icon-lg icon-fw"></i> ...
+            </a>`
+    }
+
+    folders = tree_file.folders
+    for (folder_id in folders) {
+        if (folders[folder_id]['parent'] == current_folder){
+            folder_choice_data += `
+                <a href="javascript:moveFiletoAction('${id}', '${folder_id}')" class="list-group-item" style = "padding-left: 10%; padding-top: 3%; padding-bottom:3%">
+                    <i class="demo-pli-folder icon-lg icon-fw"></i> ${folders[folder_id]['name']}
+                </a>`
+        }
+    }
+
+    file_name = tree_file.files[id]['name']
+    move_file_data = `
+    <div class = "open-folder-container">
+        <form
+            class="form-horizontal"
+            action="#"
+            method="post"
+        >
+            <div class="tab-content">
+                <div class="tab-pane pad-btm fade in active">
+                    <p class="text-main text-bold" style="
+                        text-align: center;
+                        padding-top: 20px;
+                        font-size: 16px;
+                    ">Move ${file_name} to ...</p>
+                    <a id = "exit-move-file" style="
+                        right: 4%;
+                        position: absolute;
+                        font-size:  20px;
+                        top: 4%;
+                    " class = "exit-button">✘</a>
+                    <hr>
+                    <div class="form-group overflow-auto" style = "
+                        max-height: 400px;
+                        overflow: auto;
+                    ">
+                        ${folder_choice_data}
+                    </div>
+                <div class="tab-footer clearfix">
+                    <div class="">
+                        <button id = "move_file_submit" type = "button" class="btn btn-primary" style="padding-left: 5%;padding-right: 5%;margin-left: 42%;text-align: center;">Close</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>`
+
+    if (document.getElementById("move_file_folder")){
+        document.getElementById("move_file_folder").remove()
+    }
+
+    
+    var elem = document.createElement('div');
+    elem.id = "move_file_folder"
+    elem.innerHTML = move_file_data
+    elem.style = "top: 50%; left: 50%; position: fixed;"
+    document.body.appendChild(elem)
+
+    $('#exit-move-file').click(() => {
+        document.getElementById("move_file_folder").remove()
+    })
+
+    $('#move_file_submit').click(() => {
+        document.getElementById("move_file_folder").remove()
+    })
+}
+
+function moveFiletoAction(file_id, folder_id){
+    let mapPath = path.resolve(__dirname, "..\\app-data\\map.json")
+    var data = fs.readFileSync(mapPath, 'utf8')
+    let tree_file = JSON.parse(data);
+
+    tree_file.files[file_id]['parent'] = folder_id
+    tree_file.last_submission = String(Date.now())
+
+    file_name = tree_file.files[file_id]['name']
+    folder_name = tree_file.folders[folder_id]['name']
+
+    fs.writeFileSync(mapPath, JSON.stringify(tree_file));
+
+    showAlert("Success", `Move file (${file_name}) -> (${folder_name}) successful`, "success")
+    
+    document.getElementById("move_file_folder").remove()
+    loadFileList()
+    updateFileMapServer()
+}
+
+
 
 function genItem(file_id, title, modified_date = "", file_size = "") {
 

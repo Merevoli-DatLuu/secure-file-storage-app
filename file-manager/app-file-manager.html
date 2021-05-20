@@ -550,7 +550,7 @@
 
 
                                     <p class="pad-hor mar-top text-main text-bold text-sm text-uppercase">Folders</p>
-                                    <div class="list-group bg-trans pad-btm bord-btm">
+                                    <div id = "folder_sidebar" class="list-group bg-trans pad-btm bord-btm">
                                         <a href="#" class="list-group-item">
                                             <i class="demo-pli-folder icon-lg icon-fw"></i> ...
                                         </a>
@@ -607,7 +607,7 @@
                                 </div>
                                 <div class="fluid file-panel">
                                     <div class="bord-btm pad-ver">
-                                        <ol class="breadcrumb">
+                                        <ol id = "folder_path" class="breadcrumb">
                                             <li><a href="#">Home</a></li>
                                             <li><a href="#">App Views</a></li>
                                             <li class="active">File Manager</li>
@@ -621,7 +621,7 @@
                                                 data-toggle="tooltip"><i class="icon-2x demo-pli-reload-3"></i></a>
                                         </div>
                                         <div class="btn-file-toolbar">
-                                            <a class="btn btn-icon add-tooltip" href="#"
+                                            <a id = "new-folder-button" class="btn btn-icon add-tooltip" href="#"
                                                 data-original-title="New Folder" data-toggle="tooltip"><i
                                                     class="icon-2x demo-pli-folder"></i></a>
                                             <a class="btn btn-icon add-tooltip" href="#" data-original-title="New File"
@@ -1237,7 +1237,6 @@
         </button>
         <!--===================================================-->
         <div id='alert-open-file' style = "position: fixed; top: 0; left: 25%; width: 50%; z-index: 10000; opacity: 0.9; "></div>
-        
 
     </div>
     <!--===================================================-->

@@ -3733,3 +3733,76 @@ AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse`
 - INFO - 2021-05-19 21:15:51,315 - delete_file_by_id -> (file_id: 1zfijdt8gkLZBKw7pc9bhH-pS5aPckSfq)
 - INFO - 2021-05-19 21:15:51,449 - delete_file_by_id -> (file_id: 1bQMaEfzY2-kIQeTkAy5KWZQSBEXrtgVl)
 - INFO - 2021-05-19 21:15:54,246 - upload_file -> (file_name: map.json)
+- WARNING - 2021-05-20 12:27:36,124 - Unauthorized: /api/user
+- WARNING - 2021-05-20 12:27:36,128 - Unauthorized: /api/login_history
+- WARNING - 2021-05-20 15:46:46,219 - Bad Request: /api/login
+- INFO - 2021-05-20 22:11:58,427 - Init Server
+- INFO - 2021-05-20 22:11:58,492 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-20 22:12:00,132 - get_file_list
+- INFO - 2021-05-20 22:12:00,133 - get_content_file -> (file : 18bdJCFtGuN-HCmrEs3uyLWeeJ8cmr1Wi - map.json)
+- INFO - 2021-05-20 22:12:01,589 - Init Server
+- INFO - 2021-05-20 22:12:01,595 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-20 22:12:03,211 - get_file_list
+- INFO - 2021-05-20 22:12:03,231 - get_file_by_id -> (file_id: 18bdJCFtGuN-HCmrEs3uyLWeeJ8cmr1Wi)
+- INFO - 2021-05-20 22:12:04,815 - delete_file_by_id -> (file_id: 18bdJCFtGuN-HCmrEs3uyLWeeJ8cmr1Wi)
+- INFO - 2021-05-20 22:12:06,468 - Init Server
+- INFO - 2021-05-20 22:12:06,489 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-20 22:12:07,945 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-20 22:12:11,573 - upload_file -> (file_name: 000006Hydrangeas.jpg.aes)
+- WARNING - 2021-05-20 23:11:04,357 - Bad Request: /api/login
+- INFO - 2021-05-21 01:06:53,106 - Init Server
+- INFO - 2021-05-21 01:06:53,144 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-21 01:06:54,602 - get_file_list
+- INFO - 2021-05-21 01:06:54,604 - get_file_by_id -> (file_id: 1bLY8Sf4V7bnZn8XrobuiptbHM9gSIHCu)
+- INFO - 2021-05-21 01:06:55,634 - delete_file_by_id -> (file_id: 1bLY8Sf4V7bnZn8XrobuiptbHM9gSIHCu)
+- INFO - 2021-05-21 01:06:57,370 - Init Server
+- INFO - 2021-05-21 01:06:57,378 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-21 01:06:58,425 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-21 01:06:58,725 - get_file_list
+- INFO - 2021-05-21 01:06:58,726 - get_file_by_id -> (file_id: 167_OUEh9gDmTpMEjLhCHVCXoeWuD8URx)
+- INFO - 2021-05-21 01:06:59,650 - delete_file_by_id -> (file_id: 167_OUEh9gDmTpMEjLhCHVCXoeWuD8URx)
+- ERROR - 2021-05-21 01:07:00,602 - Internal Server Error: /api/update_file_map
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Python37\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Python37\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "C:\Python37\lib\site-packages\rest_framework\views.py", line 426, in finalize_response
+    % type(response)
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+- INFO - 2021-05-21 01:07:43,207 - Init Server
+- INFO - 2021-05-21 01:07:43,246 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-21 01:07:44,540 - get_file_list
+- ERROR - 2021-05-21 01:07:44,541 - Internal Server Error: /api/sync_file
+- INFO - 2021-05-21 01:10:14,044 - Init Server
+- INFO - 2021-05-21 01:10:14,097 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-21 01:10:15,415 - get_file_list
+- ERROR - 2021-05-21 01:10:15,416 - Internal Server Error: /api/sync_file
+- INFO - 2021-05-21 01:11:41,830 - Init Server
+- INFO - 2021-05-21 01:11:41,859 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-21 01:11:43,230 - get_file_list
+- INFO - 2021-05-21 01:11:43,230 - get_content_file -> (file : 1EW8c5qGU72rztcw32QYtLP4s-K1tNiV1 - map.json)
+- INFO - 2021-05-21 01:17:20,972 - Init Server
+- INFO - 2021-05-21 01:17:21,004 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-21 01:17:22,288 - get_file_list
+- INFO - 2021-05-21 01:17:22,289 - get_file_by_id -> (file_id: 1EW8c5qGU72rztcw32QYtLP4s-K1tNiV1)
+- INFO - 2021-05-21 01:17:23,172 - delete_file_by_id -> (file_id: 1EW8c5qGU72rztcw32QYtLP4s-K1tNiV1)
+- INFO - 2021-05-21 01:17:25,651 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-21 01:17:47,386 - Init Server
+- INFO - 2021-05-21 01:17:47,425 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-21 01:17:48,813 - get_file_list
+- INFO - 2021-05-21 01:17:48,815 - get_file_by_id -> (file_id: 1cV5QG478qQexgU_RmmB0ajDDZDUQLJmp)
+- INFO - 2021-05-21 01:17:49,593 - delete_file_by_id -> (file_id: 1cV5QG478qQexgU_RmmB0ajDDZDUQLJmp)
+- INFO - 2021-05-21 01:17:52,228 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-21 01:19:37,082 - Init Server
+- INFO - 2021-05-21 01:19:37,122 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-21 01:19:38,379 - get_file_list
+- INFO - 2021-05-21 01:19:38,381 - get_file_by_id -> (file_id: 1acFuciVCfyZQvQ2_11zLyIJqMBWK5QIk)
+- INFO - 2021-05-21 01:19:39,179 - delete_file_by_id -> (file_id: 1acFuciVCfyZQvQ2_11zLyIJqMBWK5QIk)
+- INFO - 2021-05-21 01:19:41,663 - upload_file -> (file_name: map.json)
