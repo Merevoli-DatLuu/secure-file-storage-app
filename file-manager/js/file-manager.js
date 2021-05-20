@@ -60,7 +60,7 @@ function handleFileManager() {
 function updateMaxFileID() {
     var data = fs.readFileSync(path.resolve(__dirname, "..\\app-data\\map.json"), 'utf8')
     tree_file = JSON.parse(data);
-
+    maxFileID = 0
     if (JSON.stringify(tree_file.files) != JSON.stringify({})) {
         for (fileid in tree_file.files) {
             maxFileID = Math.max(maxFileID, parseInt(fileid))
@@ -274,7 +274,6 @@ function syncToServer(data){
         updateFilesServer(fileid)
     }
 
-
     // handle remove
     for (fileid of data['remove']){
         removeFileServer(fileid)
@@ -475,7 +474,7 @@ async function handleFileStore() {
         //Storage(file);
         //fs.writeFileSync(path.resolve(__dirname, "..\\app-data\\data\\" + file.file_name), file.file_data);
         var fileID = toFileID(maxFileID)
-        filePath = path.resolve(__dirname, "..\\app-data\\data\\" + toFileID(maxFileID) + file.file_name);
+        var filePath = path.resolve(__dirname, "..\\app-data\\data\\" + toFileID(maxFileID) + file.file_name);
         if (!fs.existsSync(filePath)) {
             fs.copyFileSync(file.file_obj.path, filePath);
         }
@@ -509,6 +508,7 @@ async function handleFileStore() {
         output.on('finish', async function () {
             console.log('Encrypted file written to disk!');
 
+            await input.close();
             // Remove plain file
             if (fs.existsSync(filePath)) {
                 fs.unlinkSync(filePath);
@@ -537,6 +537,7 @@ async function handleFileStore() {
     checkSync()
     $('#previews').empty()
     $('.preview-container').css('visibility', 'hidden');
+    $('#submit-upload-file').css('visibility', 'hidden');
     $('#upload-file').modal('hide');
 
     fileUploadQueue = []
