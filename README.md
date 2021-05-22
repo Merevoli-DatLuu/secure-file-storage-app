@@ -4,7 +4,7 @@
 
 A **secure** and **easy-to-use** File Manager Application
 
-<img src="/reviews/Logo/banner.png" width="40%">
+<img src="./reviews/Logo/banner.png" width="40%">
 
 </div>
 
@@ -63,6 +63,51 @@ Phần mềm cho phép người dùng có thể thêm tập tin muốn mã hóa 
 
 
 ## Mô tả hệ thống
+
+<img src="./reviews/system_architecture.png" width="80%">
+
+### Đối tượng tham gia
+
+**Client side**
+
++ Mô tả: Phần mềm phía người sử dụng
+
++ Công nghệ sử dụng: **Electronjs**
+
++ Vai trò: 
+    + Giúp người dùng sử dụng các tính năng của phần mềm (đã nêu trên).
+    + Giao tiếp với server side thông qua API của 
+    \<server> và \<KDC>.
+
+**Server**
+
++ Mô tả: Máy chủ chính thực hiện các thao tác đồng bộ dữ liệu, quản lý dữ liệu người sử dụng và xử lý việc đăng nhập, đăng kí của người sử dụng.
+
++ Công nghệ sử dụng: **Django**.
+
++ Vai trò: 
+    + Xử lý các request của người dùng về việc đồng bộ dữ liệu (các thao tác về tập tin như: thêm, sửa, xóa tập tin và các thao tác về thư mục).
+    + Quản lý các dữ liệu người sử dụng bao gồm: thông tin tài khoản, lịch sử truy cập của các thiết bị.
+Xử lý các thao tác đăng nhập, đăng kí của người sử dụng.
+
+**Database**
+
++ Mô tả: Cơ sở dữ liệu lưu trữ thông tin của người dùng.
+
++ Công nghệ sử dụng: **SQLite**.
+
++ Vai trò: 
+
+    + Lưu trữ thông tin về tài khoản và lịch sử truy cập các thiết bị.
+
+**Storage Server**
+
++ Mô tả: Hệ thống lưu trữ tập tin mã hóa
+
++ Công nghệ sử dụng: Lưu trữ ở Google Drive và giao tiếp thông qua **Google Drive API**.
+
++ Vai trò:
+    + Lưu trữ các tập tin mã hóa và cấu trúc thư mục dùng để đồng bộ dữ liệu trên các thiết bị khác nhau cùng một tài khoản.
 
 
 ## Cài đặt
