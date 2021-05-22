@@ -28,5 +28,5 @@ A **secure** and **easy-to-use** File Manager Application
 ## Tính năng
 
 ## Cài đặt
-
+Sẽ viết sau...
 ## Screenshot
