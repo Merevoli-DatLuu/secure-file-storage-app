@@ -107,7 +107,7 @@ class FileStorage():
 
     def download_file(self, file, file_path):
         file.GetContentFile(file_path)
-        logging.info(f'{self.download_file.__name__} -> (file_name: {file_path})')
+        # logging.info(f'{self.download_file.__name__} -> (file_name: {file_path})')
 
 
     def change_title_file(self, file, new_title):

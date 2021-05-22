@@ -4551,3 +4551,632 @@ AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse`
 - INFO - 2021-05-22 09:34:55,286 - get_file_by_id -> (file_id: 1L05IYcCo6JT5Po6XpJlW0LNblpHALv3s)
 - INFO - 2021-05-22 09:34:55,987 - delete_file_by_id -> (file_id: 1L05IYcCo6JT5Po6XpJlW0LNblpHALv3s)
 - INFO - 2021-05-22 09:34:58,733 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 10:06:10,642 - Init Server
+- INFO - 2021-05-22 10:06:10,650 - access_token is expired. Now: 2021-05-22 03:06:10.650894, token_expiry: 2021-05-22 03:00:35
+- INFO - 2021-05-22 10:06:10,658 - access_token is expired. Now: 2021-05-22 03:06:10.658894, token_expiry: 2021-05-22 03:00:35
+- INFO - 2021-05-22 10:07:48,367 - Init Server
+- INFO - 2021-05-22 10:07:48,454 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:07:49,813 - get_file_list
+- INFO - 2021-05-22 10:07:49,813 - get_content_file -> (file : 1o6GYJ2lIl2zRNQkNzlMavA6RfGqXEYyh - map.json)
+- INFO - 2021-05-22 10:07:54,411 - Init Server
+- INFO - 2021-05-22 10:07:54,438 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:07:55,586 - get_file_list
+- INFO - 2021-05-22 10:07:55,586 - get_content_file -> (file : 1o6GYJ2lIl2zRNQkNzlMavA6RfGqXEYyh - map.json)
+- INFO - 2021-05-22 10:08:10,376 - Init Server
+- INFO - 2021-05-22 10:08:10,408 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:08:11,700 - get_file_list
+- INFO - 2021-05-22 10:08:11,700 - get_content_file -> (file : 1o6GYJ2lIl2zRNQkNzlMavA6RfGqXEYyh - map.json)
+- INFO - 2021-05-22 10:08:12,953 - Init Server
+- INFO - 2021-05-22 10:08:12,954 - Init Server
+- INFO - 2021-05-22 10:08:12,959 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:08:12,962 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:08:14,328 - get_file_list
+- INFO - 2021-05-22 10:08:14,329 - get_file_by_id -> (file_id: 1o6GYJ2lIl2zRNQkNzlMavA6RfGqXEYyh)
+- INFO - 2021-05-22 10:08:15,345 - delete_file_by_id -> (file_id: 1o6GYJ2lIl2zRNQkNzlMavA6RfGqXEYyh)
+- INFO - 2021-05-22 10:08:15,720 - upload_file -> (file_name: 000012plain.txt.aes)
+- INFO - 2021-05-22 10:08:17,799 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 10:08:19,980 - Init Server
+- INFO - 2021-05-22 10:08:20,005 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:08:21,394 - get_file_list
+- INFO - 2021-05-22 10:08:21,394 - get_content_file -> (file : 1NphZhgL_6vj2CQxsWLF8I-LPtzoMT1Ke - map.json)
+- INFO - 2021-05-22 10:08:22,579 - Init Server
+- INFO - 2021-05-22 10:08:22,587 - Init Server
+- INFO - 2021-05-22 10:08:22,603 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:08:22,605 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:08:23,832 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 10:08:23,833 - get_content_file -> (file : 1NphZhgL_6vj2CQxsWLF8I-LPtzoMT1Ke - map.json)
+- INFO - 2021-05-22 10:08:24,080 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 10:08:25,212 - download_file -> (file_name: .temp/map.json)
+- INFO - 2021-05-22 10:08:25,438 - get_files_by_title -> (title: 000012plain.txt.aes)
+- INFO - 2021-05-22 10:08:26,422 - download_file -> (file_name: .temp/000012plain.txt.aes)
+- INFO - 2021-05-22 10:09:11,100 - Init Server
+- INFO - 2021-05-22 10:09:11,145 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:09:12,527 - get_file_list
+- INFO - 2021-05-22 10:09:12,527 - get_content_file -> (file : 1NphZhgL_6vj2CQxsWLF8I-LPtzoMT1Ke - map.json)
+- INFO - 2021-05-22 10:09:13,613 - Init Server
+- INFO - 2021-05-22 10:09:13,631 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:09:13,635 - Init Server
+- INFO - 2021-05-22 10:09:13,646 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:09:14,912 - get_file_list
+- INFO - 2021-05-22 10:09:14,914 - get_file_by_id -> (file_id: 1OsIMyqKprVkwmnTihTGo2MvfBmKwvaOT)
+- INFO - 2021-05-22 10:09:15,249 - get_file_list
+- INFO - 2021-05-22 10:09:15,251 - get_file_by_id -> (file_id: 1NphZhgL_6vj2CQxsWLF8I-LPtzoMT1Ke)
+- INFO - 2021-05-22 10:09:15,701 - delete_file_by_id -> (file_id: 1OsIMyqKprVkwmnTihTGo2MvfBmKwvaOT)
+- INFO - 2021-05-22 10:09:15,950 - delete_file_by_id -> (file_id: 1NphZhgL_6vj2CQxsWLF8I-LPtzoMT1Ke)
+- INFO - 2021-05-22 10:09:18,081 - upload_file -> (file_name: 000012plain.txt.aes)
+- INFO - 2021-05-22 10:09:18,501 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 10:09:29,198 - Init Server
+- INFO - 2021-05-22 10:09:29,267 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:09:30,605 - get_file_list
+- INFO - 2021-05-22 10:09:30,606 - get_content_file -> (file : 1qE17U2oLUy3_gH3qFBRBi_dyKccz7nZa - map.json)
+- INFO - 2021-05-22 10:09:31,749 - Init Server
+- INFO - 2021-05-22 10:09:31,752 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:09:31,846 - Init Server
+- INFO - 2021-05-22 10:09:31,850 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:09:33,182 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 10:09:33,222 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 10:09:33,223 - get_content_file -> (file : 1qE17U2oLUy3_gH3qFBRBi_dyKccz7nZa - map.json)
+- INFO - 2021-05-22 10:09:34,363 - download_file -> (file_name: .temp/map.json)
+- INFO - 2021-05-22 10:09:34,969 - get_files_by_title -> (title: 000012plain.txt.aes)
+- INFO - 2021-05-22 10:09:36,254 - download_file -> (file_name: .temp/000012plain.txt.aes)
+- INFO - 2021-05-22 10:10:18,441 - Init Server
+- INFO - 2021-05-22 10:10:18,467 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:10:19,765 - get_file_list
+- INFO - 2021-05-22 10:10:19,766 - get_content_file -> (file : 1qE17U2oLUy3_gH3qFBRBi_dyKccz7nZa - map.json)
+- INFO - 2021-05-22 10:10:21,011 - Init Server
+- INFO - 2021-05-22 10:10:21,015 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:10:21,125 - Init Server
+- INFO - 2021-05-22 10:10:21,131 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:10:22,437 - get_file_list
+- INFO - 2021-05-22 10:10:22,438 - get_file_by_id -> (file_id: 1T3mcAYp0HRcGgcjyVYWaSl90nz-MfFx5)
+- INFO - 2021-05-22 10:10:22,463 - get_file_list
+- INFO - 2021-05-22 10:10:22,465 - get_file_by_id -> (file_id: 1qE17U2oLUy3_gH3qFBRBi_dyKccz7nZa)
+- INFO - 2021-05-22 10:10:23,178 - delete_file_by_id -> (file_id: 1qE17U2oLUy3_gH3qFBRBi_dyKccz7nZa)
+- INFO - 2021-05-22 10:10:23,284 - delete_file_by_id -> (file_id: 1T3mcAYp0HRcGgcjyVYWaSl90nz-MfFx5)
+- INFO - 2021-05-22 10:10:25,468 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 10:10:25,971 - upload_file -> (file_name: 000012plain.txt.aes)
+- INFO - 2021-05-22 10:10:34,039 - Init Server
+- INFO - 2021-05-22 10:10:34,072 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:10:35,290 - get_file_list
+- INFO - 2021-05-22 10:10:35,290 - get_content_file -> (file : 1V79qbPE4WdwBxtvQvWTjn6CenhcbzuuX - map.json)
+- INFO - 2021-05-22 10:10:36,545 - Init Server
+- INFO - 2021-05-22 10:10:36,547 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:10:36,612 - Init Server
+- INFO - 2021-05-22 10:10:36,614 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:10:37,769 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 10:10:37,959 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 10:10:37,959 - get_content_file -> (file : 1V79qbPE4WdwBxtvQvWTjn6CenhcbzuuX - map.json)
+- INFO - 2021-05-22 10:10:38,833 - download_file -> (file_name: .temp/map.json)
+- INFO - 2021-05-22 10:10:39,663 - get_files_by_title -> (title: 000012plain.txt.aes)
+- INFO - 2021-05-22 10:10:40,787 - download_file -> (file_name: .temp/000012plain.txt.aes)
+- INFO - 2021-05-22 10:11:01,045 - Init Server
+- INFO - 2021-05-22 10:11:01,105 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:11:02,372 - get_file_list
+- INFO - 2021-05-22 10:11:02,373 - get_file_by_id -> (file_id: 1V79qbPE4WdwBxtvQvWTjn6CenhcbzuuX)
+- INFO - 2021-05-22 10:11:03,162 - delete_file_by_id -> (file_id: 1V79qbPE4WdwBxtvQvWTjn6CenhcbzuuX)
+- INFO - 2021-05-22 10:11:05,652 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 10:11:29,059 - Init Server
+- INFO - 2021-05-22 10:11:29,093 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:11:30,351 - get_file_list
+- INFO - 2021-05-22 10:11:30,352 - get_content_file -> (file : 15lAnDuB7aVbejXERR25my9GswVAB81KS - map.json)
+- INFO - 2021-05-22 10:11:31,605 - Init Server
+- INFO - 2021-05-22 10:11:31,609 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:11:32,891 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 10:11:33,933 - download_file -> (file_name: .temp/map.json)
+- INFO - 2021-05-22 10:11:44,279 - Init Server
+- INFO - 2021-05-22 10:11:44,326 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:11:45,710 - get_file_list
+- INFO - 2021-05-22 10:11:45,712 - get_file_by_id -> (file_id: 15lAnDuB7aVbejXERR25my9GswVAB81KS)
+- INFO - 2021-05-22 10:11:46,480 - delete_file_by_id -> (file_id: 15lAnDuB7aVbejXERR25my9GswVAB81KS)
+- INFO - 2021-05-22 10:11:48,930 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 10:11:52,559 - Init Server
+- INFO - 2021-05-22 10:11:52,582 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:11:53,910 - get_file_list
+- INFO - 2021-05-22 10:11:53,910 - get_content_file -> (file : 1WZi9jdfEn-wQSaIpQEoC3epqLCCs5Rj2 - map.json)
+- INFO - 2021-05-22 10:11:55,011 - Init Server
+- INFO - 2021-05-22 10:11:55,031 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:11:56,267 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 10:11:57,455 - download_file -> (file_name: .temp/map.json)
+- INFO - 2021-05-22 10:13:04,461 - Init Server
+- INFO - 2021-05-22 10:13:04,488 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:13:05,744 - get_file_list
+- INFO - 2021-05-22 10:13:05,746 - get_file_by_id -> (file_id: 1WZi9jdfEn-wQSaIpQEoC3epqLCCs5Rj2)
+- INFO - 2021-05-22 10:13:06,517 - delete_file_by_id -> (file_id: 1WZi9jdfEn-wQSaIpQEoC3epqLCCs5Rj2)
+- INFO - 2021-05-22 10:13:09,003 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 10:13:16,454 - Init Server
+- INFO - 2021-05-22 10:13:16,495 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:13:17,844 - get_file_list
+- INFO - 2021-05-22 10:13:17,844 - get_content_file -> (file : 1K-Ejuxq_Fa-MynAO5H6-CwvuevRS08YG - map.json)
+- INFO - 2021-05-22 10:13:18,994 - Init Server
+- INFO - 2021-05-22 10:13:18,997 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:13:20,316 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 10:13:21,360 - download_file -> (file_name: .temp/map.json)
+- INFO - 2021-05-22 10:13:36,715 - Init Server
+- INFO - 2021-05-22 10:13:36,786 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:13:37,985 - get_file_list
+- INFO - 2021-05-22 10:13:37,986 - get_file_by_id -> (file_id: 1K-Ejuxq_Fa-MynAO5H6-CwvuevRS08YG)
+- INFO - 2021-05-22 10:13:38,739 - delete_file_by_id -> (file_id: 1K-Ejuxq_Fa-MynAO5H6-CwvuevRS08YG)
+- INFO - 2021-05-22 10:13:41,133 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 10:13:43,816 - Init Server
+- INFO - 2021-05-22 10:13:43,850 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:13:45,021 - get_file_list
+- INFO - 2021-05-22 10:13:45,022 - get_content_file -> (file : 1EzbrD2o3zHk6ir_XD_c_u3SC97pTYdaW - map.json)
+- INFO - 2021-05-22 10:13:46,158 - Init Server
+- INFO - 2021-05-22 10:13:46,162 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:13:47,454 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 10:13:48,563 - download_file -> (file_name: .temp/map.json)
+- INFO - 2021-05-22 10:14:00,477 - Init Server
+- INFO - 2021-05-22 10:14:00,518 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:14:01,661 - get_file_list
+- INFO - 2021-05-22 10:14:01,663 - get_file_by_id -> (file_id: 1EzbrD2o3zHk6ir_XD_c_u3SC97pTYdaW)
+- INFO - 2021-05-22 10:14:02,496 - delete_file_by_id -> (file_id: 1EzbrD2o3zHk6ir_XD_c_u3SC97pTYdaW)
+- INFO - 2021-05-22 10:14:05,045 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 10:14:05,571 - Init Server
+- INFO - 2021-05-22 10:14:05,595 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:14:06,795 - get_file_list
+- INFO - 2021-05-22 10:14:06,795 - get_content_file -> (file : 1wIGAcQrGi-VsFkLxE2mZyd9XV_Y493xW - map.json)
+- INFO - 2021-05-22 10:14:07,972 - Init Server
+- INFO - 2021-05-22 10:14:08,004 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:14:09,352 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 10:14:10,387 - download_file -> (file_name: .temp/map.json)
+- INFO - 2021-05-22 10:14:17,999 - Init Server
+- INFO - 2021-05-22 10:14:18,029 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:14:18,461 - Init Server
+- INFO - 2021-05-22 10:14:18,464 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:14:19,377 - get_file_list
+- INFO - 2021-05-22 10:14:19,377 - get_file_by_id -> (file_id: 1_wv7JZxwTgtHSid1YqzRupYdlWIt0vlV)
+- INFO - 2021-05-22 10:14:19,842 - get_file_list
+- INFO - 2021-05-22 10:14:19,843 - get_file_by_id -> (file_id: 1wIGAcQrGi-VsFkLxE2mZyd9XV_Y493xW)
+- INFO - 2021-05-22 10:14:20,203 - delete_file_by_id -> (file_id: 1_wv7JZxwTgtHSid1YqzRupYdlWIt0vlV)
+- INFO - 2021-05-22 10:14:20,680 - delete_file_by_id -> (file_id: 1wIGAcQrGi-VsFkLxE2mZyd9XV_Y493xW)
+- INFO - 2021-05-22 10:14:22,925 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 10:14:25,362 - Init Server
+- INFO - 2021-05-22 10:14:25,387 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:14:26,544 - get_file_list
+- INFO - 2021-05-22 10:14:26,544 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 10:14:27,763 - Init Server
+- INFO - 2021-05-22 10:14:27,803 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:14:29,071 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 10:14:30,211 - download_file -> (file_name: .temp/map.json)
+- INFO - 2021-05-22 10:15:16,085 - Init Server
+- INFO - 2021-05-22 10:15:16,126 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:15:17,461 - get_file_list
+- INFO - 2021-05-22 10:15:17,461 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 10:15:22,322 - Init Server
+- INFO - 2021-05-22 10:15:22,355 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 10:15:23,648 - get_file_list
+- INFO - 2021-05-22 10:15:23,648 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- WARNING - 2021-05-22 11:43:59,531 - Bad Request: /api/login
+- INFO - 2021-05-22 11:44:07,265 - Init Server
+- INFO - 2021-05-22 11:44:07,292 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:44:08,682 - get_file_list
+- INFO - 2021-05-22 11:44:08,682 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:44:09,922 - Init Server
+- INFO - 2021-05-22 11:44:09,941 - Init Server
+- INFO - 2021-05-22 11:44:09,950 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:44:09,952 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:44:10,056 - Init Server
+- INFO - 2021-05-22 11:44:10,057 - Init Server
+- INFO - 2021-05-22 11:44:10,059 - Init Server
+- INFO - 2021-05-22 11:44:10,067 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:44:10,068 - Init Server
+- INFO - 2021-05-22 11:44:10,076 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:44:10,109 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:44:10,159 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:44:11,315 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:44:11,315 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:44:11,521 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:44:11,522 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:44:11,663 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:44:11,663 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:44:11,888 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:44:11,889 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:44:11,891 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:44:11,891 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:44:12,012 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:44:12,013 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:44:13,007 - get_files_by_title -> (title: 000003Jellyfish.jpg.aes)
+- INFO - 2021-05-22 11:44:13,159 - get_files_by_title -> (title: 000010result.zip.aes)
+- INFO - 2021-05-22 11:44:13,398 - get_files_by_title -> (title: 000009Mastering Vim Quickly by Jovica Ilic (z-lib.org).pdf.aes)
+- INFO - 2021-05-22 11:44:13,491 - get_files_by_title -> (title: 000011Kalimba.mp3.aes)
+- INFO - 2021-05-22 11:44:13,639 - get_files_by_title -> (title: 000004Lighthouse.jpg.aes)
+- INFO - 2021-05-22 11:44:14,370 - download_file -> (file_name: .temp/000010result.zip.aes)
+- INFO - 2021-05-22 11:44:14,446 - Init Server
+- INFO - 2021-05-22 11:44:14,489 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:44:15,277 - Init Server
+- INFO - 2021-05-22 11:44:15,281 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:44:15,603 - download_file -> (file_name: .temp/000004Lighthouse.jpg.aes)
+- INFO - 2021-05-22 11:44:15,844 - download_file -> (file_name: .temp/000003Jellyfish.jpg.aes)
+- INFO - 2021-05-22 11:44:16,210 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:44:16,210 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:44:16,230 - Init Server
+- INFO - 2021-05-22 11:44:16,238 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:44:16,391 - Init Server
+- INFO - 2021-05-22 11:44:16,393 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:44:16,899 - download_file -> (file_name: .temp/000009Mastering Vim Quickly by Jovica Ilic (z-lib.org).pdf.aes)
+- INFO - 2021-05-22 11:44:17,645 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:44:17,650 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:44:18,221 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:44:18,221 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:44:18,262 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:44:18,305 - get_files_by_title -> (title: 000007plain.txt.aes)
+- INFO - 2021-05-22 11:44:19,188 - download_file -> (file_name: .temp/map.json)
+- INFO - 2021-05-22 11:44:19,213 - download_file -> (file_name: .temp/000007plain.txt.aes)
+- INFO - 2021-05-22 11:44:19,484 - download_file -> (file_name: .temp/000011Kalimba.mp3.aes)
+- INFO - 2021-05-22 11:44:22,986 - get_files_by_title -> (title: 000005private_key.txt.aes)
+- INFO - 2021-05-22 11:44:23,474 - get_files_by_title -> (title: 000006public_key.txt.aes)
+- INFO - 2021-05-22 11:44:24,073 - download_file -> (file_name: .temp/000005private_key.txt.aes)
+- INFO - 2021-05-22 11:44:24,439 - download_file -> (file_name: .temp/000006public_key.txt.aes)
+- INFO - 2021-05-22 11:45:30,274 - Init Server
+- INFO - 2021-05-22 11:45:30,311 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:45:31,430 - get_file_list
+- INFO - 2021-05-22 11:45:31,430 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 11:45:32,785 - Init Server
+- INFO - 2021-05-22 11:45:32,793 - Init Server
+- INFO - 2021-05-22 11:45:32,801 - Init Server
+- INFO - 2021-05-22 11:45:32,803 - Init Server
+- INFO - 2021-05-22 11:45:32,802 - Init Server
+- INFO - 2021-05-22 11:45:32,833 - Init Server
+- INFO - 2021-05-22 11:45:32,842 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:45:32,849 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:45:32,849 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:45:32,962 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:45:32,975 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:45:33,035 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:45:34,059 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:45:34,059 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 11:45:34,160 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:45:34,160 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 11:45:34,208 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:45:34,208 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 11:45:34,388 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:45:34,389 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 11:45:34,487 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:45:34,487 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 11:45:34,490 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:45:34,490 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 11:45:35,728 - get_files_by_title -> (title: 000006Hydrangeas.jpg.aes)
+- INFO - 2021-05-22 11:45:35,934 - get_files_by_title -> (title: 000003text-1.txt.aes)
+- INFO - 2021-05-22 11:45:35,986 - get_files_by_title -> (title: 000005text-2.txt.aes)
+- INFO - 2021-05-22 11:45:36,405 - get_files_by_title -> (title: 000007Koala.jpg.aes)
+- INFO - 2021-05-22 11:45:36,594 - get_files_by_title -> (title: 000001Jellyfish.jpg.aes)
+- INFO - 2021-05-22 11:45:37,265 - download_file -> (file_name: .temp/000005text-2.txt.aes)
+- INFO - 2021-05-22 11:45:37,317 - download_file -> (file_name: .temp/000003text-1.txt.aes)
+- INFO - 2021-05-22 11:45:37,444 - Init Server
+- INFO - 2021-05-22 11:45:37,481 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:45:37,914 - download_file -> (file_name: .temp/000006Hydrangeas.jpg.aes)
+- INFO - 2021-05-22 11:45:38,727 - download_file -> (file_name: .temp/000001Jellyfish.jpg.aes)
+- INFO - 2021-05-22 11:45:39,042 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:45:39,063 - download_file -> (file_name: .temp/000007Koala.jpg.aes)
+- INFO - 2021-05-22 11:45:40,403 - download_file -> (file_name: .temp/map.json)
+- INFO - 2021-05-22 11:46:33,332 - D:\GitHub\secure-file-storage-app\api\file_manager\file_storage\file_storage.py changed, reloading.
+- WARNING - 2021-05-22 11:47:00,740 - Bad Request: /api/login
+- INFO - 2021-05-22 11:47:06,403 - Init Server
+- INFO - 2021-05-22 11:47:06,458 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:47:07,918 - get_file_list
+- INFO - 2021-05-22 11:47:07,918 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:47:09,015 - Init Server
+- INFO - 2021-05-22 11:47:09,047 - Init Server
+- INFO - 2021-05-22 11:47:09,054 - Init Server
+- INFO - 2021-05-22 11:47:09,061 - Init Server
+- INFO - 2021-05-22 11:47:09,069 - Init Server
+- INFO - 2021-05-22 11:47:09,076 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:47:09,076 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:47:09,076 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:47:09,079 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:47:09,082 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:47:09,128 - Init Server
+- INFO - 2021-05-22 11:47:09,218 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:47:10,277 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:47:10,277 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:47:10,370 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:47:10,370 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:47:10,424 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:47:10,425 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:47:10,513 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:47:10,513 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:47:10,552 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:47:10,552 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:47:10,605 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:47:10,606 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:47:12,049 - get_files_by_title -> (title: 000006public_key.txt.aes)
+- INFO - 2021-05-22 11:47:12,198 - get_files_by_title -> (title: 000011Kalimba.mp3.aes)
+- INFO - 2021-05-22 11:47:12,210 - get_files_by_title -> (title: 000003Jellyfish.jpg.aes)
+- INFO - 2021-05-22 11:47:12,223 - get_files_by_title -> (title: 000005private_key.txt.aes)
+- INFO - 2021-05-22 11:47:12,233 - get_files_by_title -> (title: 000004Lighthouse.jpg.aes)
+- INFO - 2021-05-22 11:47:12,352 - get_files_by_title -> (title: 000007plain.txt.aes)
+- INFO - 2021-05-22 11:47:13,048 - Init Server
+- INFO - 2021-05-22 11:47:13,067 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:47:13,212 - Init Server
+- INFO - 2021-05-22 11:47:13,215 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:47:13,259 - Init Server
+- INFO - 2021-05-22 11:47:13,261 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:47:13,660 - Init Server
+- INFO - 2021-05-22 11:47:13,867 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:47:14,376 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:47:14,377 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:47:14,663 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:47:14,663 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:47:14,683 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:47:14,683 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 11:47:14,953 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:47:16,118 - get_files_by_title -> (title: 000010result.zip.aes)
+- INFO - 2021-05-22 11:47:16,193 - get_files_by_title -> (title: 000009Mastering Vim Quickly by Jovica Ilic (z-lib.org).pdf.aes)
+- INFO - 2021-05-22 11:48:05,455 - Init Server
+- INFO - 2021-05-22 11:48:05,488 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:48:06,852 - get_file_list
+- INFO - 2021-05-22 11:48:06,852 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 11:48:08,189 - Init Server
+- INFO - 2021-05-22 11:48:08,194 - Init Server
+- INFO - 2021-05-22 11:48:08,195 - Init Server
+- INFO - 2021-05-22 11:48:08,197 - Init Server
+- INFO - 2021-05-22 11:48:08,198 - Init Server
+- INFO - 2021-05-22 11:48:08,202 - Init Server
+- INFO - 2021-05-22 11:48:08,208 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:48:08,211 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:48:08,239 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:48:08,296 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:48:08,296 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:48:08,389 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:48:09,548 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:48:09,548 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 11:48:09,642 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:48:09,642 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 11:48:09,774 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:48:09,775 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 11:48:09,878 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:48:09,878 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 11:48:10,029 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:48:10,030 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 11:48:10,138 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 11:48:10,138 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 11:48:11,258 - get_files_by_title -> (title: 000007Koala.jpg.aes)
+- INFO - 2021-05-22 11:48:11,572 - get_files_by_title -> (title: 000003text-1.txt.aes)
+- INFO - 2021-05-22 11:48:11,575 - get_files_by_title -> (title: 000001Jellyfish.jpg.aes)
+- INFO - 2021-05-22 11:48:11,844 - get_files_by_title -> (title: 000006Hydrangeas.jpg.aes)
+- INFO - 2021-05-22 11:48:11,981 - get_files_by_title -> (title: 000005text-2.txt.aes)
+- INFO - 2021-05-22 11:48:12,845 - Init Server
+- INFO - 2021-05-22 11:48:12,882 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 11:48:14,956 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 15:54:38,079 - Init Server
+- INFO - 2021-05-22 15:54:38,169 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 15:54:39,729 - get_file_list
+- INFO - 2021-05-22 15:54:39,729 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 15:54:41,153 - Init Server
+- INFO - 2021-05-22 15:54:41,159 - Init Server
+- INFO - 2021-05-22 15:54:41,171 - Init Server
+- INFO - 2021-05-22 15:54:41,203 - Init Server
+- INFO - 2021-05-22 15:54:41,221 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 15:54:41,238 - Init Server
+- INFO - 2021-05-22 15:54:41,243 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 15:54:41,253 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 15:54:41,258 - Init Server
+- INFO - 2021-05-22 15:54:41,341 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 15:54:41,373 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 15:54:41,373 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 15:54:42,772 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 15:54:42,772 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 15:54:42,854 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 15:54:42,854 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 15:54:42,923 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 15:54:42,924 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 15:54:42,941 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 15:54:42,941 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 15:54:42,944 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 15:54:42,944 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 15:54:43,067 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 15:54:43,067 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 15:54:44,418 - get_files_by_title -> (title: 000006public_key.txt.aes)
+- INFO - 2021-05-22 15:54:44,441 - get_files_by_title -> (title: 000009Mastering Vim Quickly by Jovica Ilic (z-lib.org).pdf.aes)
+- INFO - 2021-05-22 15:54:44,692 - get_files_by_title -> (title: 000003Jellyfish.jpg.aes)
+- INFO - 2021-05-22 15:54:44,836 - get_files_by_title -> (title: 000004Lighthouse.jpg.aes)
+- INFO - 2021-05-22 15:54:44,880 - get_files_by_title -> (title: 000005private_key.txt.aes)
+- INFO - 2021-05-22 15:54:45,381 - Init Server
+- INFO - 2021-05-22 15:54:45,383 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 15:54:46,108 - Init Server
+- INFO - 2021-05-22 15:54:46,112 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 15:54:46,275 - Init Server
+- INFO - 2021-05-22 15:54:46,283 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 15:54:46,676 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 15:54:46,676 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 15:54:48,208 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 15:54:48,219 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 15:54:48,262 - Init Server
+- INFO - 2021-05-22 15:54:48,301 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 15:54:49,722 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 15:54:49,741 - get_content_file -> (file : 1s19jUX51ba9CgnE_vaPTmVF0iibhY_Ty - map.json)
+- INFO - 2021-05-22 15:54:50,350 - get_files_by_title -> (title: 000010result.zip.aes)
+- INFO - 2021-05-22 15:54:50,884 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 15:54:51,307 - get_files_by_title -> (title: 000011Kalimba.mp3.aes)
+- INFO - 2021-05-22 15:54:51,606 - get_files_by_title -> (title: 000007plain.txt.aes)
+- INFO - 2021-05-22 15:59:31,514 - Init Server
+- INFO - 2021-05-22 15:59:31,559 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 15:59:36,229 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 16:00:20,015 - Init Server
+- INFO - 2021-05-22 16:00:20,049 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:00:21,470 - get_file_list
+- INFO - 2021-05-22 16:00:21,470 - get_content_file -> (file : 1KmK-ymhkwKw0YfES9FkXjdhlA9n7IdXy - map.json)
+- INFO - 2021-05-22 16:00:22,732 - Init Server
+- INFO - 2021-05-22 16:00:22,765 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:00:23,980 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 16:00:49,428 - Init Server
+- INFO - 2021-05-22 16:00:49,451 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:00:50,618 - get_file_list
+- INFO - 2021-05-22 16:00:50,619 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 16:00:51,686 - Init Server
+- INFO - 2021-05-22 16:00:51,715 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:00:51,722 - Init Server
+- INFO - 2021-05-22 16:00:51,742 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:00:51,777 - Init Server
+- INFO - 2021-05-22 16:00:51,801 - Init Server
+- INFO - 2021-05-22 16:00:51,829 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:00:51,830 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:00:51,852 - Init Server
+- INFO - 2021-05-22 16:00:51,879 - Init Server
+- INFO - 2021-05-22 16:00:51,915 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:00:52,021 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:00:53,093 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 16:00:53,093 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 16:00:53,259 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 16:00:53,260 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 16:00:53,339 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 16:00:53,340 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 16:00:53,435 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 16:00:53,435 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 16:00:53,465 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 16:00:53,465 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 16:00:53,469 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 16:00:53,469 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 16:00:54,615 - get_files_by_title -> (title: 000003text-1.txt.aes)
+- INFO - 2021-05-22 16:00:54,822 - get_files_by_title -> (title: 000001Jellyfish.jpg.aes)
+- INFO - 2021-05-22 16:00:54,965 - get_files_by_title -> (title: 000007Koala.jpg.aes)
+- INFO - 2021-05-22 16:00:54,977 - get_files_by_title -> (title: 000006Hydrangeas.jpg.aes)
+- INFO - 2021-05-22 16:00:55,081 - get_files_by_title -> (title: 000005text-2.txt.aes)
+- INFO - 2021-05-22 16:00:55,812 - Init Server
+- INFO - 2021-05-22 16:00:55,843 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:00:57,451 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 16:03:10,741 - Init Server
+- INFO - 2021-05-22 16:03:10,795 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:03:14,093 - get_file_list
+- INFO - 2021-05-22 16:03:14,093 - get_content_file -> (file : 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_ - map.json)
+- INFO - 2021-05-22 16:03:15,332 - Init Server
+- INFO - 2021-05-22 16:03:15,338 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:03:15,431 - Init Server
+- INFO - 2021-05-22 16:03:15,436 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:03:16,631 - get_file_list
+- INFO - 2021-05-22 16:03:16,642 - get_file_by_id -> (file_id: 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_)
+- INFO - 2021-05-22 16:03:17,459 - delete_file_by_id -> (file_id: 15fBZlSZhLH71akoIGG8AO_BGUrOCN7c_)
+- INFO - 2021-05-22 16:03:18,358 - upload_file -> (file_name: 000012text-3.txt.aes)
+- INFO - 2021-05-22 16:03:19,715 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 16:04:05,993 - Init Server
+- INFO - 2021-05-22 16:04:06,033 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:04:07,381 - get_file_list
+- INFO - 2021-05-22 16:04:07,382 - get_content_file -> (file : 1mu1RsV7BEGzr5RV85OHT-K40TPpxWEQ3 - map.json)
+- INFO - 2021-05-22 16:04:08,648 - Init Server
+- INFO - 2021-05-22 16:04:08,676 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:04:08,785 - Init Server
+- INFO - 2021-05-22 16:04:08,786 - Init Server
+- INFO - 2021-05-22 16:04:08,792 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:04:08,822 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:04:10,017 - get_file_list
+- INFO - 2021-05-22 16:04:10,018 - get_file_by_id -> (file_id: 1mu1RsV7BEGzr5RV85OHT-K40TPpxWEQ3)
+- INFO - 2021-05-22 16:04:10,761 - delete_file_by_id -> (file_id: 1mu1RsV7BEGzr5RV85OHT-K40TPpxWEQ3)
+- INFO - 2021-05-22 16:04:11,242 - upload_file -> (file_name: 000013private_key.txt.aes)
+- INFO - 2021-05-22 16:04:11,618 - upload_file -> (file_name: 000014public_key.txt.aes)
+- INFO - 2021-05-22 16:04:13,359 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 16:06:58,784 - Init Server
+- INFO - 2021-05-22 16:06:58,809 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:07:00,266 - get_file_list
+- INFO - 2021-05-22 16:07:00,266 - get_content_file -> (file : 1ZoFfgoBQZxeDWjZwTDZlCA1LqJntPbd4 - map.json)
+- INFO - 2021-05-22 16:07:01,449 - Init Server
+- INFO - 2021-05-22 16:07:01,455 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:07:01,501 - Init Server
+- INFO - 2021-05-22 16:07:01,538 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:07:02,765 - get_file_list
+- INFO - 2021-05-22 16:07:02,766 - get_file_by_id -> (file_id: 1ZoFfgoBQZxeDWjZwTDZlCA1LqJntPbd4)
+- INFO - 2021-05-22 16:07:02,918 - get_file_list
+- INFO - 2021-05-22 16:07:02,919 - get_file_by_id -> (file_id: 19-iwQExfo0D7rQD8xqwBx6sq5L1wdayW)
+- INFO - 2021-05-22 16:07:03,540 - delete_file_by_id -> (file_id: 1ZoFfgoBQZxeDWjZwTDZlCA1LqJntPbd4)
+- INFO - 2021-05-22 16:07:03,642 - delete_file_by_id -> (file_id: 19-iwQExfo0D7rQD8xqwBx6sq5L1wdayW)
+- INFO - 2021-05-22 16:07:06,210 - upload_file -> (file_name: 000003text-1.txt.aes)
+- INFO - 2021-05-22 16:07:06,295 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 16:08:53,030 - Init Server
+- INFO - 2021-05-22 16:08:53,080 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:08:53,371 - Init Server
+- INFO - 2021-05-22 16:08:53,385 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:08:54,704 - get_file_list
+- INFO - 2021-05-22 16:08:54,704 - get_file_by_id -> (file_id: 1ALQma63ZANuqH_CaeDw8pdDMdZYKtpMy)
+- INFO - 2021-05-22 16:08:55,532 - delete_file_by_id -> (file_id: 1ALQma63ZANuqH_CaeDw8pdDMdZYKtpMy)
+- INFO - 2021-05-22 16:08:56,100 - get_file_list
+- INFO - 2021-05-22 16:08:56,105 - get_file_by_id -> (file_id: 1HcuzGCfctbm5H1eMJMdm-n0NNZD-YThA)
+- INFO - 2021-05-22 16:08:56,919 - delete_file_by_id -> (file_id: 1HcuzGCfctbm5H1eMJMdm-n0NNZD-YThA)
+- INFO - 2021-05-22 16:08:59,411 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 16:10:45,656 - Init Server
+- INFO - 2021-05-22 16:10:45,676 - Init Server
+- INFO - 2021-05-22 16:10:45,703 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:10:45,705 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:10:46,347 - Init Server
+- INFO - 2021-05-22 16:10:46,356 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:10:47,503 - get_file_list
+- INFO - 2021-05-22 16:10:47,504 - get_file_by_id -> (file_id: 1yQyXYceSDXYMyYpb3ZaFNPFvHCSlFQc7)
+- INFO - 2021-05-22 16:10:47,636 - get_file_list
+- INFO - 2021-05-22 16:10:47,637 - get_file_by_id -> (file_id: 192aa0HEYG6SKVs189Fz0wuKifk1gkyak)
+- INFO - 2021-05-22 16:10:47,879 - get_file_list
+- INFO - 2021-05-22 16:10:47,880 - get_file_by_id -> (file_id: 19atP-o8tlWW-105Tnz2VVdawbk1q0GQ3)
+- INFO - 2021-05-22 16:10:48,415 - delete_file_by_id -> (file_id: 1yQyXYceSDXYMyYpb3ZaFNPFvHCSlFQc7)
+- INFO - 2021-05-22 16:10:48,498 - delete_file_by_id -> (file_id: 192aa0HEYG6SKVs189Fz0wuKifk1gkyak)
+- INFO - 2021-05-22 16:10:48,825 - delete_file_by_id -> (file_id: 19atP-o8tlWW-105Tnz2VVdawbk1q0GQ3)
+- INFO - 2021-05-22 16:10:51,447 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 16:12:23,786 - Init Server
+- INFO - 2021-05-22 16:12:23,819 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:12:25,114 - get_file_list
+- INFO - 2021-05-22 16:12:25,116 - get_file_by_id -> (file_id: 1du4mPQIvarxq1VikruqUKpjE5VeSV5bP)
+- INFO - 2021-05-22 16:12:25,867 - delete_file_by_id -> (file_id: 1du4mPQIvarxq1VikruqUKpjE5VeSV5bP)
+- INFO - 2021-05-22 16:12:28,428 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 16:12:44,603 - Init Server
+- INFO - 2021-05-22 16:12:44,632 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:12:45,927 - get_file_list
+- INFO - 2021-05-22 16:12:45,928 - get_file_by_id -> (file_id: 1QW5kl4Ys4U9pw3IdT5_qObNer2exak0x)
+- INFO - 2021-05-22 16:12:46,698 - delete_file_by_id -> (file_id: 1QW5kl4Ys4U9pw3IdT5_qObNer2exak0x)
+- INFO - 2021-05-22 16:12:49,007 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 16:13:03,330 - Init Server
+- INFO - 2021-05-22 16:13:03,361 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:13:04,561 - get_file_list
+- INFO - 2021-05-22 16:13:04,563 - get_file_by_id -> (file_id: 1pfdT63u1i-dw1BEW60vSpH3PlfMogKuE)
+- INFO - 2021-05-22 16:13:05,407 - delete_file_by_id -> (file_id: 1pfdT63u1i-dw1BEW60vSpH3PlfMogKuE)
+- INFO - 2021-05-22 16:13:07,957 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 16:15:04,350 - Init Server
+- INFO - 2021-05-22 16:15:04,388 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:15:05,764 - get_file_list
+- INFO - 2021-05-22 16:15:05,765 - get_content_file -> (file : 1nuo5-2zBvZKfC5kCPsXRX4-fWj5nmERN - map.json)
+- INFO - 2021-05-22 16:15:07,059 - Init Server
+- INFO - 2021-05-22 16:15:07,062 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:15:07,127 - Init Server
+- INFO - 2021-05-22 16:15:07,140 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:15:08,474 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 16:15:08,547 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 16:15:08,548 - get_content_file -> (file : 1nuo5-2zBvZKfC5kCPsXRX4-fWj5nmERN - map.json)
+- INFO - 2021-05-22 16:15:10,302 - get_files_by_title -> (title: 000003text-1.txt.aes)
+- INFO - 2021-05-22 16:15:34,053 - Init Server
+- INFO - 2021-05-22 16:15:34,099 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:15:35,482 - get_file_list
+- INFO - 2021-05-22 16:15:35,483 - get_content_file -> (file : 1nuo5-2zBvZKfC5kCPsXRX4-fWj5nmERN - map.json)
+- INFO - 2021-05-22 16:15:36,664 - Init Server
+- INFO - 2021-05-22 16:15:36,669 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:15:36,709 - Init Server
+- INFO - 2021-05-22 16:15:36,724 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:15:38,156 - get_file_list
+- INFO - 2021-05-22 16:15:38,158 - get_file_by_id -> (file_id: 1nuo5-2zBvZKfC5kCPsXRX4-fWj5nmERN)
+- INFO - 2021-05-22 16:15:38,899 - delete_file_by_id -> (file_id: 1nuo5-2zBvZKfC5kCPsXRX4-fWj5nmERN)
+- INFO - 2021-05-22 16:15:39,166 - upload_file -> (file_name: 000012text-2.txt.aes)
+- INFO - 2021-05-22 16:15:41,303 - Init Server
+- INFO - 2021-05-22 16:15:41,335 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:15:41,366 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 16:15:42,572 - get_file_list
+- INFO - 2021-05-22 16:15:42,572 - get_content_file -> (file : 1My9njHhX8o36Z0mVd6Ytt8uCA8AdFI7w - map.json)
+- INFO - 2021-05-22 16:15:43,987 - Init Server
+- INFO - 2021-05-22 16:15:44,029 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:15:44,149 - Init Server
+- INFO - 2021-05-22 16:15:44,153 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:15:45,519 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 16:15:45,662 - get_files_by_title -> (title: map.json)
+- INFO - 2021-05-22 16:15:45,662 - get_content_file -> (file : 1My9njHhX8o36Z0mVd6Ytt8uCA8AdFI7w - map.json)
+- INFO - 2021-05-22 16:15:47,344 - get_files_by_title -> (title: 000012text-2.txt.aes)
+- INFO - 2021-05-22 16:15:59,278 - Init Server
+- INFO - 2021-05-22 16:15:59,327 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:16:00,973 - Init Server
+- INFO - 2021-05-22 16:16:00,987 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:16:01,151 - get_file_list
+- INFO - 2021-05-22 16:16:01,151 - get_file_by_id -> (file_id: 1yjOSefWq6PV03I-TVTiKm_PAx3XGt8ow)
+- INFO - 2021-05-22 16:16:01,936 - delete_file_by_id -> (file_id: 1yjOSefWq6PV03I-TVTiKm_PAx3XGt8ow)
+- INFO - 2021-05-22 16:16:02,287 - get_file_list
+- INFO - 2021-05-22 16:16:02,288 - get_file_by_id -> (file_id: 1My9njHhX8o36Z0mVd6Ytt8uCA8AdFI7w)
+- INFO - 2021-05-22 16:16:03,143 - delete_file_by_id -> (file_id: 1My9njHhX8o36Z0mVd6Ytt8uCA8AdFI7w)
+- INFO - 2021-05-22 16:16:05,613 - upload_file -> (file_name: map.json)
+- INFO - 2021-05-22 16:16:06,752 - Init Server
+- INFO - 2021-05-22 16:16:06,778 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:16:07,984 - get_file_list
+- INFO - 2021-05-22 16:16:07,984 - get_content_file -> (file : 1GO5OuOi4ZBFtk1DEw5KPJnLvMt4hucSU - map.json)
+- INFO - 2021-05-22 16:16:09,585 - Init Server
+- INFO - 2021-05-22 16:16:09,613 - file_cache is only supported with oauth2client<4.0.0
+- INFO - 2021-05-22 16:16:10,815 - get_files_by_title -> (title: map.json)
