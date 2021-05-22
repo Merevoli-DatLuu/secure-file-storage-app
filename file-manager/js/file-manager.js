@@ -95,6 +95,7 @@ function handleFileUploader() {
 
         zdrop.on("addedfile", function (file, fromData) {
             $('.preview-container').css('visibility', 'visible');
+            $('#submit-upload-file').css('visibility', 'visible');
         });
 
         zdrop.on("sending", function (file, xhr, formData) {
@@ -600,11 +601,13 @@ async function watchModifiedFile(watcher, filePath, id){
 
             // Clear the interval
             clearIntervalModifiedFile(id)
-
+            console.log(1)
             // Chưa nghĩ ra solution tốt hơn
-            while (JSON.stringify(last_modified) == JSON.stringify({})){
-                checkSync()
-            }
+            //while (JSON.stringify(last_modified) == JSON.stringify({})){
+            //    console.log(1)
+            //    checkSync()
+            //    console.log(1)
+            //}
 
         });
     }
@@ -616,9 +619,11 @@ function clearIntervalModifiedFile(idInterval){
     // call this in watchModified...()
 
     clearInterval(watcher_manager[idInterval])
+    console.log(1)
     delete watcher_manager[idInterval]
+    console.log(1)
     delete last_modified[idInterval]
-
+    console.log(1)
 }
 
 async function handleOpenFile(filePath, id, type) {
@@ -742,7 +747,10 @@ function handleRemoveFiles() {
     let tree_file = JSON.parse(data);
 
     let fileIDs = Object.keys(tree_file.files)
-    fileIDs = fileIDs.filter(e => { return document.getElementById(`file-list-${e}`).checked })
+    fileIDs = fileIDs.filter(e => { 
+        return document.getElementById(`file-list-${e}`) != null && 
+        document.getElementById(`file-list-${e}`).checked })
+
     if (fileIDs.length > 0){
         if (confirm("Are you sure you want to delete this file?")) {
             console.log(fileIDs)
@@ -794,7 +802,11 @@ function downloadFilesToFolder(download_dir, files, ids) {
     }
     showAlert("Download", "file " + file.name + " successfully", "success")
 
-    ids.forEach(e => { document.getElementById(`file-list-${e}`).checked = false })
+    ids.forEach(e => { 
+        if (document.getElementById(`file-list-${e}`) != null){
+            document.getElementById(`file-list-${e}`).checked = false
+        } 
+    })
 }
 
 async function downloadFile(id) {
@@ -812,7 +824,9 @@ function handleDownloadFiles() {
     let tree_file = JSON.parse(data);
 
     let fileIDs = Object.keys(tree_file.files)
-    fileIDs = fileIDs.filter(e => { return document.getElementById(`file-list-${e}`).checked })
+    fileIDs = fileIDs.filter(e => { 
+        return document.getElementById(`file-list-${e}`) != null &&  
+        document.getElementById(`file-list-${e}`).checked })
     console.log(fileIDs)
     files = fileIDs.map(e => tree_file.files[e])
 

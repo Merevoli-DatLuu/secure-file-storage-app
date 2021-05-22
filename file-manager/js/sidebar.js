@@ -366,8 +366,8 @@ function showProfile(){
                     <div class="column-card-5">Device Name</div>
                 </div>
                 <div class="row-card" style = "font-size: 14px; color: gray">
-                    <div class="column-card-5">${data[0].login_time}</div>
-                    <div class="column-card-5">${data[0].device_info}</div>
+                    <div class="column-card-5">${data[data.length - 1].login_time}</div>
+                    <div class="column-card-5">${data[data.length - 1].device_info}</div>
                 </div>
                 <div style = "display : inline-flex;">
                     <a id = "change-password" class="btn">Change Password</a>
@@ -429,7 +429,7 @@ function showChangePassword(){
                         <label class="col-lg-3 control-label">Old Password</label>
                         <div class="col-lg-7">
                             <input
-                                type="text"
+                                type="password"
                                 class="form-control"
                                 id = "change_password_old_password"
                                 name="old_password"
@@ -441,7 +441,7 @@ function showChangePassword(){
                         <label class="col-lg-3 control-label">New Password</label>
                         <div class="col-lg-7">
                             <input
-                                type="text"
+                                type="password"
                                 class="form-control"
                                 id = "change_password_password"
                                 name="password"
@@ -453,7 +453,7 @@ function showChangePassword(){
                         <label class="col-lg-3 control-label">New Password</label>
                         <div class="col-lg-7">
                             <input
-                                type="text"
+                                type="password"
                                 class="form-control"
                                 id = "change_password_password2"
                                 name="password2"
