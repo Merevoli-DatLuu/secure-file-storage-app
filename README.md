@@ -149,3 +149,18 @@ Khởi động ứng dụng (client)
 electron .
 ```
 ## Screenshot
+
+![](./reviews/Screenshots/capture_08.png)
+![](./reviews/Screenshots/capture_09.png)
+![](./reviews/Screenshots/capture_10.png)
+![](./reviews/Screenshots/capture_11.png)
+![](./reviews/Screenshots/capture_01.png)
+![](./reviews/Screenshots/capture_02.png)
+![](./reviews/Screenshots/capture_03.png)
+![](./reviews/Screenshots/capture_04.png)
+![](./reviews/Screenshots/capture_05.png)
+![](./reviews/Screenshots/capture_06.png)
+![](./reviews/Screenshots/capture_07.png)
+![](./reviews/Screenshots/capture_12.png)
+![](./reviews/Screenshots/capture_13.png)
+![](./reviews/Screenshots/capture_14.png)
