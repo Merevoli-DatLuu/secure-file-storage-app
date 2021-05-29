@@ -64,7 +64,7 @@ Phần mềm cho phép người dùng có thể thêm tập tin muốn mã hóa 
 
 ## Mô tả hệ thống
 
-<img src="./reviews/system_architecture.png" width="80%">
+<img src="./reviews/system_architecture.png" width="100%">
 
 ### Đối tượng tham gia
 
@@ -111,5 +111,41 @@ Xử lý các thao tác đăng nhập, đăng kí của người sử dụng.
 
 
 ## Cài đặt
-Sẽ viết sau...
+
+### Cài đặt các packages cần thiết:
+
+Client side
+```
+npm install
+```
+
+Server side
+```
+python3 –m pip install –r requirements.txt
+```
+
+### Sử dụng Google Drive API
+
+Do Google Drive API phụ thuộc vào tài khoản Google trên trình duyệt. Nên phải tự thiết lập Google Drive API.
+
+Hướng dẫn: https://medium.com/analytics-vidhya/how-to-connect-google-drive-to-python-using-pydrive-9681b2a14f20
+
+Sau khi thiết lập thành công thì lưu API Key và thay thế file client_secrets.json.
+
+Với mỗi lần chạy có thể sử dụng chạy get_new_credentials_file.py để được cấp credentials_file có thể sử dụng mỗi 1 tiếng.
+
+### Khởi động server
+```
+# . \secure-file-storage-app\api\file_manager
+python3 manage.py runserver
+
+# . \secure-file-storage-app\kdc\file_manager_kdc
+python3 manage.py runserver
+```
+
+Khởi động ứng dụng (client)
+```
+# . \secure-file-storage-app
+electron .
+```
 ## Screenshot
