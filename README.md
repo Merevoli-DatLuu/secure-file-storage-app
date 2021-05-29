@@ -13,8 +13,8 @@ A **secure** and **easy-to-use** File Manager Application
 **Secure File Storage** là phần mềm lưu trữ và bảo vệ các tập tin quan trọng của người dùng một cách đơn giản và nhanh chóng. Hỗ trợ bảo mật với khả năng mã hóa các dữ liệu, cung cấp tài khoản riêng biệt giúp bảo vệ cũng như tạo một môi trường lưu trữ an toàn cho các tập tin của người dùng.
 
 - [Giới thiệu](#giới-thiệu)
-- [Mô tả hệ thống](#mô-tả-hệ-thống)
 - [Tính năng](#tính-năng)
+- [Mô tả hệ thống](#mô-tả-hệ-thống)
 - [Cài đặt](#cài-đặt)
 - [Screenshot](#screenshot)
 
@@ -27,6 +27,7 @@ Secure File Storage là phần mềm có khả năng cung cấp cho người dù
 
 Phần mềm cho phép người dùng có thể thêm tập tin muốn mã hóa bằng thao tác vô cùng đơn giản chỉ với việc kéo thả tập tin vào phần mềm. Ngoài ra phần mềm cho phép người dùng thực hiện các thao tác với tập tin như: xem nội dung tập tin, sửa nội dung, xóa tập tin, tải tập tin, phân loại, tìm kiếm, sắp xếp, khóa màn hình, xem lịch sử các thiết bị đăng nhập, điều này giúp người dùng có thể biết được dữ liệu có bị truy cập trái phép hay không. Không chỉ có vậy, phần mềm còn hỗ trợ đồng bộ dữ liệu lên máy chủ, giúp cho người dùng có thể truy cập dữ liệu ở bất kì đâu bất kì thiết bị nào.
 
+<br><br>
 ## Tính năng
 
 + Quản lý đăng nhập
@@ -61,7 +62,7 @@ Phần mềm cho phép người dùng có thể thêm tập tin muốn mã hóa 
 
 + Xem thông tin phần mềm
 
-
+<br><br>
 ## Mô tả hệ thống
 
 <img src="./reviews/system_architecture.png" width="100%">
@@ -109,7 +110,7 @@ Xử lý các thao tác đăng nhập, đăng kí của người sử dụng.
 + Vai trò:
     + Lưu trữ các tập tin mã hóa và cấu trúc thư mục dùng để đồng bộ dữ liệu trên các thiết bị khác nhau cùng một tài khoản.
 
-
+<br><br>
 ## Cài đặt
 
 ### Cài đặt các packages cần thiết:
@@ -148,6 +149,8 @@ Khởi động ứng dụng (client)
 # . \secure-file-storage-app
 electron .
 ```
+
+<br><br>
 ## Screenshot
 
 ![](./reviews/Screenshots/capture_08.png)
